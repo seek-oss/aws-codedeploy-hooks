@@ -1,0 +1,14 @@
+{
+  "name": "@seek/aws-codedeploy-infra",
+  "license": "MIT",
+  "dependencies": {
+    "aws-cdk-lib": "^2.115.0",
+    "constructs": "^10.3.0"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "2.68.0",
+    "@aws-sdk/client-cloudformation": "3.474.0",
+    "@aws-sdk/client-codedeploy": "3.474.0",
+    "@aws-sdk/client-lambda": "3.474.0"
+  }
+}
