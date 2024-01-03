@@ -1,1 +1,1 @@
-export { HookStack, type HookStackProps } from './stack';
+export { HookStack, type HookStackProps } from './constructs/stack';

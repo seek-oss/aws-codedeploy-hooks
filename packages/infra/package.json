@@ -2,15 +2,17 @@
   "name": "@seek/aws-codedeploy-infra",
   "license": "MIT",
   "dependencies": {
+    "@types/aws-lambda": "^8.10.130",
     "aws-cdk-lib": "^2.115.0",
     "constructs": "^10.3.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "2.68.0",
-    "@aws-sdk/client-cloudformation": "3.474.0",
-    "@aws-sdk/client-codedeploy": "3.474.0",
-    "@aws-sdk/client-lambda": "3.474.0",
-    "aws-sdk-client-mock": "3.0.0"
+    "@aws-cdk/assert": "^2.68.0",
+    "@aws-sdk/client-cloudformation": "^3.478.0",
+    "@aws-sdk/client-codedeploy": "^3.478.0",
+    "@aws-sdk/client-lambda": "^3.478.0",
+    "aws-sdk-client-mock": "^3.0.0",
+    "aws-sdk-client-mock-jest": "^3.0.0"
   }
 }
