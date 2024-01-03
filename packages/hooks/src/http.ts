@@ -1,4 +1,4 @@
-import { USER_AGENT_PREFIX } from './constants';
+import { GANTRY_HOOK_PREFIX, USER_AGENT_PREFIX } from './constants';
 
 type HttpRequest = {
   headers: {
@@ -26,7 +26,16 @@ type HttpRequest = {
  * }
  * ```
  *
- * Checks for a `user-agent` header that starts with `aws-codedeploy-hooks/`.
+ * Checks for a `user-agent` header that starts with either:
+ *
+ * - `aws-codedeploy-hooks/`
+ * - `gantry-codedeploy-hook-BeforeAllowTraffic-`
  */
-export const isHttpHook = (req: HttpRequest): boolean =>
-  Boolean(req.headers.get('user-agent')?.startsWith(USER_AGENT_PREFIX));
+export const isHttpHook = (req: HttpRequest): boolean => {
+  const userAgent = req.headers.get('user-agent');
+
+  return Boolean(
+    userAgent?.startsWith(GANTRY_HOOK_PREFIX) ||
+      userAgent?.startsWith(USER_AGENT_PREFIX),
+  );
+};
