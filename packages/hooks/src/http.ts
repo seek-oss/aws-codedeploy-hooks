@@ -28,7 +28,7 @@ type HttpRequest = {
  *
  * Checks for a `user-agent` header that starts with either:
  *
- * - `aws-codedeploy-hooks/`
+ * - `aws-codedeploy-hook-`
  * - `gantry-codedeploy-hook-BeforeAllowTraffic-`
  */
 export const isHttpHook = (req: HttpRequest): boolean => {

@@ -20,7 +20,7 @@ describe('isHttpHook', () => {
       isHttpHook(
         new Request('https://example.com', {
           headers: {
-            'User-Agent': 'aws-codedeploy-hooks/123',
+            'User-Agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
           },
         }),
       ),
