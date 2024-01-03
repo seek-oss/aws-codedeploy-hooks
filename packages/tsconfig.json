@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "outDir": "lib"
+  },
+  "extends": "../tsconfig.json",
+  "files": [],
+  "references": [{ "path": "hooks" }, { "path": "infra" }]
+}
