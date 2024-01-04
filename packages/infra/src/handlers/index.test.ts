@@ -107,7 +107,7 @@ describe('handler', () => {
     ]);
   });
 
-  it('throws a failure to report a success', async () => {
+  it('throws on failure to report a success', async () => {
     const err = new Error('mock-error');
 
     processEventMock.mockResolvedValue(undefined);
@@ -143,7 +143,8 @@ describe('handler', () => {
       },
     ]);
   });
-  it('throws a failure to report a failure', async () => {
+
+  it('throws on failure to report a failure', async () => {
     const processError = new Error('mock-process-error');
     const reportError = new Error('mock-report-error');
 
