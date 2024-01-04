@@ -11,6 +11,8 @@ import { handler } from '.';
 
 const codeDeploy = mockClient(CodeDeployClient);
 
+afterEach(() => codeDeploy.reset());
+
 describe('handler', () => {
   type Event = Parameters<typeof handler>[0];
   type Context = Parameters<typeof handler>[1];
