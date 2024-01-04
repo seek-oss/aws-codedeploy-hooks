@@ -1,3 +1,5 @@
+jest.mock('./process/process');
+
 import 'aws-sdk-client-mock-jest';
 
 import {
@@ -7,11 +9,18 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 
+import { processEvent } from './process/process';
+
 import { handler } from '.';
 
 const codeDeploy = mockClient(CodeDeployClient);
 
-afterEach(() => codeDeploy.reset());
+const processEventMock = jest.mocked(processEvent);
+
+afterEach(() => {
+  codeDeploy.reset();
+  processEventMock.mockReset();
+});
 
 describe('handler', () => {
   type Event = Parameters<typeof handler>[0];
@@ -36,7 +45,11 @@ describe('handler', () => {
       })
       .resolves({});
 
+    processEventMock.mockResolvedValue(undefined);
+
     await expect(handler(event, context)).resolves.toBeUndefined();
+
+    expect(processEventMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedCommandTimes(
       PutLifecycleEventHookExecutionStatusCommand,
