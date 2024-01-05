@@ -30,6 +30,8 @@ type HttpRequest = {
  *
  * - `aws-codedeploy-hook-`
  * - `gantry-codedeploy-hook-BeforeAllowTraffic-`
+ *
+ * Compatible with Gantry v2.3.7 and newer.
  */
 export const isHttpHook = (req: HttpRequest): boolean => {
   const userAgent = req.headers.get('user-agent');
