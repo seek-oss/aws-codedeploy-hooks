@@ -25,8 +25,14 @@ if (!AWS_LAMBDA_FUNCTION_NAME || !AWS_LAMBDA_FUNCTION_VERSION || !region) {
 // TODO: should we include build number / commit hash / npm package version?
 const userAgent = `aws-codedeploy-hooks/${AWS_LAMBDA_FUNCTION_VERSION}`;
 
+const environment =
+  process.env.ENVIRONMENT === 'local' || process.env.ENVIRONMENT === 'test'
+    ? process.env.ENVIRONMENT
+    : 'production';
+
 export const config = {
   functionName: AWS_LAMBDA_FUNCTION_NAME,
+  environment,
   region,
   userAgent,
-} satisfies Record<string, string>;
+} as const satisfies Record<string, string>;
