@@ -1,5 +1,8 @@
 # AWS CodeDeploy Hooks
 
+[![GitHub Release](https://github.com/seek-oss/aws-codedeploy-hooks/workflows/Release/badge.svg?branch=master)](https://github.com/seek-oss/aws-codedeploy-hooks/actions?query=workflow%3ARelease)
+[![GitHub Validate](https://github.com/seek-oss/aws-codedeploy-hooks/workflows/Validate/badge.svg?branch=master)](https://github.com/seek-oss/aws-codedeploy-hooks/actions?query=workflow%3AValidate)
+
 [AWS CodeDeploy] is a deployment mechanism for ECS services, Lambda functions, and more.
 
 The service includes a feature called [lifecycle event hooks],
