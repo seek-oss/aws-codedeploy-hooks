@@ -1,6 +1,8 @@
 {
   "name": "@seek/aws-codedeploy-infra",
+  "private": true,
   "license": "MIT",
+  "files": [],
   "dependencies": {
     "@seek/logger": "^6.2.0",
     "@types/aws-lambda": "^8.10.130",

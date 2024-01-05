@@ -22,4 +22,6 @@ package-lock.json
 yarn-error.log
 # end managed by skuba
 
+/packages/**/lib*/
+
 !.npmrc
