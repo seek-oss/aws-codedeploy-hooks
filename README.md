@@ -1,7 +1,7 @@
 # AWS CodeDeploy Hooks
 
-[![GitHub Release](https://github.com/seek-oss/aws-codedeploy-hooks/workflows/Release/badge.svg?branch=main)](https://github.com/seek-oss/aws-codedeploy-hooks/actions?query=workflow%3ARelease)
-[![GitHub Validate](https://github.com/seek-oss/aws-codedeploy-hooks/workflows/Validate/badge.svg?branch=main)](https://github.com/seek-oss/aws-codedeploy-hooks/actions?query=workflow%3AValidate)
+[![Release](https://github.com/seek-oss/aws-codedeploy-hooks/actions/workflows/release.yml/badge.svg)](https://github.com/seek-oss/aws-codedeploy-hooks/actions/workflows/release.yml)
+[![Validate](https://github.com/seek-oss/aws-codedeploy-hooks/actions/workflows/validate.yml/badge.svg)](https://github.com/seek-oss/aws-codedeploy-hooks/actions/workflows/validate.yml)
 
 [AWS CodeDeploy] is a deployment mechanism for ECS services, Lambda functions, and more.
 
