@@ -1,5 +1,4 @@
 import { AsyncLocalStorage } from 'async_hooks';
-import { setTimeout } from 'timers/promises';
 
 type Context = {
   abortSignal?: AbortSignal;
@@ -18,27 +17,15 @@ export const withTimeout = async <T>(
   task: () => Promise<T>,
   timeoutMs: number,
 ): Promise<T> => {
-  const cancelTask = new AbortController();
-  const cancelTimeout = new AbortController();
+  const parent = getAbortSignal();
 
-  const runTask = async (): Promise<T> => {
-    try {
-      return await storage.run(
-        { ...getContext(), abortSignal: cancelTask.signal },
-        task,
-      );
-    } finally {
-      cancelTimeout.abort();
-    }
-  };
+  const timeout = AbortSignal.timeout(timeoutMs);
 
-  const runTimeout = async (): Promise<never> => {
-    await setTimeout(timeoutMs, undefined, { signal: cancelTimeout.signal });
+  const abortSignal = parent
+    ? // @ts-expect-error: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/60868
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      (AbortSignal.any([parent, timeout]) as AbortSignal)
+    : timeout;
 
-    cancelTask.abort();
-
-    throw new Error(`Task timed out after ${timeoutMs}ms: ${task.name}`);
-  };
-
-  return Promise.race([runTask(), runTimeout()]);
+  return storage.run({ ...getContext(), abortSignal }, task);
 };
