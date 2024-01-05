@@ -2,14 +2,20 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "build": "pnpm --filter ./packages/hooks run build",
+    "changeset": "changeset",
     "format": "skuba format",
     "lint": "skuba lint",
+    "release": "pnpm run --silent build && changeset publish",
+    "stage": "changeset version && pnpm run --silent format",
     "test": "skuba test",
     "test:ci": "skuba test --coverage",
     "test:watch": "skuba test --watch"
   },
   "dependencies": {},
   "devDependencies": {
+    "@changesets/cli": "2.27.1",
+    "@changesets/get-github-info": "0.6.0",
     "@types/node": "^20.10.6",
     "dotenv": "16.3.1",
     "skuba": "7.3.1"
