@@ -17,7 +17,7 @@ const context = {
 describe('getAbortSignal', () => {
   it('returns the current abort signal where available', () =>
     storage.run(context, () =>
-      expect(getAbortSignal()).toStrictEqual(context.abortSignal),
+      expect(getAbortSignal()).toBe(context.abortSignal),
     ));
 });
 
@@ -31,9 +31,7 @@ describe('getContext', () => {
 
 describe('getRequestId', () => {
   it('returns the current request ID where available', () =>
-    storage.run(context, () =>
-      expect(getRequestId()).toStrictEqual(context.requestId),
-    ));
+    storage.run(context, () => expect(getRequestId()).toBe(context.requestId)));
 });
 
 describe('withTimeout', () => {
@@ -42,7 +40,7 @@ describe('withTimeout', () => {
 
     const task = jest.fn().mockResolvedValue(result);
 
-    await expect(withTimeout(task, 100)).resolves.toStrictEqual(result);
+    await expect(withTimeout(task, 100)).resolves.toBe(result);
 
     expect(task).toHaveBeenCalledTimes(1);
   });
@@ -56,7 +54,7 @@ describe('withTimeout', () => {
       storage.run({ abortSignal: new AbortController().signal }, () =>
         withTimeout(task, 100),
       ),
-    ).resolves.toStrictEqual(result);
+    ).resolves.toBe(result);
 
     expect(task).toHaveBeenCalledTimes(1);
   });
