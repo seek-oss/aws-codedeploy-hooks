@@ -3,11 +3,18 @@ import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
 import type { Construct } from 'constructs';
 
 import { LAMBDA_HOOK_PROPS } from './lambda';
+import { type Network, processNetwork } from './network';
 
-export type HookStackProps = Record<string, never>;
+export type HookStackProps = {
+  additionalNetworks?: Network[];
+};
 
 export class HookStack extends Stack {
-  constructor(scope: Construct, id?: string, _props: HookStackProps = {}) {
+  constructor(
+    scope: Construct,
+    id?: string,
+    { additionalNetworks }: HookStackProps = {},
+  ) {
     super(scope, id ?? 'HookStack', {
       description: 'AWS CodeDeploy hooks',
       stackName: 'aws-codedeploy-hooks',
@@ -16,27 +23,31 @@ export class HookStack extends Stack {
       terminationProtection: true,
     });
 
-    const beforeAllowTrafficHook = new nodejs.NodejsFunction(
-      this,
-      'BeforeAllowTrafficHook',
-      {
-        ...LAMBDA_HOOK_PROPS,
-        description: 'BeforeAllowTraffic hook deployed outside of a VPC',
-        functionName: 'aws-codedeploy-hook-BeforeAllowTraffic',
-        vpc: undefined,
-      },
-    );
+    for (const network of [null, ...(additionalNetworks ?? [])]) {
+      const { description, suffix, vpc } = processNetwork(this, network);
 
-    beforeAllowTrafficHook.addToRolePolicy(
-      new aws_iam.PolicyStatement({
-        actions: [
-          'codedeploy:GetApplicationRevision',
-          'codedeploy:GetDeployment',
-          'codedeploy:PutLifecycleEventHookExecutionStatus',
-          'lambda:InvokeFunction',
-        ],
-        resources: ['*'],
-      }),
-    );
+      const beforeAllowTrafficHook = new nodejs.NodejsFunction(
+        this,
+        `BeforeAllowTrafficHook${suffix}`,
+        {
+          ...LAMBDA_HOOK_PROPS,
+          description,
+          functionName: `aws-codedeploy-hook-BeforeAllowTraffic${suffix}`,
+          vpc,
+        },
+      );
+
+      beforeAllowTrafficHook.addToRolePolicy(
+        new aws_iam.PolicyStatement({
+          actions: [
+            'codedeploy:GetApplicationRevision',
+            'codedeploy:GetDeployment',
+            'codedeploy:PutLifecycleEventHookExecutionStatus',
+            'lambda:InvokeFunction',
+          ],
+          resources: ['*'],
+        }),
+      );
+    }
   }
 }
