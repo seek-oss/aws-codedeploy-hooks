@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "composite": true,
-    "lib": ["ES2023"],
+    "lib": [
+      // https://github.com/mswjs/msw/issues/1836#issuecomment-1839364365
+      "DOM",
+
+      "ES2023"
+    ],
     "outDir": "lib",
     "target": "ES2022"
   },

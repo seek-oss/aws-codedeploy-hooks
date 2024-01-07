@@ -7,6 +7,7 @@ import { codeDeployClient } from '../framework/aws';
 import { getAbortSignal } from '../framework/context';
 import type { CodeDeployLifecycleHookEvent } from '../types';
 
+import { ecs } from './ecs/ecs';
 import { lambda } from './lambda/lambda';
 
 export const processEvent = async (
@@ -17,9 +18,17 @@ export const processEvent = async (
     { abortSignal: getAbortSignal() },
   );
 
-  const opts = parseDeploymentInfo(deploymentInfo ?? {});
+  const { computePlatform, ...opts } = parseDeploymentInfo(
+    deploymentInfo ?? {},
+  );
 
-  return lambda(opts);
+  switch (computePlatform) {
+    case 'ECS':
+      return ecs(opts);
+
+    case 'Lambda':
+      return lambda(opts);
+  }
 };
 
 export const parseDeploymentInfo = ({
@@ -63,11 +72,11 @@ export const parseDeploymentInfo = ({
     );
   }
 
-  if (computePlatform !== 'Lambda') {
+  if (computePlatform !== 'ECS' && computePlatform !== 'Lambda') {
     throw new Error(
       `The following compute platform is not supported: ${computePlatform}`,
     );
   }
 
-  return { applicationName, revision };
+  return { applicationName, computePlatform, deploymentGroupName, revision };
 };

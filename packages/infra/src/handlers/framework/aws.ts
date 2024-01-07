@@ -1,3 +1,4 @@
+import { CloudFormationClient } from '@aws-sdk/client-cloudformation';
 import { CodeDeployClient } from '@aws-sdk/client-codedeploy';
 import { LambdaClient } from '@aws-sdk/client-lambda';
 
@@ -7,6 +8,8 @@ const clientConfig = {
   maxAttempts: 5,
   region: config.region,
 };
+
+export const cloudFormationClient = new CloudFormationClient(clientConfig);
 
 export const codeDeployClient = new CodeDeployClient(clientConfig);
 

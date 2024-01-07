@@ -1,3 +1,4 @@
+jest.mock('./ecs/ecs');
 jest.mock('./lambda/lambda');
 
 import {
@@ -7,13 +8,13 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 
+import { ecs } from './ecs/ecs';
 import { lambda } from './lambda/lambda';
 import { parseDeploymentInfo, processEvent } from './process';
 
 const deploymentInfo: DeploymentInfo = {
   applicationName: 'mock-application-name',
   computePlatform: 'Lambda',
-  deploymentConfigName: 'CodeDeployDefault.LambdaAllAtOnce',
   deploymentGroupName: 'mock-deployment-group-name',
   deploymentStyle: {
     deploymentOption: 'WITH_TRAFFIC_CONTROL',
@@ -26,13 +27,23 @@ const deploymentInfo: DeploymentInfo = {
   },
 };
 
+const gantryDeploymentInfo: DeploymentInfo = {
+  ...deploymentInfo,
+  applicationName: 'gantry-environment-env-foo',
+  computePlatform: 'ECS',
+  deploymentGroupName: 'svc-bar',
+  revision: {},
+};
+
 describe('processEvent', () => {
   const codeDeploy = mockClient(CodeDeployClient);
 
+  const ecsMock = jest.mocked(ecs);
   const lambdaMock = jest.mocked(lambda);
 
   afterEach(() => {
     codeDeploy.reset();
+    ecsMock.mockReset();
     lambdaMock.mockReset();
   });
 
@@ -42,6 +53,32 @@ describe('processEvent', () => {
     DeploymentId: 'mock-deployment-id',
     LifecycleEventHookExecutionId: 'mock-lifecycle-event-hook-execution-id',
   };
+
+  it('propagates a supported ECS deployment to the relevant handler', async () => {
+    codeDeploy
+      .on(GetDeploymentCommand, {
+        deploymentId: event.DeploymentId,
+      })
+      .resolves({
+        deploymentInfo: gantryDeploymentInfo,
+      });
+
+    ecsMock.mockResolvedValue(undefined);
+
+    await expect(processEvent(event)).resolves.toBeUndefined();
+
+    expect(ecsMock).toHaveBeenCalledTimes(1);
+
+    expect(ecsMock.mock.lastCall).toMatchInlineSnapshot(`
+      [
+        {
+          "applicationName": "gantry-environment-env-foo",
+          "deploymentGroupName": "svc-bar",
+          "revision": {},
+        },
+      ]
+    `);
+  });
 
   it('propagates a supported Lambda deployment to the relevant handler', async () => {
     codeDeploy
@@ -60,6 +97,7 @@ describe('processEvent', () => {
       [
         {
           "applicationName": "mock-application-name",
+          "deploymentGroupName": "mock-deployment-group-name",
           "revision": {
             "appSpecContent": {
               "sha256": "mock-sha256",
@@ -84,10 +122,22 @@ describe('processEvent', () => {
 });
 
 describe('parseDeploymentInfo', () => {
-  it('parses a supported deployment', () =>
+  it('parses a supported ECS deployment', () =>
+    expect(parseDeploymentInfo(gantryDeploymentInfo)).toMatchInlineSnapshot(`
+      {
+        "applicationName": "gantry-environment-env-foo",
+        "computePlatform": "ECS",
+        "deploymentGroupName": "svc-bar",
+        "revision": {},
+      }
+    `));
+
+  it('parses a supported Lambda deployment', () =>
     expect(parseDeploymentInfo(deploymentInfo)).toMatchInlineSnapshot(`
       {
         "applicationName": "mock-application-name",
+        "computePlatform": "Lambda",
+        "deploymentGroupName": "mock-deployment-group-name",
         "revision": {
           "appSpecContent": {
             "sha256": "mock-sha256",
