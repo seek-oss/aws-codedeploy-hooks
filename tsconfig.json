@@ -6,5 +6,11 @@
     "target": "ES2022"
   },
   "exclude": ["lib*/**/*"],
-  "extends": "skuba/config/tsconfig.json"
+  "extends": "skuba/config/tsconfig.json",
+  "include": [
+    "jest.config.ts",
+    "jest.setup.ts",
+    "packages/**/*",
+    "packages/**/package.json"
+  ]
 }

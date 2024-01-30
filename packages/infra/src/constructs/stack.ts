@@ -1,5 +1,4 @@
-import { Stack, aws_iam } from 'aws-cdk-lib';
-import * as nodejs from 'aws-cdk-lib/aws-lambda-nodejs';
+import { Stack, aws_iam, aws_lambda } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 
 import { LAMBDA_HOOK_PROPS } from './lambda';
@@ -16,7 +15,7 @@ export class HookStack extends Stack {
       terminationProtection: true,
     });
 
-    const beforeAllowTrafficHook = new nodejs.NodejsFunction(
+    const beforeAllowTrafficHook = new aws_lambda.Function(
       this,
       'BeforeAllowTrafficHook',
       {

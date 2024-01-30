@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Codegen
+        run: pnpm run codegen
+
       - name: Test
         run: pnpm run test:ci
 

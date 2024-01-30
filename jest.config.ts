@@ -1,6 +1,7 @@
 import { Jest } from 'skuba';
 
 export default Jest.mergePreset({
+  coveragePathIgnorePatterns: ['<rootDir>/packages/infra/cli/'],
   coverageThreshold: {
     global: {
       branches: 100,
