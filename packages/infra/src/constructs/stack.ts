@@ -35,6 +35,35 @@ export class HookStack extends Stack {
           'codedeploy:PutLifecycleEventHookExecutionStatus',
           'lambda:InvokeFunction',
         ],
+        effect: aws_iam.Effect.ALLOW,
+        resources: ['*'],
+      }),
+    );
+
+    // Deny access to resources that lack an `aws-codedeploy-hooks` tag.
+    beforeAllowTrafficHook.addToRolePolicy(
+      new aws_iam.PolicyStatement({
+        actions: ['*'],
+        conditions: {
+          Null: {
+            'aws:ResourceTag/aws-codedeploy-hooks': 'true',
+          },
+        },
+        effect: aws_iam.Effect.DENY,
+        resources: ['*'],
+      }),
+    );
+
+    // Deny access to resources that have a falsy `aws-codedeploy-hooks` tag.
+    beforeAllowTrafficHook.addToRolePolicy(
+      new aws_iam.PolicyStatement({
+        actions: ['*'],
+        conditions: {
+          StringEquals: {
+            'aws:ResourceTag/aws-codedeploy-hooks': ['', 'false'],
+          },
+        },
+        effect: aws_iam.Effect.DENY,
         resources: ['*'],
       }),
     );
