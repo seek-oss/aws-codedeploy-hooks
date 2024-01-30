@@ -8,7 +8,7 @@
     "format": "skuba format",
     "lint": "skuba lint",
     "release": "pnpm run --silent build && changeset publish",
-    "stage": "changeset version && pnpm run --silent format",
+    "stage": "changeset version && pnpm run --silent codegen && pnpm run --silent format",
     "test": "skuba test",
     "test:ci": "skuba test --coverage",
     "test:watch": "skuba test --watch"
