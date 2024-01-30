@@ -5,6 +5,7 @@ describe('rootModule', () => {
     expect(rootModule).toMatchInlineSnapshot(`
       {
         "HookStack": [Function],
+        "LambdaDeployment": [Function],
       }
     `));
 });
