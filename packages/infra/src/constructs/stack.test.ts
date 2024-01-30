@@ -1,5 +1,4 @@
-import { App } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
+import { App, assertions } from 'aws-cdk-lib';
 
 import { HookStack } from './stack';
 
@@ -8,7 +7,7 @@ it('returns expected CloudFormation stack', () => {
 
   const stack = new HookStack(app);
 
-  const template = Template.fromStack(stack);
+  const template = assertions.Template.fromStack(stack);
 
   template.resourceCountIs('AWS::Lambda::Function', 1);
 
