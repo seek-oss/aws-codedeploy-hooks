@@ -2,6 +2,7 @@ import type Serverless from 'serverless';
 import type Plugin from 'serverless/classes/Plugin';
 
 import { synthLambaDeploymentResources } from './cdk';
+import { versionLogicalIdForFunctionLogicalId } from './cfn';
 
 class CodeDeployPlugin implements Plugin {
   constructor(private serverless: Serverless) {}
@@ -13,29 +14,54 @@ class CodeDeployPlugin implements Plugin {
       const { getLambdaLogicalId } = this.serverless.getProvider('aws').naming;
 
       if (!getLambdaLogicalId) {
-        throw new Error('Badness!');
+        throw new Error(
+          'Could not access naming.getLambdaLogicalId() helper in Serverless AWS provider',
+        );
       }
 
-      const logicalIds = functionNames.map((functionName) => ({
-        lambdaFunction: getLambdaLogicalId(functionName),
-        lambdaVersion: 'TODO',
-      }));
+      const { compiledCloudFormationTemplate } =
+        this.serverless.service.provider;
 
-      const { Mappings, Resources } = synthLambaDeploymentResources({
-        logicalIds,
+      const serverlessTemplate = {
+        // Future proofing in case Serverless internally adopts mappings
+        Mappings:
+          'Mappings' in compiledCloudFormationTemplate &&
+          typeof compiledCloudFormationTemplate.Mappings === 'object'
+            ? compiledCloudFormationTemplate.Mappings
+            : {},
+
+        Resources: compiledCloudFormationTemplate.Resources,
+      };
+
+      const logicalIds = functionNames.map((functionName) => {
+        const lambdaFunction = getLambdaLogicalId(functionName);
+
+        const lambdaVersion = versionLogicalIdForFunctionLogicalId(
+          serverlessTemplate.Resources,
+          lambdaFunction,
+        );
+
+        if (!lambdaVersion) {
+          throw new Error(
+            `Could not find AWS::Lambda::Version corresponding to ${lambdaFunction} AWS::Lambda::Function for ${functionName}`,
+          );
+        }
+
+        return { lambdaFunction, lambdaVersion };
       });
 
-      Object.assign(
-        this.serverless.service.provider.compiledCloudFormationTemplate,
-        {
-          Mappings,
-          Resources: {
-            ...this.serverless.service.provider.compiledCloudFormationTemplate
-              .Resources,
-            ...Resources,
-          },
+      const cdkTemplate = synthLambaDeploymentResources({ logicalIds });
+
+      Object.assign(compiledCloudFormationTemplate, {
+        Mappings: {
+          ...serverlessTemplate.Mappings,
+          ...cdkTemplate.Mappings,
         },
-      );
+        Resources: {
+          ...serverlessTemplate.Mappings,
+          ...cdkTemplate.Resources,
+        },
+      });
     },
   };
 }

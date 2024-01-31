@@ -2,12 +2,8 @@ import assert from 'assert';
 
 import { LambdaDeployment } from '@seek/aws-codedeploy-infra';
 import { App, type CfnResource, Stack, aws_iam, aws_lambda } from 'aws-cdk-lib';
-import { z } from 'zod';
 
-const templateSchema = z.object({
-  Mappings: z.record(z.unknown(), z.string()),
-  Resources: z.record(z.object({ Type: z.string() }).passthrough(), z.string()),
-});
+import { templateSchema } from './cfn';
 
 type Props = {
   logicalIds: Array<{
