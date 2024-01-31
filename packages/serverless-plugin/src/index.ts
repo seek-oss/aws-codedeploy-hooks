@@ -58,7 +58,7 @@ class CodeDeployPlugin implements Plugin {
           ...cdkTemplate.Mappings,
         },
         Resources: {
-          ...serverlessTemplate.Mappings,
+          ...serverlessTemplate.Resources,
           ...cdkTemplate.Resources,
         },
       });
