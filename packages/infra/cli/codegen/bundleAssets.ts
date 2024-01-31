@@ -3,17 +3,15 @@ import path from 'path';
 
 import esbuild from 'esbuild';
 
-import { rootdir } from './rootdir';
-
-const outdir = path.join(rootdir, 'src', 'assets');
+import { assetDir, packageDir } from './dir';
 
 export const bundleAssets = async () => {
-  console.log(`Clearing ${path.relative(process.cwd(), outdir)}...`);
+  console.log(`Clearing ${path.relative(process.cwd(), assetDir)}...`);
 
-  await fs.promises.rm(outdir, { force: true, recursive: true });
+  await fs.promises.rm(assetDir, { force: true, recursive: true });
 
   console.log(
-    `Bundling handlers into ${path.relative(process.cwd(), outdir)}...`,
+    `Bundling handlers into ${path.relative(process.cwd(), assetDir)}...`,
   );
 
   await esbuild.build({
@@ -21,7 +19,7 @@ export const bundleAssets = async () => {
     charset: 'utf8',
     entryPoints: [
       {
-        in: path.join(rootdir, 'src', 'handlers', 'index.ts'),
+        in: path.join(packageDir, 'src', 'handlers', 'index.ts'),
         out: 'handlers/index',
       },
     ],
@@ -31,7 +29,7 @@ export const bundleAssets = async () => {
     ],
     format: 'esm',
     logLevel: 'debug',
-    outdir,
+    outdir: assetDir,
     platform: 'node',
     sourcemap: true,
     target: 'node20',
