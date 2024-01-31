@@ -84,6 +84,9 @@ importers:
       aws-cdk-lib:
         specifier: ^2.115.0
         version: 2.115.0(constructs@10.3.0)
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@types/serverless':
         specifier: 3.12.22

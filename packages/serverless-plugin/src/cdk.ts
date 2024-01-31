@@ -2,6 +2,12 @@ import assert from 'assert';
 
 import { LambdaDeployment } from '@seek/aws-codedeploy-infra';
 import { App, type CfnResource, Stack, aws_iam, aws_lambda } from 'aws-cdk-lib';
+import { z } from 'zod';
+
+const templateSchema = z.object({
+  Mappings: z.record(z.unknown(), z.string()),
+  Resources: z.record(z.object({ Type: z.string() }).passthrough(), z.string()),
+});
 
 type Props = {
   logicalIds: Array<{
@@ -58,11 +64,9 @@ export const synthLambaDeploymentResources = ({ logicalIds }: Props) => {
 
   const { stacks } = app.synth();
 
-  const template: unknown = stacks[0]?.template;
+  const rawTemplate: unknown = stacks[0]?.template;
 
-  if (!isTemplate(template)) {
-    throw new Error('Badness!');
-  }
+  const template = templateSchema.parse(rawTemplate);
 
   const { Mappings, Resources } = template;
 
@@ -70,18 +74,9 @@ export const synthLambaDeploymentResources = ({ logicalIds }: Props) => {
     delete Resources[logicalId];
   }
 
-  const resourceTypes = Object.values(Resources).map<string>((resource) => {
-    if (
-      typeof resource !== 'object' ||
-      !resource ||
-      !('Type' in resource) ||
-      typeof resource.Type !== 'string'
-    ) {
-      throw new Error('Badness!');
-    }
-
-    return resource.Type;
-  });
+  const resourceTypes = Object.values(Resources).map<string>(
+    (resource) => resource.Type,
+  );
 
   const expectedResourceTypes = new Set([
     'AWS::CodeDeploy::Application',
@@ -106,18 +101,3 @@ export const synthLambaDeploymentResources = ({ logicalIds }: Props) => {
     Resources,
   };
 };
-
-const isTemplate = (
-  template: unknown,
-): template is {
-  Mappings: Record<string, unknown>;
-  Resources: Record<string, unknown>;
-} =>
-  typeof template !== 'object' ||
-  !template ||
-  !('Mapping' in template) ||
-  typeof template.Mapping !== 'object' ||
-  !template.Mapping ||
-  !('Resources' in template) ||
-  typeof template.Resources !== 'object' ||
-  !template.Resources;
