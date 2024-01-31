@@ -1,7 +1,9 @@
 import { Tags, aws_codedeploy, aws_lambda } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
-import { version } from '../version';
+import { commit, version } from '../version';
+
+const tagValue = `${version}-${commit}`;
 
 export type LambdaDeploymentProps = {
   lambdaFunction: aws_lambda.Function;
@@ -15,7 +17,7 @@ export class LambdaDeployment extends Construct {
   ) {
     super(scope, id ?? 'LambdaDeployment');
 
-    Tags.of(lambdaFunction).add('aws-codedeploy-hooks', version);
+    Tags.of(lambdaFunction).add('aws-codedeploy-hooks', tagValue);
 
     const alias = lambdaFunction.addAlias('Live', {
       description: 'The Lambda version currently receiving traffic',
@@ -26,7 +28,7 @@ export class LambdaDeployment extends Construct {
       'CodeDeployLambdaApplication',
     );
 
-    Tags.of(application).add('aws-codedeploy-hooks', version);
+    Tags.of(application).add('aws-codedeploy-hooks', tagValue);
 
     const deploymentGroup = new aws_codedeploy.LambdaDeploymentGroup(
       this,
@@ -38,7 +40,7 @@ export class LambdaDeployment extends Construct {
       },
     );
 
-    Tags.of(deploymentGroup).add('aws-codedeploy-hooks', version);
+    Tags.of(deploymentGroup).add('aws-codedeploy-hooks', tagValue);
 
     deploymentGroup.addPreHook(
       aws_lambda.Function.fromFunctionName(

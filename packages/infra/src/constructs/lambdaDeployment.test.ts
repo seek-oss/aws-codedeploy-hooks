@@ -2,6 +2,11 @@ import { App, Stack, assertions, aws_lambda } from 'aws-cdk-lib';
 
 import { LambdaDeployment } from './lambdaDeployment';
 
+jest.mock('../version', () => ({
+  commit: 'abcdefg',
+  version: '0.0.0',
+}));
+
 it('returns expected CloudFormation stack', () => {
   const app = new App();
 

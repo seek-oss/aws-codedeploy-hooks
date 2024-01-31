@@ -125,7 +125,7 @@ exports[`returns expected CloudFormation stack 1`] = `
         "Tags": [
           {
             "Key": "aws-codedeploy-hooks",
-            "Value": "0.0.0",
+            "Value": "0.0.0-abcdefg",
           },
         ],
       },
@@ -156,7 +156,7 @@ exports[`returns expected CloudFormation stack 1`] = `
         "Tags": [
           {
             "Key": "aws-codedeploy-hooks",
-            "Value": "0.0.0",
+            "Value": "0.0.0-abcdefg",
           },
         ],
       },
@@ -201,7 +201,7 @@ exports[`returns expected CloudFormation stack 1`] = `
         "Tags": [
           {
             "Key": "aws-codedeploy-hooks",
-            "Value": "0.0.0",
+            "Value": "0.0.0-abcdefg",
           },
         ],
       },
@@ -420,7 +420,7 @@ exports[`returns expected CloudFormation stack 1`] = `
         "Tags": [
           {
             "Key": "aws-codedeploy-hooks",
-            "Value": "0.0.0",
+            "Value": "0.0.0-abcdefg",
           },
         ],
       },
@@ -465,7 +465,7 @@ exports[`returns expected CloudFormation stack 1`] = `
         "Tags": [
           {
             "Key": "aws-codedeploy-hooks",
-            "Value": "0.0.0",
+            "Value": "0.0.0-abcdefg",
           },
         ],
       },
