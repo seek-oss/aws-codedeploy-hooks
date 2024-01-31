@@ -4,5 +4,9 @@
   },
   "extends": "../tsconfig.json",
   "files": [],
-  "references": [{ "path": "hooks" }, { "path": "infra" }]
+  "references": [
+    { "path": "hooks" },
+    { "path": "infra" },
+    { "path": "serverless-plugin" }
+  ]
 }

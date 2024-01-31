@@ -3,7 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "files": [],
+  "sideEffects": false,
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib*/**/*.d.ts",
+    "lib*/**/*.js",
+    "lib*/**/*.js.map",
+    "lib*/**/*.json"
+  ],
   "scripts": {
     "build": "pnpm run --silent codegen && skuba build",
     "codegen": "skuba node cli/codegen"

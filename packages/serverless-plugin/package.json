@@ -1,0 +1,10 @@
+{
+  "name": "@seek/aws-codedeploy-serverless-plugin",
+  "dependencies": {
+    "@seek/aws-codedeploy-infra": "workspace:^",
+    "aws-cdk-lib": "^2.115.0"
+  },
+  "devDependencies": {
+    "@types/serverless": "3.12.22"
+  }
+}

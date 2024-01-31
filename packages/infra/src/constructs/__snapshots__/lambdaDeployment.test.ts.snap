@@ -315,7 +315,7 @@ exports[`returns expected CloudFormation stack 1`] = `
       },
       "Type": "AWS::IAM::Policy",
     },
-    "LambdaFunctionAliasLive400E15E9": {
+    "LambdaDeploymentLambdaAlias3A09D4A8": {
       "Properties": {
         "Description": "The Lambda version currently receiving traffic",
         "FunctionName": {
