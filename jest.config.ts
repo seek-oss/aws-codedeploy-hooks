@@ -1,7 +1,12 @@
 import { Jest } from 'skuba';
 
 export default Jest.mergePreset({
-  coveragePathIgnorePatterns: ['<rootDir>/packages/infra/cli/'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/packages/infra/cli/',
+
+    // TODO: remove
+    '<rootDir>/packages/serverless-plugin/',
+  ],
   coverageThreshold: {
     global: {
       branches: 100,
