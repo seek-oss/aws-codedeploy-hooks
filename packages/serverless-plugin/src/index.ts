@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import type Serverless from 'serverless';
 import type Plugin from 'serverless/classes/Plugin';
 
