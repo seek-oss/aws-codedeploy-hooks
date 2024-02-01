@@ -10,6 +10,8 @@ export type LambdaDeploymentProps = {
 };
 
 export class LambdaDeployment extends Construct {
+  alias: Readonly<aws_lambda.Alias>;
+
   constructor(
     scope: Construct,
     id: string | null,
@@ -22,6 +24,8 @@ export class LambdaDeployment extends Construct {
     const alias = lambdaFunction.addAlias('Live', {
       description: 'The Lambda version currently receiving traffic',
     });
+
+    this.alias = alias;
 
     const application = new aws_codedeploy.LambdaApplication(
       this,
