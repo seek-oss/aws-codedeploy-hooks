@@ -15,6 +15,8 @@ export type LambdaDeploymentProps =
     };
 
 export class LambdaDeployment extends Construct {
+  alias: Readonly<aws_lambda.Alias>;
+
   constructor(
     scope: Construct,
     id: string | null,
@@ -32,6 +34,8 @@ export class LambdaDeployment extends Construct {
           ? props.lambdaVersion
           : props.lambdaFunction.currentVersion,
     });
+
+    this.alias = alias;
 
     const application = new aws_codedeploy.LambdaApplication(
       this,
