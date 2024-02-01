@@ -34,15 +34,16 @@ In a CDK stack:
 + import { LambdaDeployment } from '@seek/aws-codedeploy-infra';
 import { aws_lambda_nodejs } from 'aws-cdk-lib';
 
-const lambdaFunction = new aws_lambda_nodejs.NodejsFunction(
-  this,
-  'MyLambdaFunction',
-  {
-    // ...
-  },
-);
+const lambdaFunction = new aws_lambda_nodejs.NodejsFunction(this, 'Function', {
+  // ...
+});
 
-+ new LambdaDeployment(this, 'MyLambdaDeployment', { lambdaFunction });
++ const lambdaDeployment = new LambdaDeployment(this, 'Deployment', {
++   lambdaFunction,
++ });
+
+- lambdaFunction.addEventSource(source);
++ lambdaDeployment.alias.addEventSource(source);
 ```
 
 The `LambdaDeployment` construct creates a CodeDeploy application and deployment group for your Lambda function,
