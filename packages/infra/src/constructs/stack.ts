@@ -10,8 +10,6 @@ export class HookStack extends Stack {
     super(scope, id ?? 'HookStack', {
       description: 'AWS CodeDeploy hooks',
       stackName: 'aws-codedeploy-hooks',
-      // TODO: set tags
-      tags: undefined,
       terminationProtection: true,
     });
 
