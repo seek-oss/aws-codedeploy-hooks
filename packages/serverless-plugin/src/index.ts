@@ -2,7 +2,10 @@ import type Serverless from 'serverless';
 import type Plugin from 'serverless/classes/Plugin';
 
 import { synthLambaDeploymentResources } from './cdk';
-import { versionLogicalIdForFunctionLogicalId } from './cfn';
+import {
+  logicalIdForFunctionLogicalId,
+  redirectEventSourceMappings,
+} from './cfn';
 
 class CodeDeployPlugin implements Plugin {
   constructor(private serverless: Serverless) {}
@@ -36,7 +39,8 @@ class CodeDeployPlugin implements Plugin {
       const logicalIds = functionNames.map((functionName) => {
         const lambdaFunction = getLambdaLogicalId(functionName);
 
-        const lambdaVersion = versionLogicalIdForFunctionLogicalId(
+        const lambdaVersion = logicalIdForFunctionLogicalId(
+          'AWS::Lambda::Version',
           serverlessTemplate.Resources,
           lambdaFunction,
         );
@@ -52,6 +56,7 @@ class CodeDeployPlugin implements Plugin {
 
       const cdkTemplate = synthLambaDeploymentResources({ logicalIds });
 
+      // Mutation!
       Object.assign(compiledCloudFormationTemplate, {
         Mappings: {
           ...serverlessTemplate.Mappings,
@@ -62,6 +67,12 @@ class CodeDeployPlugin implements Plugin {
           ...cdkTemplate.Resources,
         },
       });
+
+      // Mutation!
+      redirectEventSourceMappings(
+        compiledCloudFormationTemplate.Resources,
+        logicalIds.map(({ lambdaFunction }) => lambdaFunction),
+      );
     },
   };
 }

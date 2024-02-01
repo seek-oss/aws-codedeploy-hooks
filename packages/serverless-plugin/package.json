@@ -6,6 +6,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/serverless": "3.12.22"
+    "@types/serverless": "3.12.22",
+    "jest-diff": "29.7.0"
   }
 }

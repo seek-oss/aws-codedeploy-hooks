@@ -91,6 +91,9 @@ importers:
       '@types/serverless':
         specifier: 3.12.22
         version: 3.12.22
+      jest-diff:
+        specifier: 29.7.0
+        version: 29.7.0
 
 packages:
 
