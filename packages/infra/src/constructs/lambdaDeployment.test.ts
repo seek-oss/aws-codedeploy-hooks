@@ -1,4 +1,11 @@
-import { App, Stack, assertions, aws_lambda } from 'aws-cdk-lib';
+import {
+  App,
+  Stack,
+  assertions,
+  aws_lambda,
+  aws_lambda_event_sources,
+  aws_sqs,
+} from 'aws-cdk-lib';
 
 import { LambdaDeployment } from './lambdaDeployment';
 
@@ -20,8 +27,17 @@ it('returns expected CloudFormation stack', () => {
     runtime: aws_lambda.Runtime.NODEJS_20_X,
   });
 
-  // eslint-disable-next-line no-new
-  new LambdaDeployment(stack, null, { lambdaFunction });
+  const deployment = new LambdaDeployment(stack, null, { lambdaFunction });
+
+  const queue = aws_sqs.Queue.fromQueueArn(
+    stack,
+    'Queue',
+    'arn:aws:sqs:us-east-2:123456789012:queue',
+  );
+
+  const eventSource = new aws_lambda_event_sources.SqsEventSource(queue);
+
+  deployment.alias.addEventSource(eventSource);
 
   const template = assertions.Template.fromStack(stack);
 

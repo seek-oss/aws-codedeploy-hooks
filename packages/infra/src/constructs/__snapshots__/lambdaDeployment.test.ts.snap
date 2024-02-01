@@ -401,8 +401,36 @@ exports[`returns expected CloudFormation stack 1`] = `
         },
       },
     },
+    "LambdaFunctionAliasLiveSqsEventSourceQueue453DF2EA": {
+      "Properties": {
+        "EventSourceArn": "arn:aws:sqs:us-east-2:123456789012:queue",
+        "FunctionName": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Fn::Select": [
+                  6,
+                  {
+                    "Fn::Split": [
+                      ":",
+                      {
+                        "Ref": "LambdaFunctionAliasLive400E15E9",
+                      },
+                    ],
+                  },
+                ],
+              },
+              ":Live",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
     "LambdaFunctionBF21E41F": {
       "DependsOn": [
+        "LambdaFunctionServiceRoleDefaultPolicy32EEEE35",
         "LambdaFunctionServiceRoleC555A460",
       ],
       "Properties": {
@@ -470,6 +498,33 @@ exports[`returns expected CloudFormation stack 1`] = `
         ],
       },
       "Type": "AWS::IAM::Role",
+    },
+    "LambdaFunctionServiceRoleDefaultPolicy32EEEE35": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:sqs:us-east-2:123456789012:queue",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LambdaFunctionServiceRoleDefaultPolicy32EEEE35",
+        "Roles": [
+          {
+            "Ref": "LambdaFunctionServiceRoleC555A460",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
     },
   },
   "Rules": {
