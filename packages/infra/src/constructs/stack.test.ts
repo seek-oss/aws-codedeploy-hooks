@@ -1,4 +1,4 @@
-import { App, assertions } from 'aws-cdk-lib';
+import { App, assertions, aws_ec2 } from 'aws-cdk-lib';
 
 import { HookStack } from './stack';
 
@@ -23,4 +23,36 @@ it('returns expected CloudFormation stack', () => {
   );
 
   expect(JSON.parse(json)).toMatchSnapshot();
+});
+
+it('supports additional networks', () => {
+  jest
+    .spyOn(aws_ec2.Vpc, 'fromLookup')
+    .mockImplementation((scope, id) => new aws_ec2.Vpc(scope, id));
+
+  const app = new App();
+
+  const stack = new HookStack(app, undefined, {
+    additionalNetworks: [
+      {
+        type: 'seek-managed-network',
+        name: 'development',
+      },
+      {
+        type: 'vpc',
+        id: 'mock-id',
+        label: 'mock-label',
+      },
+    ],
+  });
+
+  const template = assertions.Template.fromStack(stack);
+
+  template.resourceCountIs('AWS::Lambda::Function', 3);
+
+  template.resourcePropertiesCountIs(
+    'AWS::Lambda::Function',
+    { VpcConfig: {} },
+    2,
+  );
 });

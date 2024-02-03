@@ -2,7 +2,7 @@ import path from 'path';
 
 import { Duration, aws_lambda } from 'aws-cdk-lib';
 
-export const LAMBDA_HOOK_PROPS: aws_lambda.FunctionProps = {
+export const createLambdaHookProps = (): aws_lambda.FunctionProps => ({
   code: aws_lambda.Code.fromAsset(
     path.join(__dirname, '..', 'assets', 'handlers'),
   ),
@@ -19,4 +19,4 @@ export const LAMBDA_HOOK_PROPS: aws_lambda.FunctionProps = {
   runtime: aws_lambda.Runtime.NODEJS_20_X,
 
   timeout: Duration.seconds(300),
-};
+});

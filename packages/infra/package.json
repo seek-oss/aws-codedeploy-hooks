@@ -31,6 +31,7 @@
     "aws-sdk-client-mock": "3.1.0-beta.0",
     "aws-sdk-client-mock-jest": "3.1.0-beta.0",
     "isomorphic-git": "1.25.3",
+    "msw": "2.0.12",
     "pino-pretty": "10.3.1"
   },
   "skuba": {
