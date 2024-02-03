@@ -1,9 +1,9 @@
 import { Stack } from 'aws-cdk-lib';
 import { Vpc } from 'aws-cdk-lib/aws-ec2';
 
-import { processNetwork } from './network';
+import { getNetworkConfig } from './network';
 
-describe('processNetwork', () => {
+describe('getNetworkConfig', () => {
   const fromLookup = jest
     .spyOn(Vpc, 'fromLookup')
     .mockImplementation((scope, id) => new Vpc(scope, id));
@@ -14,7 +14,7 @@ describe('processNetwork', () => {
     const construct = new Stack();
 
     expect(
-      processNetwork(construct, {
+      getNetworkConfig(construct, {
         type: 'seek-managed-network',
         name: 'development',
       }),
@@ -51,7 +51,7 @@ describe('processNetwork', () => {
     const construct = new Stack();
 
     expect(
-      processNetwork(construct, {
+      getNetworkConfig(construct, {
         type: 'seek-managed-network',
         name: 'production',
       }),
@@ -88,7 +88,7 @@ describe('processNetwork', () => {
     const construct = new Stack();
 
     expect(
-      processNetwork(construct, {
+      getNetworkConfig(construct, {
         type: 'vpc',
         id: 'mock-id',
         label: 'mock-label',
@@ -122,7 +122,7 @@ describe('processNetwork', () => {
   it('processes null', () => {
     const construct = new Stack();
 
-    expect(processNetwork(construct, null)).toMatchInlineSnapshot(`
+    expect(getNetworkConfig(construct, null)).toMatchInlineSnapshot(`
       {
         "description": "BeforeAllowTraffic hook deployed outside of a VPC",
         "suffix": "",

@@ -14,3 +14,4 @@ node_modules*/
 # end managed by skuba
 
 /packages/**/lib*/
+/packages/infra/src/assets/

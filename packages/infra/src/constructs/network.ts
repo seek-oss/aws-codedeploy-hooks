@@ -47,7 +47,7 @@ const SEEK_MANAGED_NETWORK_SUFFIXES = {
   production: 'prod',
 };
 
-export const processNetwork = (
+export const getNetworkConfig = (
   scope: Construct,
   network: Network | null,
 ): {

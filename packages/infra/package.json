@@ -1,8 +1,22 @@
 {
   "name": "@seek/aws-codedeploy-infra",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "license": "MIT",
-  "files": [],
+  "sideEffects": false,
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib*/**/*.d.ts",
+    "lib*/**/*.js",
+    "lib*/**/*.js.map",
+    "lib*/**/*.json"
+  ],
+  "scripts": {
+    "build": "pnpm run --silent codegen && skuba build",
+    "codegen": "skuba node cli/codegen"
+  },
   "dependencies": {
     "@seek/logger": "^6.2.0",
     "@types/aws-lambda": "^8.10.130",
@@ -16,7 +30,14 @@
     "@aws-sdk/client-lambda": "3.485.0",
     "aws-sdk-client-mock": "3.1.0-beta.0",
     "aws-sdk-client-mock-jest": "3.1.0-beta.0",
+    "isomorphic-git": "1.25.3",
     "msw": "2.0.12",
     "pino-pretty": "10.3.1"
+  },
+  "skuba": {
+    "assets": [
+      "assets/**/*"
+    ],
+    "build": "esbuild"
   }
 }

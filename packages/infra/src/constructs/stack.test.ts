@@ -1,6 +1,4 @@
-import { App } from 'aws-cdk-lib';
-import { Template } from 'aws-cdk-lib/assertions';
-import { Vpc } from 'aws-cdk-lib/aws-ec2';
+import { App, assertions, aws_ec2 } from 'aws-cdk-lib';
 
 import { HookStack } from './stack';
 
@@ -9,7 +7,7 @@ it('returns expected CloudFormation stack', () => {
 
   const stack = new HookStack(app);
 
-  const template = Template.fromStack(stack);
+  const template = assertions.Template.fromStack(stack);
 
   template.resourceCountIs('AWS::Lambda::Function', 1);
 
@@ -29,8 +27,8 @@ it('returns expected CloudFormation stack', () => {
 
 it('supports additional networks', () => {
   jest
-    .spyOn(Vpc, 'fromLookup')
-    .mockImplementation((scope, id) => new Vpc(scope, id));
+    .spyOn(aws_ec2.Vpc, 'fromLookup')
+    .mockImplementation((scope, id) => new aws_ec2.Vpc(scope, id));
 
   const app = new App();
 
@@ -48,7 +46,7 @@ it('supports additional networks', () => {
     ],
   });
 
-  const template = Template.fromStack(stack);
+  const template = assertions.Template.fromStack(stack);
 
   template.resourceCountIs('AWS::Lambda::Function', 3);
 

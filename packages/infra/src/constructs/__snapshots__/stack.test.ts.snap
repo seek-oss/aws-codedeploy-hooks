@@ -88,6 +88,29 @@ exports[`returns expected CloudFormation stack 1`] = `
               "Effect": "Allow",
               "Resource": "*",
             },
+            {
+              "Action": "*",
+              "Condition": {
+                "Null": {
+                  "aws:ResourceTag/aws-codedeploy-hooks": "true",
+                },
+              },
+              "Effect": "Deny",
+              "Resource": "*",
+            },
+            {
+              "Action": "*",
+              "Condition": {
+                "StringEquals": {
+                  "aws:ResourceTag/aws-codedeploy-hooks": [
+                    "",
+                    "false",
+                  ],
+                },
+              },
+              "Effect": "Deny",
+              "Resource": "*",
+            },
           ],
           "Version": "2012-10-17",
         },

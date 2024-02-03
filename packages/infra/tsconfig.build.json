@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "removeComments": false,
+    "rootDir": "src"
+  },
+  "exclude": [
+    "**/__mocks__/**/*",
+    "**/*.test.ts",
+    "src/handlers/**/*",
+    "src/testing/**/*"
+  ],
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*"]
+}

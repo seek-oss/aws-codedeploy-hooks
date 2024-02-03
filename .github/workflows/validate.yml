@@ -14,18 +14,34 @@ jobs:
     name: Lint & Test
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repo
+      - if: >-
+          github.event_name != 'pull_request' ||
+          github.event.pull_request.head.repo.full_name == github.repository
+        name: Check out repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SEEK_OSS_CI_GITHUB_TOKEN }}
 
-      - name: Set up Node.js 20.x
+      - if: >-
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name != github.repository
+        name: Check out repo
+        uses: actions/checkout@v4
+        # We don't share secrets with forks.
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
 
-      - uses: pnpm/action-setup@v2
+      - name: Set up pnpm
+        run: corepack enable pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Codegen
+        run: pnpm run codegen
 
       - name: Test
         run: pnpm run test:ci

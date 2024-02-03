@@ -10,5 +10,11 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       },
     },
+    {
+      files: ['packages/infra/cli/**'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
   ],
 };

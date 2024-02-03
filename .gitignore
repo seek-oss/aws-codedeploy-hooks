@@ -24,4 +24,7 @@ yarn-error.log
 
 /packages/**/lib*/
 
+/packages/infra/src/assets/
+/packages/infra/src/version.ts
+
 !.npmrc
