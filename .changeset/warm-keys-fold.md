@@ -1,5 +1,5 @@
 ---
-"@seek/aws-codedeploy-hooks": minor
+'@seek/aws-codedeploy-hooks': minor
 ---
 
 smokeTest.koaMiddleware: Add function
