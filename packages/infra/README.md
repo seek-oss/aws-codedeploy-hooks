@@ -72,3 +72,15 @@ This payload can be recognised by the [`isLambdaHook`] runtime helper.
 [access these resources]: https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html
 [all at once]: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html#deployment-configurations-predefined-lambda
 [`isLambdaHook`]: ../hooks/README.md#islambdahook
+
+### Lambda function (Serverless)
+
+Install [@seek/aws-codedeploy-serverless-plugin],
+then in a `serverless.yml`:
+
+```diff
++ plugins:
++   - @seek/aws-codedeploy-serverless-plugin
+```
+
+[@seek/aws-codedeploy-serverless-plugin]: ../serverless-plugin/README.md

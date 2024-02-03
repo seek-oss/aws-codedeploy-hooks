@@ -5,9 +5,14 @@ import { commit, version } from '../version';
 
 const tagValue = `${version}-${commit}`;
 
-export type LambdaDeploymentProps = {
-  lambdaFunction: aws_lambda.Function;
-};
+export type LambdaDeploymentProps =
+  | {
+      lambdaFunction: aws_lambda.Function;
+    }
+  | {
+      lambdaFunction: aws_lambda.IFunction;
+      lambdaVersion: aws_lambda.IVersion;
+    };
 
 export class LambdaDeployment extends Construct {
   alias: Readonly<aws_lambda.Alias>;
@@ -15,14 +20,19 @@ export class LambdaDeployment extends Construct {
   constructor(
     scope: Construct,
     id: string | null,
-    { lambdaFunction }: LambdaDeploymentProps,
+    props: LambdaDeploymentProps,
   ) {
     super(scope, id ?? 'LambdaDeployment');
 
-    Tags.of(lambdaFunction).add('aws-codedeploy-hooks', tagValue);
+    Tags.of(props.lambdaFunction).add('aws-codedeploy-hooks', tagValue);
 
-    const alias = lambdaFunction.addAlias('Live', {
+    const alias = new aws_lambda.Alias(this, 'LambdaAlias', {
+      aliasName: 'Live',
       description: 'The Lambda version currently receiving traffic',
+      version:
+        'lambdaVersion' in props
+          ? props.lambdaVersion
+          : props.lambdaFunction.currentVersion,
     });
 
     this.alias = alias;
