@@ -64,3 +64,32 @@ Checks for:
 
 - An empty event object
 - A custom `user-agent` in context that starts with `aws-codedeploy-hook-`
+
+### `smokeTest.koaMiddleware`
+
+A Koa middleware that executes a smoke test function to check whether the application is broadly operational and ready to serve requests.
+
+The `skipHook` option skips synchronous validation of the smoke test function during pre-deployment checks from an AWS CodeDeploy hook.
+This may be used when a build needs to be expedited in a disaster recovery scenario or when a dependency is known to be unhealthy.
+
+```typescript
+import { Env } from 'skuba-dive';
+import Router from '@koa/router';
+import logger from '@seek/logger';
+
+const config = {
+  skipHook: Env.boolean('SKIP_SMOKE', { default: false }),
+};
+
+const logger = createLogger();
+
+export const router = new Router().get(
+  '/smoke',
+  smokeTest.koaMiddleware({ logger, skipHook: config.skipHook }, async () => {
+    // Run dependency checks.
+    await checkDependencies();
+  }),
+);
+```
+
+Uses [`isHttpHook`](#ishttphook) under the hood.
