@@ -26,6 +26,19 @@ app.synth();
 
 ## Usage
 
+### Gantry service
+
+In a Gantry resource file:
+
+```diff
+kind: Service
+
+# ...
+
++ hooks:
++   beforeAllowTraffic: aws-codedeploy-hook-BeforeAllowTraffic
+```
+
 ### Lambda function (CDK)
 
 In a CDK stack:
