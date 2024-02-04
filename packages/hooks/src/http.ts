@@ -1,10 +1,16 @@
 import { GANTRY_HOOK_PREFIX, USER_AGENT_PREFIX } from './constants';
 
+type HeadersClass = { get: (name: string) => string | null };
+
+type HeadersRecord = Record<string, null | string | string[] | undefined>;
+
 type HttpRequest = {
-  headers: {
-    get: (name: string) => string | null;
-  };
+  headers: HeadersClass | HeadersRecord;
 };
+
+const isHeadersClass = (
+  headers: HttpRequest['headers'],
+): headers is HeadersClass => typeof headers.get === 'function';
 
 /**
  * Whether the HTTP request originated from AWS CodeDeploy Hooks.
@@ -34,10 +40,15 @@ type HttpRequest = {
  * Compatible with Gantry v2.3.7 and newer.
  */
 export const isHttpHook = (req: HttpRequest): boolean => {
-  const userAgent = req.headers.get('user-agent');
+  const raw = isHeadersClass(req.headers)
+    ? req.headers.get('user-agent')
+    : req.headers['user-agent'];
 
-  return Boolean(
-    userAgent?.startsWith(GANTRY_HOOK_PREFIX) ||
-      userAgent?.startsWith(USER_AGENT_PREFIX),
+  const userAgents: string[] = raw ? [raw].flat() : [];
+
+  return userAgents.some(
+    (userAgent) =>
+      userAgent.startsWith(GANTRY_HOOK_PREFIX) ||
+      userAgent.startsWith(USER_AGENT_PREFIX),
   );
 };
