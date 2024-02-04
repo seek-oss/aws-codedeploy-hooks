@@ -24,3 +24,13 @@ it('returns expected CloudFormation stack', () => {
 
   expect(JSON.parse(json)).toMatchSnapshot();
 });
+
+it('supports a custom ID', () => {
+  const app = new App();
+
+  const stack = new HookStack(app, 'MyStack');
+
+  const template = assertions.Template.fromStack(stack);
+
+  template.resourceCountIs('AWS::Lambda::Function', 1);
+});

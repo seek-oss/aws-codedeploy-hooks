@@ -1,7 +1,7 @@
 import { Stack, aws_iam, aws_lambda } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 
-import { LAMBDA_HOOK_PROPS } from './lambda';
+import { createLambdaHookProps } from './lambda';
 
 export type HookStackProps = Record<string, never>;
 
@@ -17,7 +17,7 @@ export class HookStack extends Stack {
       this,
       'BeforeAllowTrafficHook',
       {
-        ...LAMBDA_HOOK_PROPS,
+        ...createLambdaHookProps(),
         description: 'BeforeAllowTraffic hook deployed outside of a VPC',
         functionName: 'aws-codedeploy-hook-BeforeAllowTraffic',
         vpc: undefined,
