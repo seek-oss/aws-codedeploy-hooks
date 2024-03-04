@@ -6,6 +6,9 @@ describe('rootModule', () => {
       {
         "isHttpHook": [Function],
         "isLambdaHook": [Function],
+        "smokeTest": {
+          "koaMiddleware": [Function],
+        },
       }
     `));
 });

@@ -4,7 +4,7 @@ type HeadersClass = { get: (name: string) => string | null };
 
 type HeadersRecord = Record<string, null | string | string[] | undefined>;
 
-type HttpRequest = {
+export type HttpRequest = {
   headers: HeadersClass | HeadersRecord;
 };
 
