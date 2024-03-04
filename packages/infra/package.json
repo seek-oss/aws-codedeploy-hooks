@@ -2,6 +2,15 @@
   "name": "@seek/aws-codedeploy-infra",
   "version": "1.0.1",
   "private": false,
+  "description": "AWS CDK infrastructure for AWS CodeDeploy Hooks",
+  "homepage": "https://github.com/seek-oss/aws-codedeploy-hooks/tree/main/packages/infra#readme",
+  "bugs": {
+    "url": "https://github.com/seek-oss/aws-codedeploy-hooks/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/seek-oss/aws-codedeploy-hooks.git"
+  },
   "license": "MIT",
   "sideEffects": false,
   "main": "./lib/index.js",
@@ -32,6 +41,12 @@
     "aws-sdk-client-mock-jest": "3.1.0-beta.0",
     "isomorphic-git": "1.25.3",
     "pino-pretty": "10.3.1"
+  },
+  "engines": {
+    "node": ">=18.12"
+  },
+  "publishConfig": {
+    "provenance": true
   },
   "skuba": {
     "assets": [
