@@ -158,3 +158,37 @@ it.each`
     expect(stdout()).toBeFalsy();
   },
 );
+
+it('passes no arguments to the smoke test function asynchronously', async () => {
+  const smokeTest = jest.fn();
+
+  await run({
+    skipHook: true,
+    smokeTest,
+    userAgent: 'aws-codedeploy-hook-BeforeAllowTraffic/123',
+  }).expect(200, 'Smoke test skipped');
+
+  expect(onError).not.toHaveBeenCalled();
+  expect(stdout()).toBe(
+    '{"level":30,"msg":"Smoke test succeeded in background"}',
+  );
+
+  expect(smokeTest).toHaveBeenCalledTimes(1);
+  expect(smokeTest).toHaveBeenLastCalledWith();
+});
+
+it('passes no arguments to the smoke test function synchronously', async () => {
+  const smokeTest = jest.fn();
+
+  await run({
+    skipHook: false,
+    smokeTest,
+    userAgent: 'Mozilla/5.0',
+  }).expect(200, 'Smoke test succeeded');
+
+  expect(onError).not.toHaveBeenCalled();
+  expect(stdout()).toBe('');
+
+  expect(smokeTest).toHaveBeenCalledTimes(1);
+  expect(smokeTest).toHaveBeenLastCalledWith();
+});

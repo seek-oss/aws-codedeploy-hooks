@@ -66,7 +66,7 @@ export const koaMiddleware =
       // Run in the background. This avoids holding up the deployment while the
       // result is still logged as a data point for future reference.
       Promise.resolve()
-        .then(smokeTest)
+        .then(() => smokeTest())
         .then(() => logger.info('Smoke test succeeded in background'))
         .catch((err: unknown) =>
           logger.warn({ err }, 'Smoke test failed in background'),
