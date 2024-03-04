@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 1.0.2
+
+### Patch Changes
+
+- **docs:** Fix package metadata ([#37](https://github.com/seek-oss/aws-codedeploy-hooks/pull/37))
+
 ## 1.0.1
 
 ### Patch Changes
