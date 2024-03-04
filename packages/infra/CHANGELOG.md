@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 1.0.1
+
+### Patch Changes
+
+- **HookStack:** Allow multiple instances ([#31](https://github.com/seek-oss/aws-codedeploy-hooks/pull/31))
+
 ## 1.0.0
 
 ### Major Changes
