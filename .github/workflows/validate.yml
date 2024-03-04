@@ -7,6 +7,14 @@ on:
     branches-ignore:
       - main
 
+  workflow_run:
+    branches:
+      - main
+    types:
+      - completed
+    workflows:
+      - Release
+
 permissions: {}
 
 jobs:
