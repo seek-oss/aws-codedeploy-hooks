@@ -1,5 +1,7 @@
 # @seek/aws-codedeploy-infra
 
+[![npm package](https://img.shields.io/npm/v/%40seek/aws-codedeploy-infra)](https://www.npmjs.com/package/@seek/aws-codedeploy-infra)
+
 [AWS CDK] infrastructure for AWS CodeDeploy Hooks.
 
 [AWS CDK]: https://docs.aws.amazon.com/cdk/v2/guide/work-with-cdk-typescript.html
