@@ -17,6 +17,9 @@ exports[`returns expected CloudFormation stack 1`] = `
         "BeforeAllowTrafficHookServiceRole78A95A40",
       ],
       "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
         "Code": {
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",

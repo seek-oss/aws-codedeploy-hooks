@@ -3,6 +3,8 @@ import path from 'path';
 import { Duration, aws_lambda } from 'aws-cdk-lib';
 
 export const createLambdaHookProps = (): aws_lambda.FunctionProps => ({
+  architecture: aws_lambda.Architecture.ARM_64,
+
   code: aws_lambda.Code.fromAsset(
     path.join(__dirname, '..', 'assets', 'handlers'),
   ),
