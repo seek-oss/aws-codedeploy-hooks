@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 1.1.0
+
+### Minor Changes
+
+- **HookStack:** Switch hook to ARM ([#41](https://github.com/seek-oss/aws-codedeploy-hooks/pull/41))
+
 ## 1.0.2
 
 ### Patch Changes
