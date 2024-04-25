@@ -27,12 +27,7 @@ const run = ({ skipHook, smokeTest, userAgent }: Options) => {
     .use(koaMiddleware({ logger, skipHook }, smokeTest))
     .on('error', onError);
 
-  return agent(
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    app.callback(),
-  )
-    .get('/')
-    .set('User-Agent', userAgent);
+  return agent(app.callback()).get('/').set('User-Agent', userAgent);
 };
 
 it.each`
