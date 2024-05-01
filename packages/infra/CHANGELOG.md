@@ -1,5 +1,13 @@
 # @seek/aws-codedeploy-infra
 
+## 2.0.0
+
+### Major Changes
+
+- **deps:** @seek/logger ^8.0.0 ([#45](https://github.com/seek-oss/aws-codedeploy-hooks/pull/45))
+
+  Our minimum Node.js version is now 18.18.
+
 ## 1.1.0
 
 ### Minor Changes
