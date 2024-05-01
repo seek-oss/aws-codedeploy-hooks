@@ -27,7 +27,7 @@
     "codegen": "skuba node cli/codegen"
   },
   "dependencies": {
-    "@seek/logger": "^6.2.0",
+    "@seek/logger": "^8.0.0",
     "@types/aws-lambda": "^8.10.130",
     "aws-cdk-lib": "^2.115.0",
     "constructs": "^10.3.0",
@@ -43,7 +43,7 @@
     "pino-pretty": "10.3.1"
   },
   "engines": {
-    "node": ">=18.12"
+    "node": ">=18.18"
   },
   "publishConfig": {
     "provenance": true
