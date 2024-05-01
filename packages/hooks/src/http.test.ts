@@ -16,7 +16,6 @@ describe('isHttpHook', () => {
       ];
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     return agent(app.callback())
       .get('/')
       .set('User-Agent', 'gantry-codedeploy-hook-BeforeAllowTraffic-dev/1.2.3')
