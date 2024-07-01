@@ -39,7 +39,7 @@
     "@aws-sdk/client-lambda": "3.485.0",
     "aws-sdk-client-mock": "4.0.1",
     "aws-sdk-client-mock-jest": "4.0.1",
-    "isomorphic-git": "1.25.3",
+    "isomorphic-git": "1.26.3",
     "pino-pretty": "11.2.1"
   },
   "engines": {
