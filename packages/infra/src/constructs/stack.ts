@@ -21,19 +21,31 @@ export class HookStack extends Stack {
       terminationProtection: true,
     });
 
-    const environment = {
-      BeforeAllowTraffic: {},
-      AfterAllowTraffic: {
+    this.addHook('BeforeAllowTraffic', {}, [
+      'codedeploy:GetApplicationRevision',
+      'codedeploy:GetDeployment',
+      'codedeploy:PutLifecycleEventHookExecutionStatus',
+      'lambda:InvokeFunction',
+    ]);
+
+    this.addHook(
+      'AfterAllowTraffic',
+      {
         VERSIONS_TO_KEEP: (props.prune?.versionsToKeep ?? 3).toString(),
       },
-    };
-
-    for (const hook of hooks) {
-      this.addHook(hook, environment[hook]);
-    }
+      [
+        'lambda:ListAliases',
+        'lambda:ListVersionsByFunction',
+        'lambda:DeleteFunction',
+      ],
+    );
   }
 
-  private addHook(hook: HookName, environment: Record<string, string>): void {
+  private addHook(
+    hook: HookName,
+    environment: Record<string, string>,
+    actions: string[],
+  ): void {
     const hookFunction = new aws_lambda.Function(this, `${hook}Hook`, {
       ...createLambdaHookProps(environment),
       description: `${hook} hook deployed outside of a VPC`,
@@ -43,12 +55,7 @@ export class HookStack extends Stack {
 
     hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
-        actions: [
-          'codedeploy:GetApplicationRevision',
-          'codedeploy:GetDeployment',
-          'codedeploy:PutLifecycleEventHookExecutionStatus',
-          'lambda:InvokeFunction',
-        ],
+        actions,
         effect: aws_iam.Effect.ALLOW,
         resources: ['*'],
       }),

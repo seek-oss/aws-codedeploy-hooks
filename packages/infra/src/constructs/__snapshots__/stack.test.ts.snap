@@ -53,10 +53,9 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Statement": [
             {
               "Action": [
-                "codedeploy:GetApplicationRevision",
-                "codedeploy:GetDeployment",
-                "codedeploy:PutLifecycleEventHookExecutionStatus",
-                "lambda:InvokeFunction",
+                "lambda:ListAliases",
+                "lambda:ListVersionsByFunction",
+                "lambda:DeleteFunction",
               ],
               "Effect": "Allow",
               "Resource": "*",
