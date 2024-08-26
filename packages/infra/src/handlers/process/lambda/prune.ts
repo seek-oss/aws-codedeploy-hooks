@@ -22,7 +22,7 @@ export const prune = async (fns: Args[]): Promise<void> => {
 };
 
 export const pruneFunction = async ({ name }: Args): Promise<void> => {
-  const versionsToKeep = Env.nonNegativeInteger('LAMBDA_VERSIONS_TO_KEEP');
+  const versionsToKeep = Env.nonNegativeInteger('VERSIONS_TO_KEEP');
   const { abortSignal } = getContext();
 
   const [aliases, versions] = await Promise.all([

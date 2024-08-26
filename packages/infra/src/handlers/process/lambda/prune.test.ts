@@ -13,11 +13,11 @@ import { prune } from './prune';
 const lambda = mockClient(LambdaClient);
 
 beforeAll(() => {
-  process.env.LAMBDA_VERSIONS_TO_KEEP = '3';
+  process.env.VERSIONS_TO_KEEP = '3';
 });
 
 afterAll(() => {
-  delete process.env.LAMBDA_VERSIONS_TO_KEEP;
+  delete process.env.VERSIONS_TO_KEEP;
 });
 
 afterEach(() => lambda.reset());
