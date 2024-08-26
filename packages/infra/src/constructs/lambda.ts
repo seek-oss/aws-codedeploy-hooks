@@ -1,10 +1,10 @@
 import path from 'path';
 
-import { Duration, aws_lambda, type aws_lambda_nodejs } from 'aws-cdk-lib';
+import { Duration, aws_lambda } from 'aws-cdk-lib';
 
 export const createLambdaHookProps = (
   environment: Record<string, string>,
-): aws_lambda_nodejs.NodejsFunctionProps => ({
+): aws_lambda.FunctionProps => ({
   architecture: aws_lambda.Architecture.ARM_64,
 
   code: aws_lambda.Code.fromAsset(
@@ -18,13 +18,6 @@ export const createLambdaHookProps = (
 
     // https://nodejs.org/api/cli.html#cli_node_options_options
     NODE_OPTIONS: '--enable-source-maps',
-  },
-
-  bundling: {
-    sourceMap: true,
-    target: 'node20',
-    // aws-sdk-v3 is set as an external module by default, but we want it to be bundled with the function
-    externalModules: [],
   },
 
   handler: 'index.handler',

@@ -1,4 +1,4 @@
-import { Stack, aws_iam, aws_lambda, aws_lambda_nodejs } from 'aws-cdk-lib';
+import { Stack, aws_iam, aws_lambda } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 
 import { createLambdaHookProps } from './lambda';
@@ -46,16 +46,12 @@ export class HookStack extends Stack {
     environment: Record<string, string>,
     actions: string[],
   ): void {
-    const hookFunction = new aws_lambda_nodejs.NodejsFunction(
-      this,
-      `${hook}Hook`,
-      {
-        ...createLambdaHookProps(environment),
-        description: `${hook} hook deployed outside of a VPC`,
-        functionName: `aws-codedeploy-hook-${hook}`,
-        vpc: undefined,
-      },
-    );
+    const hookFunction = new aws_lambda.Function(this, `${hook}Hook`, {
+      ...createLambdaHookProps(environment),
+      description: `${hook} hook deployed outside of a VPC`,
+      functionName: `aws-codedeploy-hook-${hook}`,
+      vpc: undefined,
+    });
 
     hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
