@@ -53,6 +53,9 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Statement": [
             {
               "Action": [
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:PutLifecycleEventHookExecutionStatus",
                 "lambda:ListAliases",
                 "lambda:ListVersionsByFunction",
                 "lambda:DeleteFunction",
@@ -62,6 +65,9 @@ exports[`returns expected CloudFormation stack 1`] = `
             },
             {
               "Action": [
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:PutLifecycleEventHookExecutionStatus",
                 "lambda:ListAliases",
                 "lambda:ListVersionsByFunction",
                 "lambda:DeleteFunction",
@@ -76,6 +82,9 @@ exports[`returns expected CloudFormation stack 1`] = `
             },
             {
               "Action": [
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:PutLifecycleEventHookExecutionStatus",
                 "lambda:ListAliases",
                 "lambda:ListVersionsByFunction",
                 "lambda:DeleteFunction",

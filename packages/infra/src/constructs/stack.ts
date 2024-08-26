@@ -21,12 +21,7 @@ export class HookStack extends Stack {
       terminationProtection: true,
     });
 
-    this.addHook('BeforeAllowTraffic', {}, [
-      'codedeploy:GetApplicationRevision',
-      'codedeploy:GetDeployment',
-      'codedeploy:PutLifecycleEventHookExecutionStatus',
-      'lambda:InvokeFunction',
-    ]);
+    this.addHook('BeforeAllowTraffic', {}, ['lambda:InvokeFunction']);
 
     this.addHook(
       'AfterAllowTraffic',
@@ -44,8 +39,15 @@ export class HookStack extends Stack {
   private addHook(
     hook: HookName,
     environment: Record<string, string>,
-    actions: string[],
+    baseActions: string[],
   ): void {
+    const actions = [
+      'codedeploy:GetApplicationRevision',
+      'codedeploy:GetDeployment',
+      'codedeploy:PutLifecycleEventHookExecutionStatus',
+      ...baseActions,
+    ];
+
     const hookFunction = new aws_lambda.Function(this, `${hook}Hook`, {
       ...createLambdaHookProps(environment),
       description: `${hook} hook deployed outside of a VPC`,
