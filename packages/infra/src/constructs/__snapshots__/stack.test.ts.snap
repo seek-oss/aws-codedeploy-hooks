@@ -11,6 +11,122 @@ exports[`returns expected CloudFormation stack 1`] = `
     },
   },
   "Resources": {
+    "AfterAllowTrafficHookE4DBA370": {
+      "DependsOn": [
+        "AfterAllowTrafficHookServiceRoleDefaultPolicyB04250EE",
+        "AfterAllowTrafficHookServiceRoleE545FEA8",
+      ],
+      "Properties": {
+        "Architectures": [
+          "arm64",
+        ],
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.zip",
+        },
+        "Description": "AfterAllowTraffic hook deployed outside of a VPC",
+        "Environment": {
+          "Variables": {
+            "NODE_ENV": "production",
+            "NODE_OPTIONS": "--enable-source-maps",
+            "VERSIONS_TO_KEEP": "3",
+          },
+        },
+        "FunctionName": "aws-codedeploy-hook-AfterAllowTraffic",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "AfterAllowTrafficHookServiceRoleE545FEA8",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 300,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "AfterAllowTrafficHookServiceRoleDefaultPolicyB04250EE": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:PutLifecycleEventHookExecutionStatus",
+                "lambda:InvokeFunction",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            {
+              "Action": "*",
+              "Condition": {
+                "Null": {
+                  "aws:ResourceTag/aws-codedeploy-hooks": "true",
+                },
+              },
+              "Effect": "Deny",
+              "Resource": "*",
+            },
+            {
+              "Action": "*",
+              "Condition": {
+                "StringEquals": {
+                  "aws:ResourceTag/aws-codedeploy-hooks": [
+                    "",
+                    "false",
+                  ],
+                },
+              },
+              "Effect": "Deny",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "AfterAllowTrafficHookServiceRoleDefaultPolicyB04250EE",
+        "Roles": [
+          {
+            "Ref": "AfterAllowTrafficHookServiceRoleE545FEA8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "AfterAllowTrafficHookServiceRoleE545FEA8": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
     "BeforeAllowTrafficHookFCD1BC97": {
       "DependsOn": [
         "BeforeAllowTrafficHookServiceRoleDefaultPolicyDB153C72",

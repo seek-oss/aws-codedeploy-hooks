@@ -3,28 +3,45 @@ import type { Construct } from 'constructs';
 
 import { createLambdaHookProps } from './lambda';
 
-export type HookStackProps = Record<string, never>;
+const hooks = ['BeforeAllowTraffic', 'AfterAllowTraffic'] as const;
+
+type HookName = (typeof hooks)[number];
+
+export type HookStackProps = {
+  prune?: {
+    versionsToKeep?: number;
+  };
+};
 
 export class HookStack extends Stack {
-  constructor(scope: Construct, id?: string, _props: HookStackProps = {}) {
+  constructor(scope: Construct, id?: string, props: HookStackProps = {}) {
     super(scope, id ?? 'HookStack', {
       description: 'AWS CodeDeploy hooks',
       stackName: 'aws-codedeploy-hooks',
       terminationProtection: true,
     });
 
-    const beforeAllowTrafficHook = new aws_lambda.Function(
-      this,
-      'BeforeAllowTrafficHook',
-      {
-        ...createLambdaHookProps(),
-        description: 'BeforeAllowTraffic hook deployed outside of a VPC',
-        functionName: 'aws-codedeploy-hook-BeforeAllowTraffic',
-        vpc: undefined,
+    const environment = {
+      BeforeAllowTraffic: {},
+      AfterAllowTraffic: {
+        VERSIONS_TO_KEEP: (props.prune?.versionsToKeep ?? 3).toString(),
       },
-    );
+    };
 
-    beforeAllowTrafficHook.addToRolePolicy(
+    for (const hook of hooks) {
+      this.addHook(hook, environment[hook]);
+    }
+  }
+
+  private addHook(hook: HookName, environment: Record<string, string>): void {
+    const hookFunction = new aws_lambda.Function(this, `${hook}Hook`, {
+      ...createLambdaHookProps(environment),
+      description: `${hook} hook deployed outside of a VPC`,
+      functionName: `aws-codedeploy-hook-${hook}`,
+      vpc: undefined,
+    });
+
+    hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
         actions: [
           'codedeploy:GetApplicationRevision',
@@ -38,7 +55,7 @@ export class HookStack extends Stack {
     );
 
     // Deny access to resources that lack an `aws-codedeploy-hooks` tag.
-    beforeAllowTrafficHook.addToRolePolicy(
+    hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
         actions: ['*'],
         conditions: {
@@ -52,7 +69,7 @@ export class HookStack extends Stack {
     );
 
     // Deny access to resources that have a falsy `aws-codedeploy-hooks` tag.
-    beforeAllowTrafficHook.addToRolePolicy(
+    hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
         actions: ['*'],
         conditions: {
