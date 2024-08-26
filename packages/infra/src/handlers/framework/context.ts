@@ -23,8 +23,8 @@ export const withTimeout = async <T>(
 
   const abortSignal = parent
     ? // @ts-expect-error: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/60868
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      (AbortSignal.any([parent, timeout]) as AbortSignal)
+
+      AbortSignal.any([parent, timeout])
     : timeout;
 
   return storage.run({ ...getContext(), abortSignal }, task);
