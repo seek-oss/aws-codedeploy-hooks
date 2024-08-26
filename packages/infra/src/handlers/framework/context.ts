@@ -21,11 +21,7 @@ export const withTimeout = async <T>(
 
   const timeout = AbortSignal.timeout(timeoutMs);
 
-  const abortSignal = parent
-    ? // @ts-expect-error: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/60868
-
-      AbortSignal.any([parent, timeout])
-    : timeout;
+  const abortSignal = parent ? AbortSignal.any([parent, timeout]) : timeout;
 
   return storage.run({ ...getContext(), abortSignal }, task);
 };
