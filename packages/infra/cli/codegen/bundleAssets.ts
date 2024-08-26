@@ -29,6 +29,7 @@ export const bundleAssets = async () => {
     ],
     format: 'esm',
     logLevel: 'debug',
+    outExtension: { '.js': '.mjs' },
     outdir: assetDir,
     platform: 'node',
     sourcemap: true,
