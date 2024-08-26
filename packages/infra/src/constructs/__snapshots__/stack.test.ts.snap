@@ -61,7 +61,11 @@ exports[`returns expected CloudFormation stack 1`] = `
               "Resource": "*",
             },
             {
-              "Action": "*",
+              "Action": [
+                "lambda:ListAliases",
+                "lambda:ListVersionsByFunction",
+                "lambda:DeleteFunction",
+              ],
               "Condition": {
                 "Null": {
                   "aws:ResourceTag/aws-codedeploy-hooks": "true",
@@ -71,7 +75,11 @@ exports[`returns expected CloudFormation stack 1`] = `
               "Resource": "*",
             },
             {
-              "Action": "*",
+              "Action": [
+                "lambda:ListAliases",
+                "lambda:ListVersionsByFunction",
+                "lambda:DeleteFunction",
+              ],
               "Condition": {
                 "StringEquals": {
                   "aws:ResourceTag/aws-codedeploy-hooks": [
@@ -207,7 +215,12 @@ exports[`returns expected CloudFormation stack 1`] = `
               "Resource": "*",
             },
             {
-              "Action": "*",
+              "Action": [
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:PutLifecycleEventHookExecutionStatus",
+                "lambda:InvokeFunction",
+              ],
               "Condition": {
                 "Null": {
                   "aws:ResourceTag/aws-codedeploy-hooks": "true",
@@ -217,7 +230,12 @@ exports[`returns expected CloudFormation stack 1`] = `
               "Resource": "*",
             },
             {
-              "Action": "*",
+              "Action": [
+                "codedeploy:GetApplicationRevision",
+                "codedeploy:GetDeployment",
+                "codedeploy:PutLifecycleEventHookExecutionStatus",
+                "lambda:InvokeFunction",
+              ],
               "Condition": {
                 "StringEquals": {
                   "aws:ResourceTag/aws-codedeploy-hooks": [

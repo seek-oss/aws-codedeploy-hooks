@@ -64,7 +64,7 @@ export class HookStack extends Stack {
     // Deny access to resources that lack an `aws-codedeploy-hooks` tag.
     hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
-        actions: ['*'],
+        actions,
         conditions: {
           Null: {
             'aws:ResourceTag/aws-codedeploy-hooks': 'true',
@@ -78,7 +78,7 @@ export class HookStack extends Stack {
     // Deny access to resources that have a falsy `aws-codedeploy-hooks` tag.
     hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
-        actions: ['*'],
+        actions,
         conditions: {
           StringEquals: {
             'aws:ResourceTag/aws-codedeploy-hooks': ['', 'false'],
