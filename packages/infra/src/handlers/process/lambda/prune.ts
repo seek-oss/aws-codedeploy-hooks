@@ -15,6 +15,8 @@ import type { LambdaFunction } from './types';
 
 type Args = Pick<LambdaFunction, 'name'>;
 
+const MAX_DELETIONS_PER_RUN = 20;
+
 const lambda = new LambdaClient();
 
 export const prune = async (fns: Args[]): Promise<void> => {
@@ -44,7 +46,8 @@ export const pruneFunction = async ({ name }: Args): Promise<void> => {
         version.Version !== '$LATEST',
     )
     .sort((a, b) => Number(b.Version) - Number(a.Version))
-    .slice(versionsToKeep);
+    .slice(versionsToKeep)
+    .slice(0, MAX_DELETIONS_PER_RUN);
 
   if (!versionsToPrune.length) {
     logger.info('No function versions to prune');
