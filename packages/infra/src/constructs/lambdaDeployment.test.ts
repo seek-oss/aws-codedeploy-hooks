@@ -61,7 +61,7 @@ it('returns expected CloudFormation stack', () => {
   template.hasResourceProperties('AWS::CodeDeploy::DeploymentGroup', {
     AutoRollbackConfiguration: {
       Enabled: true,
-      Events: ['DEPLOYMENT_FAILURE'],
+      Events: ['DEPLOYMENT_FAILURE', 'DEPLOYMENT_STOP_ON_ALARM'],
     },
     DeploymentConfigName: 'CodeDeployDefault.LambdaAllAtOnce',
     DeploymentStyle: {

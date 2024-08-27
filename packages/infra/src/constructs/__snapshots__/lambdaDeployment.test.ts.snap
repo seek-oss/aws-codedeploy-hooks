@@ -24,6 +24,16 @@ exports[`returns expected CloudFormation stack 1`] = `
     },
     "LambdaDeploymentCodeDeployLambdaDeploymentGroupC2B0BCFA": {
       "Properties": {
+        "AlarmConfiguration": {
+          "Alarms": [
+            {
+              "Name": {
+                "Ref": "LambdaDeploymentcodedeployalarm4FCB9B3A",
+              },
+            },
+          ],
+          "Enabled": true,
+        },
         "ApplicationName": {
           "Ref": "LambdaDeploymentCodeDeployLambdaApplication14FFF847",
         },
@@ -31,6 +41,7 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Enabled": true,
           "Events": [
             "DEPLOYMENT_FAILURE",
+            "DEPLOYMENT_STOP_ON_ALARM",
           ],
         },
         "DeploymentConfigName": "CodeDeployDefault.LambdaAllAtOnce",
@@ -197,6 +208,27 @@ exports[`returns expected CloudFormation stack 1`] = `
         ],
       },
       "Type": "AWS::IAM::Policy",
+    },
+    "LambdaDeploymentcodedeployalarm4FCB9B3A": {
+      "Properties": {
+        "AlarmDescription": "Used to rollback the deployment if there are errors. This can be skipped with a [skip alarm] directive in the build message.",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "Dimensions": [
+          {
+            "Name": "FunctionName",
+            "Value": {
+              "Ref": "LambdaFunctionBF21E41F",
+            },
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda",
+        "Period": 30,
+        "Statistic": "Sum",
+        "Threshold": 1,
+      },
+      "Type": "AWS::CloudWatch::Alarm",
     },
     "LambdaFunctionAliasLive400E15E9": {
       "Properties": {

@@ -1,4 +1,11 @@
-import { Tags, aws_codedeploy, aws_lambda } from 'aws-cdk-lib';
+import { containsSkipDirective } from '@seek/aws-codedeploy-hooks';
+import {
+  Duration,
+  Tags,
+  aws_cloudwatch,
+  aws_codedeploy,
+  aws_lambda,
+} from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 import { commit, version } from '../version';
@@ -7,6 +14,7 @@ const tagValue = `${version}-${commit}`;
 
 export type LambdaDeploymentProps = {
   lambdaFunction: aws_lambda.Function;
+  buildMessage?: string;
 };
 
 export class LambdaDeployment extends Construct {
@@ -15,7 +23,10 @@ export class LambdaDeployment extends Construct {
   constructor(
     scope: Construct,
     id: string | null,
-    { lambdaFunction }: LambdaDeploymentProps,
+    {
+      lambdaFunction,
+      buildMessage = process.env.BUILDKITE_MESSAGE,
+    }: LambdaDeploymentProps,
   ) {
     super(scope, id ?? 'LambdaDeployment');
 
@@ -61,5 +72,19 @@ export class LambdaDeployment extends Construct {
         'aws-codedeploy-hook-AfterAllowTraffic',
       ),
     );
+
+    if (!containsSkipDirective(buildMessage, 'alarm')) {
+      deploymentGroup.addAlarm(
+        new aws_cloudwatch.Alarm(this, 'codedeploy-alarm', {
+          metric: lambdaFunction.metricErrors({
+            period: Duration.seconds(30),
+          }),
+          threshold: 1,
+          evaluationPeriods: 1,
+          alarmDescription:
+            'Used to rollback the deployment if there are errors. This can be skipped with a [skip alarm] directive in the build message.',
+        }),
+      );
+    }
   }
 }
