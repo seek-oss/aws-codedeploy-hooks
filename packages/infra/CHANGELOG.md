@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 2.1.0
+
+### Minor Changes
+
+- **HookStack:** Implement version prune in AfterAllowTraffic ([#57](https://github.com/seek-oss/aws-codedeploy-hooks/pull/57))
+
 ## 2.0.0
 
 ### Major Changes
