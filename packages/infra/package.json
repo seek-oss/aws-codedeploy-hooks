@@ -27,7 +27,7 @@
     "codegen": "skuba node cli/codegen"
   },
   "dependencies": {
-    "@seek/aws-codedeploy-hooks": "workspace:*",
+    "@seek/aws-codedeploy-hooks": "workspace:^",
     "@seek/logger": "^8.0.0",
     "@types/aws-lambda": "^8.10.130",
     "aws-cdk-lib": "^2.115.0",
