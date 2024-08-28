@@ -2,7 +2,9 @@ import path from 'path';
 
 import { Duration, aws_lambda } from 'aws-cdk-lib';
 
-export const createLambdaHookProps = (): aws_lambda.FunctionProps => ({
+export const createLambdaHookProps = (
+  environment: Record<string, string>,
+): aws_lambda.FunctionProps => ({
   architecture: aws_lambda.Architecture.ARM_64,
 
   code: aws_lambda.Code.fromAsset(
@@ -10,6 +12,8 @@ export const createLambdaHookProps = (): aws_lambda.FunctionProps => ({
   ),
 
   environment: {
+    ...environment,
+
     NODE_ENV: 'production',
 
     // https://nodejs.org/api/cli.html#cli_node_options_options

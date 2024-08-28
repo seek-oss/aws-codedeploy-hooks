@@ -3,44 +3,70 @@ import type { Construct } from 'constructs';
 
 import { createLambdaHookProps } from './lambda';
 
-export type HookStackProps = Record<string, never>;
+const hooks = ['BeforeAllowTraffic', 'AfterAllowTraffic'] as const;
+
+type HookName = (typeof hooks)[number];
+
+export type HookStackProps = {
+  prune?: {
+    versionsToKeep?: number;
+  };
+};
 
 export class HookStack extends Stack {
-  constructor(scope: Construct, id?: string, _props: HookStackProps = {}) {
+  constructor(scope: Construct, id?: string, props: HookStackProps = {}) {
     super(scope, id ?? 'HookStack', {
       description: 'AWS CodeDeploy hooks',
       stackName: 'aws-codedeploy-hooks',
       terminationProtection: true,
     });
 
-    const beforeAllowTrafficHook = new aws_lambda.Function(
-      this,
-      'BeforeAllowTrafficHook',
-      {
-        ...createLambdaHookProps(),
-        description: 'BeforeAllowTraffic hook deployed outside of a VPC',
-        functionName: 'aws-codedeploy-hook-BeforeAllowTraffic',
-        vpc: undefined,
-      },
-    );
+    this.addHook('BeforeAllowTraffic', {}, ['lambda:InvokeFunction']);
 
-    beforeAllowTrafficHook.addToRolePolicy(
+    this.addHook(
+      'AfterAllowTraffic',
+      {
+        VERSIONS_TO_KEEP: (props.prune?.versionsToKeep ?? 3).toString(),
+      },
+      [
+        'lambda:ListAliases',
+        'lambda:ListVersionsByFunction',
+        'lambda:DeleteFunction',
+      ],
+    );
+  }
+
+  private addHook(
+    hook: HookName,
+    environment: Record<string, string>,
+    baseActions: string[],
+  ): void {
+    const actions = [
+      'codedeploy:GetApplicationRevision',
+      'codedeploy:GetDeployment',
+      'codedeploy:PutLifecycleEventHookExecutionStatus',
+      ...baseActions,
+    ];
+
+    const hookFunction = new aws_lambda.Function(this, `${hook}Hook`, {
+      ...createLambdaHookProps(environment),
+      description: `${hook} hook deployed outside of a VPC`,
+      functionName: `aws-codedeploy-hook-${hook}`,
+      vpc: undefined,
+    });
+
+    hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
-        actions: [
-          'codedeploy:GetApplicationRevision',
-          'codedeploy:GetDeployment',
-          'codedeploy:PutLifecycleEventHookExecutionStatus',
-          'lambda:InvokeFunction',
-        ],
+        actions,
         effect: aws_iam.Effect.ALLOW,
         resources: ['*'],
       }),
     );
 
     // Deny access to resources that lack an `aws-codedeploy-hooks` tag.
-    beforeAllowTrafficHook.addToRolePolicy(
+    hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
-        actions: ['*'],
+        actions,
         conditions: {
           Null: {
             'aws:ResourceTag/aws-codedeploy-hooks': 'true',
@@ -52,9 +78,9 @@ export class HookStack extends Stack {
     );
 
     // Deny access to resources that have a falsy `aws-codedeploy-hooks` tag.
-    beforeAllowTrafficHook.addToRolePolicy(
+    hookFunction.addToRolePolicy(
       new aws_iam.PolicyStatement({
-        actions: ['*'],
+        actions,
         conditions: {
           StringEquals: {
             'aws:ResourceTag/aws-codedeploy-hooks': ['', 'false'],

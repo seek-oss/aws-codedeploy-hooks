@@ -7,6 +7,7 @@ import { config } from '../../config';
 import { codeDeployClient } from '../../framework/aws';
 import { getContext } from '../../framework/context';
 
+import { prune } from './prune';
 import { type LambdaAppSpec, lambdaAppSpec } from './schema';
 import { smokeTest } from './smokeTest';
 import type { LambdaFunction } from './types';
@@ -51,14 +52,14 @@ export const lambda = async ({
   switch (inferLifecycleEvent(appSpec.Hooks)) {
     case 'BeforeAllowTraffic':
       return smokeTest(fns);
+    case 'AfterAllowTraffic':
+      return prune(fns);
   }
 };
 
 type LifecycleEvent = 'BeforeAllowTraffic' | 'AfterAllowTraffic';
 
-const inferLifecycleEvent = (
-  hooks: LambdaAppSpec['Hooks'],
-): Exclude<LifecycleEvent, 'AfterAllowTraffic'> => {
+const inferLifecycleEvent = (hooks: LambdaAppSpec['Hooks']): LifecycleEvent => {
   const isPreHook = hooks.some(
     (hook) => hook.BeforeAllowTraffic === config.functionName,
   );
@@ -83,9 +84,5 @@ const inferLifecycleEvent = (
     );
   }
 
-  if (isPostHook) {
-    throw new Error('AfterAllowTraffic is not yet supported');
-  }
-
-  return 'BeforeAllowTraffic';
+  return isPostHook ? 'AfterAllowTraffic' : 'BeforeAllowTraffic';
 };

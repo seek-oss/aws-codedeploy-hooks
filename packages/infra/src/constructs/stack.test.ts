@@ -9,7 +9,7 @@ it('returns expected CloudFormation stack', () => {
 
   const template = assertions.Template.fromStack(stack);
 
-  template.resourceCountIs('AWS::Lambda::Function', 1);
+  template.resourceCountIs('AWS::Lambda::Function', 2);
 
   template.resourcePropertiesCountIs(
     'AWS::Lambda::Function',
@@ -32,5 +32,5 @@ it('supports a custom ID', () => {
 
   const template = assertions.Template.fromStack(stack);
 
-  template.resourceCountIs('AWS::Lambda::Function', 1);
+  template.resourceCountIs('AWS::Lambda::Function', 2);
 });

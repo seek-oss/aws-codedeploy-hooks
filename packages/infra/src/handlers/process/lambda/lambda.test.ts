@@ -1,4 +1,5 @@
 jest.mock('./smokeTest');
+jest.mock('./prune');
 
 import 'aws-sdk-client-mock-jest';
 
@@ -9,16 +10,19 @@ import {
 import { mockClient } from 'aws-sdk-client-mock';
 
 import { type Options, lambda } from './lambda';
+import { prune } from './prune';
 import type { LambdaAppSpec } from './schema';
 import { smokeTest } from './smokeTest';
 
 const codeDeploy = mockClient(CodeDeployClient);
 
 const smokeTestMock = jest.mocked(smokeTest);
+const pruneMock = jest.mocked(prune);
 
 afterEach(() => {
   codeDeploy.reset();
   smokeTestMock.mockReset();
+  pruneMock.mockReset();
 });
 
 describe('lambda', () => {
@@ -150,7 +154,7 @@ describe('lambda', () => {
     );
   });
 
-  it('throws an error if AppSpec specifies the current hook as AfterAllowTraffic', async () => {
+  it('executes a prune on AfterAllowTraffic', async () => {
     codeDeploy.on(GetApplicationRevisionCommand).resolves({
       revision: {
         string: {
@@ -164,9 +168,9 @@ describe('lambda', () => {
       },
     });
 
-    await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"AfterAllowTraffic is not yet supported"`,
-    );
+    await expect(lambda(opts)).resolves.toBeUndefined();
+
+    expect(pruneMock).toHaveBeenCalledTimes(1);
   });
 
   it('throws an error if AppSpec does not specify the current hook', async () => {
