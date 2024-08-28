@@ -20,7 +20,12 @@ export const containsSkipDirective = (
   message: string | undefined | null,
   scope: string,
 ) =>
-  Array.from(message?.matchAll(skipDirective) ?? []).some((match) =>
+  Array.from(
+    message
+      // limit the message to 1000 characters to avoid regex performance issues
+      ?.slice(0, 1000)
+      .matchAll(skipDirective) ?? [],
+  ).some((match) =>
     match[1]
       ?.split(' ')
       .map((part) => part.toLowerCase())
