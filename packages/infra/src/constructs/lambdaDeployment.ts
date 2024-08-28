@@ -73,18 +73,18 @@ export class LambdaDeployment extends Construct {
       ),
     );
 
+    const alarm = new aws_cloudwatch.Alarm(this, 'CodeDeployAlarm', {
+      metric: lambdaFunction.metricErrors({
+        period: Duration.seconds(30),
+      }),
+      threshold: 1,
+      evaluationPeriods: 1,
+      alarmDescription:
+        'Used to roll back the deployment if there are errors. This can be skipped with a [skip alarm] directive in the build message.',
+    });
+
     if (!containsSkipDirective(buildMessage, 'alarm')) {
-      deploymentGroup.addAlarm(
-        new aws_cloudwatch.Alarm(this, 'CodeDeployAlarm', {
-          metric: lambdaFunction.metricErrors({
-            period: Duration.seconds(30),
-          }),
-          threshold: 1,
-          evaluationPeriods: 1,
-          alarmDescription:
-            'Used to roll back the deployment if there are errors. This can be skipped with a [skip alarm] directive in the build message.',
-        }),
-      );
+      deploymentGroup.addAlarm(alarm);
     }
   }
 }

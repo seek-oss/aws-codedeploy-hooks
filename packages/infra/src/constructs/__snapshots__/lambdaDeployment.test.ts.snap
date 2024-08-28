@@ -1,5 +1,466 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`omits the alarm if a build message asks to skip it 1`] = `
+{
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "LambdaDeploymentCodeDeployAlarmC8E83D58": {
+      "Properties": {
+        "AlarmDescription": "Used to roll back the deployment if there are errors. This can be skipped with a [skip alarm] directive in the build message.",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "Dimensions": [
+          {
+            "Name": "FunctionName",
+            "Value": {
+              "Ref": "LambdaFunctionBF21E41F",
+            },
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda",
+        "Period": 30,
+        "Statistic": "Sum",
+        "Threshold": 1,
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
+    "LambdaDeploymentCodeDeployLambdaApplication14FFF847": {
+      "Properties": {
+        "ComputePlatform": "Lambda",
+        "Tags": [
+          {
+            "Key": "aws-codedeploy-hooks",
+            "Value": "0.0.0-abcdefg",
+          },
+        ],
+      },
+      "Type": "AWS::CodeDeploy::Application",
+    },
+    "LambdaDeploymentCodeDeployLambdaDeploymentGroupC2B0BCFA": {
+      "Properties": {
+        "ApplicationName": {
+          "Ref": "LambdaDeploymentCodeDeployLambdaApplication14FFF847",
+        },
+        "AutoRollbackConfiguration": {
+          "Enabled": true,
+          "Events": [
+            "DEPLOYMENT_FAILURE",
+          ],
+        },
+        "DeploymentConfigName": "CodeDeployDefault.LambdaAllAtOnce",
+        "DeploymentStyle": {
+          "DeploymentOption": "WITH_TRAFFIC_CONTROL",
+          "DeploymentType": "BLUE_GREEN",
+        },
+        "ServiceRoleArn": {
+          "Fn::GetAtt": [
+            "LambdaDeploymentCodeDeployLambdaDeploymentGroupServiceRole2775DE50",
+            "Arn",
+          ],
+        },
+        "Tags": [
+          {
+            "Key": "aws-codedeploy-hooks",
+            "Value": "0.0.0-abcdefg",
+          },
+        ],
+      },
+      "Type": "AWS::CodeDeploy::DeploymentGroup",
+    },
+    "LambdaDeploymentCodeDeployLambdaDeploymentGroupServiceRole2775DE50": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codedeploy.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSCodeDeployRoleForLambdaLimited",
+              ],
+            ],
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "aws-codedeploy-hooks",
+            "Value": "0.0.0-abcdefg",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LambdaDeploymentCodeDeployLambdaDeploymentGroupServiceRoleDefaultPolicyBB5F5248": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":lambda:",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":function:aws-codedeploy-hook-BeforeAllowTraffic",
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":lambda:",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":function:aws-codedeploy-hook-BeforeAllowTraffic:*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":lambda:",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":function:aws-codedeploy-hook-AfterAllowTraffic",
+                    ],
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":lambda:",
+                      {
+                        "Ref": "AWS::Region",
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId",
+                      },
+                      ":function:aws-codedeploy-hook-AfterAllowTraffic:*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LambdaDeploymentCodeDeployLambdaDeploymentGroupServiceRoleDefaultPolicyBB5F5248",
+        "Roles": [
+          {
+            "Ref": "LambdaDeploymentCodeDeployLambdaDeploymentGroupServiceRole2775DE50",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "LambdaFunctionAliasLive400E15E9": {
+      "Properties": {
+        "Description": "The Lambda version currently receiving traffic",
+        "FunctionName": {
+          "Ref": "LambdaFunctionBF21E41F",
+        },
+        "FunctionVersion": {
+          "Fn::GetAtt": [
+            "LambdaFunctionCurrentVersion7D5C86E3e2b46016d2d80a96993d54a126fb6e88",
+            "Version",
+          ],
+        },
+        "Name": "Live",
+      },
+      "Type": "AWS::Lambda::Alias",
+      "UpdatePolicy": {
+        "CodeDeployLambdaAliasUpdate": {
+          "AfterAllowTrafficHook": {
+            "Fn::Select": [
+              6,
+              {
+                "Fn::Split": [
+                  ":",
+                  {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":lambda:",
+                        {
+                          "Ref": "AWS::Region",
+                        },
+                        ":",
+                        {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":function:aws-codedeploy-hook-AfterAllowTraffic",
+                      ],
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          "ApplicationName": {
+            "Ref": "LambdaDeploymentCodeDeployLambdaApplication14FFF847",
+          },
+          "BeforeAllowTrafficHook": {
+            "Fn::Select": [
+              6,
+              {
+                "Fn::Split": [
+                  ":",
+                  {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":lambda:",
+                        {
+                          "Ref": "AWS::Region",
+                        },
+                        ":",
+                        {
+                          "Ref": "AWS::AccountId",
+                        },
+                        ":function:aws-codedeploy-hook-BeforeAllowTraffic",
+                      ],
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          "DeploymentGroupName": {
+            "Ref": "LambdaDeploymentCodeDeployLambdaDeploymentGroupC2B0BCFA",
+          },
+        },
+      },
+    },
+    "LambdaFunctionAliasLiveSqsEventSourceQueue453DF2EA": {
+      "Properties": {
+        "EventSourceArn": "arn:aws:sqs:us-east-2:123456789012:queue",
+        "FunctionName": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Fn::Select": [
+                  6,
+                  {
+                    "Fn::Split": [
+                      ":",
+                      {
+                        "Ref": "LambdaFunctionAliasLive400E15E9",
+                      },
+                    ],
+                  },
+                ],
+              },
+              ":Live",
+            ],
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::EventSourceMapping",
+    },
+    "LambdaFunctionBF21E41F": {
+      "DependsOn": [
+        "LambdaFunctionServiceRoleDefaultPolicy32EEEE35",
+        "LambdaFunctionServiceRoleC555A460",
+      ],
+      "Properties": {
+        "Code": {
+          "ZipFile": "export const handler = async () => undefined;",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LambdaFunctionServiceRoleC555A460",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Tags": [
+          {
+            "Key": "aws-codedeploy-hooks",
+            "Value": "0.0.0-abcdefg",
+          },
+        ],
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "LambdaFunctionCurrentVersion7D5C86E3e2b46016d2d80a96993d54a126fb6e88": {
+      "Properties": {
+        "FunctionName": {
+          "Ref": "LambdaFunctionBF21E41F",
+        },
+      },
+      "Type": "AWS::Lambda::Version",
+    },
+    "LambdaFunctionServiceRoleC555A460": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+        "Tags": [
+          {
+            "Key": "aws-codedeploy-hooks",
+            "Value": "0.0.0-abcdefg",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LambdaFunctionServiceRoleDefaultPolicy32EEEE35": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "sqs:ReceiveMessage",
+                "sqs:ChangeMessageVisibility",
+                "sqs:GetQueueUrl",
+                "sqs:DeleteMessage",
+                "sqs:GetQueueAttributes",
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:sqs:us-east-2:123456789012:queue",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LambdaFunctionServiceRoleDefaultPolicy32EEEE35",
+        "Roles": [
+          {
+            "Ref": "LambdaFunctionServiceRoleC555A460",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
 exports[`returns expected CloudFormation stack 1`] = `
 {
   "Parameters": {
@@ -10,6 +471,27 @@ exports[`returns expected CloudFormation stack 1`] = `
     },
   },
   "Resources": {
+    "LambdaDeploymentCodeDeployAlarmC8E83D58": {
+      "Properties": {
+        "AlarmDescription": "Used to roll back the deployment if there are errors. This can be skipped with a [skip alarm] directive in the build message.",
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+        "Dimensions": [
+          {
+            "Name": "FunctionName",
+            "Value": {
+              "Ref": "LambdaFunctionBF21E41F",
+            },
+          },
+        ],
+        "EvaluationPeriods": 1,
+        "MetricName": "Errors",
+        "Namespace": "AWS/Lambda",
+        "Period": 30,
+        "Statistic": "Sum",
+        "Threshold": 1,
+      },
+      "Type": "AWS::CloudWatch::Alarm",
+    },
     "LambdaDeploymentCodeDeployLambdaApplication14FFF847": {
       "Properties": {
         "ComputePlatform": "Lambda",
@@ -28,7 +510,7 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Alarms": [
             {
               "Name": {
-                "Ref": "LambdaDeploymentcodedeployalarm4FCB9B3A",
+                "Ref": "LambdaDeploymentCodeDeployAlarmC8E83D58",
               },
             },
           ],
@@ -208,27 +690,6 @@ exports[`returns expected CloudFormation stack 1`] = `
         ],
       },
       "Type": "AWS::IAM::Policy",
-    },
-    "LambdaDeploymentcodedeployalarm4FCB9B3A": {
-      "Properties": {
-        "AlarmDescription": "Used to rollback the deployment if there are errors. This can be skipped with a [skip alarm] directive in the build message.",
-        "ComparisonOperator": "GreaterThanOrEqualToThreshold",
-        "Dimensions": [
-          {
-            "Name": "FunctionName",
-            "Value": {
-              "Ref": "LambdaFunctionBF21E41F",
-            },
-          },
-        ],
-        "EvaluationPeriods": 1,
-        "MetricName": "Errors",
-        "Namespace": "AWS/Lambda",
-        "Period": 30,
-        "Statistic": "Sum",
-        "Threshold": 1,
-      },
-      "Type": "AWS::CloudWatch::Alarm",
     },
     "LambdaFunctionAliasLive400E15E9": {
       "Properties": {
