@@ -7,13 +7,13 @@ const skipDirective = /\[skip([^\]]+)\]/gi;
  * @returns Whether the message contains a skip directive for the given scope.
  *
  * @example
- * containsSkipDirective('This is a message with a [skip alarm] directive.', 'alarm');
+ * containsSkipDirective('This is a message with a [skip ci] directive.', 'ci');
  * // true
  *
- * containsSkipDirective('This is a message with a [skip alarm smoke] directive.', 'alarm');
+ * containsSkipDirective('This is a message with a [skip ci smoke] directive.', 'ci');
  * // true
  *
- * containsSkipDirective('This is a message with a [skip smoke] directive.', 'alarm');
+ * containsSkipDirective('This is a message with a [skip smoke] directive.', 'ci');
  * // false
  */
 export const containsSkipDirective = (

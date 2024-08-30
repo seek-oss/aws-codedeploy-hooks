@@ -61,7 +61,7 @@ it('returns expected CloudFormation stack', () => {
   template.hasResourceProperties('AWS::CodeDeploy::DeploymentGroup', {
     AutoRollbackConfiguration: {
       Enabled: true,
-      Events: ['DEPLOYMENT_FAILURE', 'DEPLOYMENT_STOP_ON_ALARM'],
+      Events: ['DEPLOYMENT_FAILURE'],
     },
     DeploymentConfigName: 'CodeDeployDefault.LambdaAllAtOnce',
     DeploymentStyle: {
@@ -69,49 +69,6 @@ it('returns expected CloudFormation stack', () => {
       DeploymentType: 'BLUE_GREEN',
     },
     Tags: [{ Key: 'aws-codedeploy-hooks' }],
-  });
-
-  const json = JSON.stringify(template.toJSON());
-
-  expect(JSON.parse(json)).toMatchSnapshot();
-});
-
-it('omits the alarm if a build message asks to skip it', () => {
-  const app = new App();
-
-  const stack = new Stack(app);
-
-  const lambdaFunction = new aws_lambda.Function(stack, 'LambdaFunction', {
-    code: aws_lambda.Code.fromInline(
-      'export const handler = async () => undefined;',
-    ),
-    handler: 'index.handler',
-    runtime: aws_lambda.Runtime.NODEJS_20_X,
-  });
-
-  const deployment = new LambdaDeployment(stack, null, {
-    lambdaFunction,
-    buildMessage: '[skip ci alarm otherstuff]',
-  });
-
-  const queue = aws_sqs.Queue.fromQueueArn(
-    stack,
-    'Queue',
-    'arn:aws:sqs:us-east-2:123456789012:queue',
-  );
-
-  const eventSource = new aws_lambda_event_sources.SqsEventSource(queue);
-
-  deployment.alias.addEventSource(eventSource);
-
-  const template = assertions.Template.fromStack(stack);
-
-  template.hasResourceProperties('AWS::CodeDeploy::DeploymentGroup', {
-    AutoRollbackConfiguration: {
-      Enabled: true,
-      // No DEPLOYMENT_STOP_ON_ALARM
-      Events: ['DEPLOYMENT_FAILURE'],
-    },
   });
 
   const json = JSON.stringify(template.toJSON());
