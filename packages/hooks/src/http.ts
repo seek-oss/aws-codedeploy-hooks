@@ -34,7 +34,7 @@ const isHeadersClass = (
  *
  * Checks for a `user-agent` header that starts with either:
  *
- * - `aws-codedeploy-hook-`
+ * - `aws-codedeploy-hooks/`
  * - `gantry-codedeploy-hook-BeforeAllowTraffic-`
  *
  * Compatible with Gantry v2.3.7 and newer.

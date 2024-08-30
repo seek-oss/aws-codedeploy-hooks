@@ -38,7 +38,7 @@ describe('isHttpHook', () => {
       isHttpHook(
         new Request('https://example.com', {
           headers: {
-            'User-Agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
+            'User-Agent': 'aws-codedeploy-hooks/123',
           },
         }),
       ),
@@ -50,7 +50,7 @@ describe('isHttpHook', () => {
         headers: {
           'user-agent': [
             'rogue-agent',
-            'aws-codedeploy-hook-BeforeAllowTraffic/123',
+            'aws-codedeploy-hooks/123',
             'secret-agent',
           ],
         },
