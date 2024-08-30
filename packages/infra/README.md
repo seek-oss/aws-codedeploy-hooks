@@ -63,7 +63,7 @@ export const handler = (event: Event, ctx: Context) => {
 
   // A context object with a custom user agent prop
   assert.strictEqual(
-    typeof ctx.clientContext?.Custom?.['user-agent'],
+    typeof ctx.clientContext?.custom?.['user-agent'],
     'string',
   );
 };
