@@ -14,7 +14,7 @@ describe('isLambdaHook', () => {
         {},
         {
           clientContext: {
-            custom: {
+            Custom: {
               'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
             },
           },
@@ -30,7 +30,7 @@ describe('isLambdaHook', () => {
         },
         {
           clientContext: {
-            custom: {
+            Custom: {
               'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
             },
           },
@@ -48,7 +48,7 @@ describe('isLambdaHook', () => {
           },
           {
             clientContext: {
-              custom: { 'user-agent': 'Mozilla/5.0' },
+              Custom: { 'user-agent': 'Mozilla/5.0' },
             },
           },
         ),
@@ -57,8 +57,8 @@ describe('isLambdaHook', () => {
 
   it.each`
     description            | context
-    ${'user-agent'}        | ${{ clientContext: { custom: { 'some-property': true } } }}
-    ${'custom properties'} | ${{ clientContext: { custom: {} } }}
+    ${'user-agent'}        | ${{ clientContext: { Custom: { 'some-property': true } } }}
+    ${'custom properties'} | ${{ clientContext: { Custom: {} } }}
     ${'client context'}    | ${{ clientContext: {} }}
     ${'anything'}          | ${{}}
   `('ignores a context without $description', ({ context }) =>

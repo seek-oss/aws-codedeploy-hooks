@@ -46,7 +46,7 @@ describe('smokeTest', () => {
 
     expect(clientContext).toMatchInlineSnapshot(`
       {
-        "custom": {
+        "Custom": {
           "user-agent": "aws-codedeploy-hooks/local",
         },
       }
@@ -70,7 +70,7 @@ describe('smokeTest', () => {
 
     expect(clientContext).toMatchInlineSnapshot(`
       {
-        "custom": {
+        "Custom": {
           "user-agent": "aws-codedeploy-hooks/local",
           "x-request-id": "mock-request-id",
         },

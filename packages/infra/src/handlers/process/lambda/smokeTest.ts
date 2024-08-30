@@ -17,7 +17,7 @@ export const smokeTestFunction = async ({
   const { abortSignal, requestId } = getContext();
 
   const meta = {
-    custom: {
+    Custom: {
       'user-agent': config.userAgent,
       ...(requestId ? { 'x-request-id': requestId } : null),
     },
