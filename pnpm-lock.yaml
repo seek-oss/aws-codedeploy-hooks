@@ -53,9 +53,6 @@ importers:
 
   packages/infra:
     dependencies:
-      '@seek/aws-codedeploy-hooks':
-        specifier: workspace:^
-        version: link:../hooks
       '@seek/logger':
         specifier: ^8.0.0
         version: 8.1.1

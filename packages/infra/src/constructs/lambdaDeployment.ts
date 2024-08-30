@@ -1,11 +1,4 @@
-import { containsSkipDirective } from '@seek/aws-codedeploy-hooks';
-import {
-  Duration,
-  Tags,
-  aws_cloudwatch,
-  aws_codedeploy,
-  aws_lambda,
-} from 'aws-cdk-lib';
+import { Tags, aws_codedeploy, aws_lambda } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
 import { commit, version } from '../version';
