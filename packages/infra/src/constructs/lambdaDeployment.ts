@@ -14,7 +14,6 @@ const tagValue = `${version}-${commit}`;
 
 export type LambdaDeploymentProps = {
   lambdaFunction: aws_lambda.Function;
-  buildMessage?: string;
 };
 
 export class LambdaDeployment extends Construct {
@@ -23,10 +22,7 @@ export class LambdaDeployment extends Construct {
   constructor(
     scope: Construct,
     id: string | null,
-    {
-      lambdaFunction,
-      buildMessage = process.env.BUILDKITE_MESSAGE,
-    }: LambdaDeploymentProps,
+    { lambdaFunction }: LambdaDeploymentProps,
   ) {
     super(scope, id ?? 'LambdaDeployment');
 

@@ -1,5 +1,5 @@
 ---
-'@seek/aws-codedeploy-infra': minor
+'@seek/aws-codedeploy-infra': patch
 ---
 
-todo
+HookStack: fix `clientContext` structure mistake which was preventing `isLambdaHook` from ever returning `true`
