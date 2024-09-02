@@ -1,5 +1,13 @@
 # @seek/aws-codedeploy-infra
 
+## 2.1.1
+
+### Patch Changes
+
+- **HookStack:** fix `clientContext` structure mistake which was preventing `isLambdaHook` from ever returning `true` ([#58](https://github.com/seek-oss/aws-codedeploy-hooks/pull/58))
+
+- Fix discrepancies with user-agent values vs. expectations ([#58](https://github.com/seek-oss/aws-codedeploy-hooks/pull/58))
+
 ## 2.1.0
 
 ### Minor Changes
