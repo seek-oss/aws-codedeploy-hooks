@@ -1,5 +1,15 @@
 # @seek/aws-codedeploy-hooks
 
+## 1.2.0
+
+### Minor Changes
+
+- **containsSkipDirective:** Add function ([#58](https://github.com/seek-oss/aws-codedeploy-hooks/pull/58))
+
+### Patch Changes
+
+- Fix discrepancies with user-agent values vs. expectations ([#58](https://github.com/seek-oss/aws-codedeploy-hooks/pull/58))
+
 ## 1.1.0
 
 ### Minor Changes
