@@ -30,7 +30,7 @@ describe('smokeTest', () => {
 
     expect(invocation!.firstArg.input).toMatchInlineSnapshot(`
 {
-  "ClientContext": "eyJDdXN0b20iOnsidXNlci1hZ2VudCI6ImF3cy1jb2RlZGVwbG95LWhvb2tzL2xvY2FsIn19",
+  "ClientContext": "eyJDdXN0b20iOnsidXNlci1hZ2VudCI6ImF3cy1jb2RlZGVwbG95LWhvb2stTGlmZWN5Y2xlRXZlbnQvbG9jYWwifX0=",
   "FunctionName": "mock-name",
   "InvocationType": "RequestResponse",
   "Payload": "{}",
@@ -45,12 +45,12 @@ describe('smokeTest', () => {
     );
 
     expect(clientContext).toMatchInlineSnapshot(`
-      {
-        "Custom": {
-          "user-agent": "aws-codedeploy-hooks/local",
-        },
-      }
-    `);
+{
+  "Custom": {
+    "user-agent": "aws-codedeploy-hook-LifecycleEvent/local",
+  },
+}
+`);
   });
 
   it('embeds a request ID where available', async () => {
@@ -69,13 +69,13 @@ describe('smokeTest', () => {
     );
 
     expect(clientContext).toMatchInlineSnapshot(`
-      {
-        "Custom": {
-          "user-agent": "aws-codedeploy-hooks/local",
-          "x-request-id": "mock-request-id",
-        },
-      }
-    `);
+{
+  "Custom": {
+    "user-agent": "aws-codedeploy-hook-LifecycleEvent/local",
+    "x-request-id": "mock-request-id",
+  },
+}
+`);
   });
 
   it('supports multiple functions', async () => {
@@ -98,14 +98,14 @@ describe('smokeTest', () => {
       .toMatchInlineSnapshot(`
 [
   {
-    "ClientContext": "eyJDdXN0b20iOnsidXNlci1hZ2VudCI6ImF3cy1jb2RlZGVwbG95LWhvb2tzL2xvY2FsIiwieC1yZXF1ZXN0LWlkIjoibW9jay1yZXF1ZXN0LWlkIn19",
+    "ClientContext": "eyJDdXN0b20iOnsidXNlci1hZ2VudCI6ImF3cy1jb2RlZGVwbG95LWhvb2stTGlmZWN5Y2xlRXZlbnQvbG9jYWwiLCJ4LXJlcXVlc3QtaWQiOiJtb2NrLXJlcXVlc3QtaWQifX0=",
     "FunctionName": "mock-name-1",
     "InvocationType": "RequestResponse",
     "Payload": "{}",
     "Qualifier": "mock-version-1",
   },
   {
-    "ClientContext": "eyJDdXN0b20iOnsidXNlci1hZ2VudCI6ImF3cy1jb2RlZGVwbG95LWhvb2tzL2xvY2FsIiwieC1yZXF1ZXN0LWlkIjoibW9jay1yZXF1ZXN0LWlkIn19",
+    "ClientContext": "eyJDdXN0b20iOnsidXNlci1hZ2VudCI6ImF3cy1jb2RlZGVwbG95LWhvb2stTGlmZWN5Y2xlRXZlbnQvbG9jYWwiLCJ4LXJlcXVlc3QtaWQiOiJtb2NrLXJlcXVlc3QtaWQifX0=",
     "FunctionName": "mock-name-2",
     "InvocationType": "RequestResponse",
     "Payload": "{}",

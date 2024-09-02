@@ -34,7 +34,7 @@ type LambdaContext = {
  * Checks for:
  *
  * - An empty event object
- * - A custom `user-agent` in context that starts with `aws-codedeploy-hooks/`
+ * - A custom `user-agent` in context that starts with `aws-codedeploy-hook-BeforeAllowTraffic/`
  */
 export const isLambdaHook = (
   event: object,

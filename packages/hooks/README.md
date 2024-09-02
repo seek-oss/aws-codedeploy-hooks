@@ -29,7 +29,7 @@ const smokeTest = (req: Request) => {
 
 Checks for a `user-agent` header that starts with either:
 
-- `aws-codedeploy-hooks/`
+- `aws-codedeploy-hook-BeforeAllowTraffic/`
 - `gantry-codedeploy-hook-BeforeAllowTraffic-`
 
 Compatible with Gantry v2.3.7 and newer.
@@ -63,7 +63,7 @@ const handler = (event: Event, ctx: Context) => {
 Checks for:
 
 - An empty event object
-- A custom `user-agent` in context that starts with `aws-codedeploy-hooks/`
+- A custom `user-agent` in context that starts with `aws-codedeploy-hook-BeforeAllowTraffic/`
 
 ### `smokeTest.koaMiddleware`
 

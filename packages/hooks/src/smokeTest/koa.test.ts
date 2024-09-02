@@ -33,7 +33,7 @@ const run = ({ skipHook, smokeTest, userAgent }: Options) => {
 it.each`
   skipHook | userAgent
   ${true}  | ${'Mozilla/5.0'}
-  ${false} | ${'aws-codedeploy-hooks/1.2.3'}
+  ${false} | ${'aws-codedeploy-hook-BeforeAllowTraffic/1.2.3'}
   ${false} | ${'gantry-codedeploy-hook-BeforeAllowTraffic-dev/1.2.3'}
   ${false} | ${'Mozilla/5.0'}
 `(
@@ -52,7 +52,7 @@ it.each`
 
 it.each`
   skipHook | userAgent
-  ${true}  | ${'aws-codedeploy-hooks/1.2.3'}
+  ${true}  | ${'aws-codedeploy-hook-BeforeAllowTraffic/1.2.3'}
   ${true}  | ${'gantry-codedeploy-hook-BeforeAllowTraffic-dev/1.2.3'}
 `(
   'handles a background smoke test with skipHook: $skipHook and userAgent: $userAgent',
@@ -72,7 +72,7 @@ it.each`
 
 it.each`
   userAgent
-  ${'aws-codedeploy-hooks/123'}
+  ${'aws-codedeploy-hook-BeforeAllowTraffic/123'}
   ${'gantry-codedeploy-hook-BeforeAllowTraffic-dev/1.2.3'}
 `(
   'skips a synchronous error with skipHook: true and userAgent: $userAgent',
@@ -94,7 +94,7 @@ it.each`
 
 it.each`
   userAgent
-  ${'aws-codedeploy-hooks/123'}
+  ${'aws-codedeploy-hook-BeforeAllowTraffic/123'}
   ${'gantry-codedeploy-hook-BeforeAllowTraffic-dev/1.2.3'}
 `(
   'skips an asynchronous error with skipHook: true and userAgent: $userAgent',
@@ -115,7 +115,7 @@ it.each`
 it.each`
   skipHook | userAgent
   ${true}  | ${'Mozilla/5.0'}
-  ${false} | ${'aws-codedeploy-hooks/123'}
+  ${false} | ${'aws-codedeploy-hook-BeforeAllowTraffic/123'}
   ${false} | ${'gantry-codedeploy-hook-BeforeAllowTraffic-dev/1.2.3'}
   ${false} | ${'Mozilla/5.0'}
 `(
@@ -137,7 +137,7 @@ it.each`
 it.each`
   skipHook | userAgent
   ${true}  | ${'Mozilla/5.0'}
-  ${false} | ${'aws-codedeploy-hooks/123'}
+  ${false} | ${'aws-codedeploy-hook-BeforeAllowTraffic/123'}
   ${false} | ${'gantry-codedeploy-hook-BeforeAllowTraffic-dev/1.2.3'}
   ${false} | ${'Mozilla/5.0'}
 `(
@@ -160,7 +160,7 @@ it('passes no arguments to the smoke test function asynchronously', async () => 
   await run({
     skipHook: true,
     smokeTest,
-    userAgent: 'aws-codedeploy-hooks/123',
+    userAgent: 'aws-codedeploy-hook-BeforeAllowTraffic/123',
   }).expect(200, 'Smoke test skipped');
 
   expect(onError).not.toHaveBeenCalled();

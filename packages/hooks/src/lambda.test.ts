@@ -15,7 +15,7 @@ describe('isLambdaHook', () => {
         {
           clientContext: {
             Custom: {
-              'user-agent': 'aws-codedeploy-hooks/123',
+              'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
             },
           },
         },
@@ -31,7 +31,7 @@ describe('isLambdaHook', () => {
         {
           clientContext: {
             Custom: {
-              'user-agent': 'aws-codedeploy-hooks/123',
+              'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
             },
           },
         },
