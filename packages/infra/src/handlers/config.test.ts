@@ -40,7 +40,7 @@ describe('config', () => {
 
   it('throws an error if some environment variables are not set', () => {
     process.env = {
-      AWS_LAMBDA_FUNCTION_NAME: 'aws-codedeploy-hook-LifecycleEvent',
+      AWS_LAMBDA_FUNCTION_NAME: 'aws-codedeploy-hook-BeforeAllowTraffic',
       AWS_LAMBDA_FUNCTION_VERSION: 'local',
     };
 

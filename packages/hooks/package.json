@@ -13,9 +13,7 @@
   },
   "license": "MIT",
   "sideEffects": false,
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "main": "./src/index.ts",
   "files": [
     "lib*/**/*.d.ts",
     "lib*/**/*.js",
@@ -39,7 +37,10 @@
     "node": ">=18.12"
   },
   "publishConfig": {
-    "provenance": true
+    "main": "./lib/index.js",
+    "module": "./lib/index.js",
+    "provenance": true,
+    "types": "./lib/index.d.ts"
   },
   "skuba": {
     "build": "esbuild"
