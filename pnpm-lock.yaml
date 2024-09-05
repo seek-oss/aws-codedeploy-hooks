@@ -33,8 +33,8 @@ importers:
         specifier: 3.637.0
         version: 3.637.0
       '@seek/logger':
-        specifier: ^8.0.0
-        version: 8.1.1
+        specifier: ^9.0.0
+        version: 9.0.0
       '@types/aws-lambda':
         specifier: ^8.10.130
         version: 8.10.143
@@ -54,8 +54,8 @@ importers:
   packages/infra:
     dependencies:
       '@seek/logger':
-        specifier: ^8.0.0
-        version: 8.1.1
+        specifier: ^9.0.0
+        version: 9.0.0
       '@types/aws-lambda':
         specifier: ^8.10.130
         version: 8.10.143
@@ -977,8 +977,8 @@ packages:
     resolution: {integrity: sha512-c83qWb22rNRuB0UaVCI0uRPNRr8Z0FWnEIvT47jiHAmOIUHbBOg5XvV7pM5x+rKn9HRpjxquDbXYSXr3fAKFcw==}
     engines: {node: '>=12'}
 
-  '@seek/logger@8.1.1':
-    resolution: {integrity: sha512-+aJtEwHCzCjF2pu/25wfRHpiYxapUuOap8hyvPxWsOuGjOf1zDyZTP3eOqoDfPiLawEl7uPme8Av4NDml/F3Mg==}
+  '@seek/logger@9.0.0':
+    resolution: {integrity: sha512-eXxx0ExLD9Nggp3Dj5+KwgtyQLwCX2DcH9x3N2WGgz944Z78Xcbm+1RkCapCzMT5Dd9dbNFCxmiOSqShShUQOw==}
     engines: {node: '>=18.18', npm: '>=5.5.0'}
 
   '@semantic-release/commit-analyzer@11.1.0':
@@ -6301,7 +6301,7 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@seek/logger@8.1.1':
+  '@seek/logger@9.0.0':
     dependencies:
       dtrim: 1.12.0
       fast-redact: 3.5.0
