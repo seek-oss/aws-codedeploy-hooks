@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 2.1.2
+
+### Patch Changes
+
+- **deps:** @seek/logger ^9.0.0 ([#67](https://github.com/seek-oss/aws-codedeploy-hooks/pull/67))
+
 ## 2.1.1
 
 ### Patch Changes
