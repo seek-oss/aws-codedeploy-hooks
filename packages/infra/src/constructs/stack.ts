@@ -3,9 +3,7 @@ import type { Construct } from 'constructs';
 
 import { createLambdaHookProps } from './lambda';
 
-const hooks = ['BeforeAllowTraffic', 'AfterAllowTraffic'] as const;
-
-type HookName = (typeof hooks)[number];
+type HookName = 'BeforeAllowTraffic' | 'AfterAllowTraffic';
 
 export type HookStackProps = {
   prune?: {
