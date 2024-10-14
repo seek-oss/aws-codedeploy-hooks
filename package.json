@@ -30,6 +30,6 @@
     "entryPoint": "packages/hooks/src/index.ts",
     "template": "oss-npm-package",
     "type": "package",
-    "version": "8.0.1"
+    "version": "9.0.1"
   }
 }
