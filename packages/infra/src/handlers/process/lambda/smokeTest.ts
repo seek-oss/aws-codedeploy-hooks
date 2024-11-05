@@ -1,10 +1,22 @@
-import { InvokeCommand } from '@aws-sdk/client-lambda';
+import { InvokeCommand, InvokeCommandOutput } from '@aws-sdk/client-lambda';
 
 import { config } from '../../config';
 import { lambdaClient } from '../../framework/aws';
 import { getContext } from '../../framework/context';
 
 import type { LambdaFunction } from './types';
+
+const tryParsePayload = (response: InvokeCommandOutput) => {
+  if (!response.Payload) {
+    return;
+  }
+
+  try {
+    return { payload: JSON.parse(response.Payload.transformToString()) };
+  } catch {
+    return { payload: response.Payload.transformToString() };
+  }
+};
 
 export const smokeTest = async (fns: LambdaFunction[]): Promise<void> => {
   await Promise.all(fns.map((fn) => smokeTestFunction(fn)));
@@ -46,8 +58,11 @@ export const smokeTestFunction = async ({
   }
 
   if (response.FunctionError) {
-    throw new Error(
-      `Lambda function responded with error: ${response.FunctionError}`,
+    throw Object.assign(
+      new Error(
+        `Lambda function responded with error: ${response.FunctionError}`,
+      ),
+      tryParsePayload(response),
     );
   }
 };
