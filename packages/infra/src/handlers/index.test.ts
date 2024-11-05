@@ -69,7 +69,16 @@ describe('handler', () => {
   });
 
   it('reports a failure back to CodeDeploy', async () => {
-    const err = new Error('mock-error');
+    const err = Object.assign(
+      new Error('Lambda function responded with error: Unhandled'),
+      {
+        payload: {
+          errorMessage:
+            'RequestId: 00000000-0000-0000-0000-000000000000 Error: Task timed out after 1.00 seconds',
+          errorType: 'Sandbox.Timedout',
+        },
+      },
+    );
 
     processEventMock.mockRejectedValue(err);
 
@@ -92,7 +101,12 @@ describe('handler', () => {
     expect(testLogs).toStrictEqual([
       {
         awsRequestId: context.awsRequestId,
-        err: expect.objectContaining({ message: err.message }),
+        err: {
+          message: err.message,
+          payload: err.payload,
+          stack: expect.any(String),
+          type: 'Error',
+        },
         level: 50,
         msg: 'Failed to process lifecycle event',
         timestamp: expect.any(String),

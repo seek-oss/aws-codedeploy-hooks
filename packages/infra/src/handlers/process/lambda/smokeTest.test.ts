@@ -1,6 +1,7 @@
 import 'aws-sdk-client-mock-jest';
 
 import { InvokeCommand, LambdaClient } from '@aws-sdk/client-lambda';
+import { Uint8ArrayBlobAdapter } from '@smithy/util-stream';
 import { mockClient } from 'aws-sdk-client-mock';
 
 import { storage } from '../../framework/context';
@@ -136,13 +137,60 @@ describe('smokeTest', () => {
   });
 
   it('propagates an error from the Lambda function', async () => {
-    lambda
-      .on(InvokeCommand)
-      .resolves({ FunctionError: 'mock-function-error', StatusCode: 200 });
+    const payload = {
+      errorMessage:
+        'RequestId: 00000000-0000-0000-0000-000000000000 Error: Task timed out after 1.00 seconds',
+      errorType: 'Sandbox.Timedout',
+    };
 
-    await expect(smokeTest(oneFn)).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Lambda function responded with error: mock-function-error"`,
+    lambda.on(InvokeCommand).resolves({
+      FunctionError: 'Unhandled',
+      Payload: Uint8ArrayBlobAdapter.fromString(JSON.stringify(payload)),
+      // Yes, this is OK when there's a function error.
+      StatusCode: 200,
+    });
+
+    const err = await smokeTest(oneFn).catch((reason) => reason);
+
+    expect(err).toMatchInlineSnapshot(
+      `[Error: Lambda function responded with error: Unhandled]`,
     );
+    expect(err).toHaveProperty('payload', payload);
+  });
+
+  it('handles a non-JSON payload on Lambda function error', async () => {
+    // This isn't known to happen but we're being defensive.
+    const payload = 'Something happened';
+
+    lambda.on(InvokeCommand).resolves({
+      FunctionError: 'Unhandled',
+      Payload: Uint8ArrayBlobAdapter.fromString(payload),
+      // Yes, this is OK when there's a function error.
+      StatusCode: 200,
+    });
+
+    const err = await smokeTest(oneFn).catch((reason) => reason);
+
+    expect(err).toMatchInlineSnapshot(
+      `[Error: Lambda function responded with error: Unhandled]`,
+    );
+    expect(err).toHaveProperty('payload', payload);
+  });
+
+  it('handles an empty payload on the Lambda function error', async () => {
+    // This isn't known to happen but we're being defensive.
+    lambda.on(InvokeCommand).resolves({
+      FunctionError: 'Unhandled',
+      // Yes, this is OK when there's a function error.
+      StatusCode: 200,
+    });
+
+    const err = await smokeTest(oneFn).catch((reason) => reason);
+
+    expect(err).toMatchInlineSnapshot(
+      `[Error: Lambda function responded with error: Unhandled]`,
+    );
+    expect(err).not.toHaveProperty('payload');
   });
 
   it('throws on an unexpected status code from the Lambda function', async () => {
