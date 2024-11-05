@@ -150,7 +150,7 @@ describe('smokeTest', () => {
       StatusCode: 200,
     });
 
-    const err = await smokeTest(oneFn).catch((err) => err);
+    const err = await smokeTest(oneFn).catch((reason) => reason);
 
     expect(err).toMatchInlineSnapshot(
       `[Error: Lambda function responded with error: Unhandled]`,
@@ -169,7 +169,7 @@ describe('smokeTest', () => {
       StatusCode: 200,
     });
 
-    const err = await smokeTest(oneFn).catch((err) => err);
+    const err = await smokeTest(oneFn).catch((reason) => reason);
 
     expect(err).toMatchInlineSnapshot(
       `[Error: Lambda function responded with error: Unhandled]`,
@@ -185,7 +185,7 @@ describe('smokeTest', () => {
       StatusCode: 200,
     });
 
-    const err = await smokeTest(oneFn).catch((err) => err);
+    const err = await smokeTest(oneFn).catch((reason) => reason);
 
     expect(err).toMatchInlineSnapshot(
       `[Error: Lambda function responded with error: Unhandled]`,

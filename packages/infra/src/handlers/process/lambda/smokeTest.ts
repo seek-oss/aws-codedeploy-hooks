@@ -10,15 +10,15 @@ import { getContext } from '../../framework/context';
 import type { LambdaFunction } from './types';
 
 const tryParsePayload = (response: InvokeCommandOutput) => {
-  if (!response.Payload) {
-    return;
+  let payload: unknown = response.Payload?.transformToString();
+
+  if (typeof payload === 'string') {
+    try {
+      payload = JSON.parse(payload);
+    } catch {}
   }
 
-  try {
-    return { payload: JSON.parse(response.Payload.transformToString()) };
-  } catch {
-    return { payload: response.Payload.transformToString() };
-  }
+  return payload ? { payload } : undefined;
 };
 
 export const smokeTest = async (fns: LambdaFunction[]): Promise<void> => {
