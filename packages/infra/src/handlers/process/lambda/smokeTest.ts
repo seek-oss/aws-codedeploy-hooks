@@ -1,4 +1,7 @@
-import { InvokeCommand, InvokeCommandOutput } from '@aws-sdk/client-lambda';
+import {
+  InvokeCommand,
+  type InvokeCommandOutput,
+} from '@aws-sdk/client-lambda';
 
 import { config } from '../../config';
 import { lambdaClient } from '../../framework/aws';

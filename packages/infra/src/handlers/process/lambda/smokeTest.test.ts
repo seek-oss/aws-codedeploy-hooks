@@ -1,7 +1,7 @@
 import 'aws-sdk-client-mock-jest';
 
-import { Uint8ArrayBlobAdapter } from '@smithy/util-stream';
 import { InvokeCommand, LambdaClient } from '@aws-sdk/client-lambda';
+import { Uint8ArrayBlobAdapter } from '@smithy/util-stream';
 import { mockClient } from 'aws-sdk-client-mock';
 
 import { storage } from '../../framework/context';
