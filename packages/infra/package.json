@@ -35,9 +35,9 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@aws-sdk/client-cloudformation": "3.668.0",
-    "@aws-sdk/client-codedeploy": "3.668.0",
-    "@aws-sdk/client-lambda": "3.668.0",
+    "@aws-sdk/client-cloudformation": "3.682.0",
+    "@aws-sdk/client-codedeploy": "3.682.0",
+    "@aws-sdk/client-lambda": "3.682.0",
     "@smithy/util-stream": "3.2.1",
     "aws-sdk-client-mock": "4.1.0",
     "aws-sdk-client-mock-jest": "4.1.0",
