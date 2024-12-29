@@ -41,7 +41,7 @@
     "@smithy/util-stream": "3.2.1",
     "aws-sdk-client-mock": "4.1.0",
     "aws-sdk-client-mock-jest": "4.1.0",
-    "isomorphic-git": "1.27.1",
+    "isomorphic-git": "1.27.2",
     "pino-pretty": "11.3.0"
   },
   "engines": {
