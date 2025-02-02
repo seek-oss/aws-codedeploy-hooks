@@ -15,6 +15,9 @@ on:
     workflows:
       - Release
 
+env:
+  COREPACK_DEFAULT_TO_LATEST: 0
+
 permissions: {}
 
 jobs:
