@@ -2,6 +2,9 @@ name: Snapshot
 
 on: workflow_dispatch
 
+env:
+  COREPACK_DEFAULT_TO_LATEST: 0
+
 permissions: {}
 
 jobs:
