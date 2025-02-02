@@ -33,6 +33,7 @@
     "koa": "^2.15.0",
     "supertest": "^7.0.0"
   },
+  "packageManager": "pnpm@9.15.3",
   "engines": {
     "node": ">=18.12"
   },
