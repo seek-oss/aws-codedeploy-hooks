@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 2.1.4
+
+### Patch Changes
+
+- **HookStack:** Increase AWS SDK retries ([#95](https://github.com/seek-oss/aws-codedeploy-hooks/pull/95))
+
 ## 2.1.3
 
 ### Patch Changes
