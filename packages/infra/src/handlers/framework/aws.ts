@@ -1,12 +1,15 @@
-import { CodeDeployClient } from '@aws-sdk/client-codedeploy';
-import { LambdaClient } from '@aws-sdk/client-lambda';
+import {
+  CodeDeployClient,
+  type CodeDeployClientConfig,
+} from '@aws-sdk/client-codedeploy';
+import { LambdaClient, type LambdaClientConfig } from '@aws-sdk/client-lambda';
 
 import { config } from '../config';
 
 const clientConfig = {
-  maxAttempts: 5,
+  maxAttempts: 8,
   region: config.region,
-};
+} satisfies CodeDeployClientConfig & LambdaClientConfig;
 
 export const codeDeployClient = new CodeDeployClient(clientConfig);
 
