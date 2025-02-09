@@ -2,12 +2,12 @@ import {
   type AliasConfiguration,
   DeleteFunctionCommand,
   type FunctionConfiguration,
-  LambdaClient,
   ListAliasesCommand,
   ListVersionsByFunctionCommand,
 } from '@aws-sdk/client-lambda';
 import { Env } from 'skuba-dive';
 
+import { lambdaClient } from '../../framework/aws';
 import { getContext } from '../../framework/context';
 import { logger } from '../../framework/logging';
 
@@ -16,8 +16,6 @@ import type { LambdaFunction } from './types';
 type Args = Pick<LambdaFunction, 'name'>;
 
 const MAX_DELETIONS_PER_RUN = 20;
-
-const lambda = new LambdaClient();
 
 export const prune = async (fns: Args[]): Promise<void> => {
   await Promise.all(fns.map((fn) => pruneFunction(fn)));
@@ -62,7 +60,7 @@ export const pruneFunction = async ({ name }: Args): Promise<void> => {
 
   await Promise.all(
     versionsToPrune.map((version) =>
-      lambda.send(
+      lambdaClient.send(
         new DeleteFunctionCommand({
           FunctionName: version.FunctionName,
           Qualifier: version.Version,
@@ -78,7 +76,7 @@ const listLambdaVersions = async (
   abortSignal?: AbortSignal,
   marker?: string,
 ): Promise<FunctionConfiguration[]> => {
-  const result = await lambda.send(
+  const result = await lambdaClient.send(
     new ListVersionsByFunctionCommand({
       FunctionName: functionName,
       Marker: marker,
@@ -105,7 +103,7 @@ const listAliases = async (
   abortSignal?: AbortSignal,
   marker?: string,
 ): Promise<AliasConfiguration[]> => {
-  const result = await lambda.send(
+  const result = await lambdaClient.send(
     new ListAliasesCommand({
       FunctionName: functionName,
       Marker: marker,
