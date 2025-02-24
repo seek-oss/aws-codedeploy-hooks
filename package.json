@@ -15,7 +15,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "2.27.12",
+    "@changesets/cli": "2.28.1",
     "@changesets/get-github-info": "0.6.0",
     "@types/node": "^20.10.6",
     "dotenv": "16.4.7",
