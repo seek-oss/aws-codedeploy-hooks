@@ -24,7 +24,7 @@ it('returns expected CloudFormation stack', () => {
       'export const handler = async () => undefined;',
     ),
     handler: 'index.handler',
-    runtime: aws_lambda.Runtime.NODEJS_20_X,
+    runtime: aws_lambda.Runtime.NODEJS_22_X,
   });
 
   const deployment = new LambdaDeployment(stack, null, { lambdaFunction });
