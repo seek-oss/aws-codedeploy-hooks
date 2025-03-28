@@ -206,7 +206,7 @@ exports[`returns expected CloudFormation stack 1`] = `
         },
         "FunctionVersion": {
           "Fn::GetAtt": [
-            "LambdaFunctionCurrentVersion7D5C86E3e2b46016d2d80a96993d54a126fb6e88",
+            "LambdaFunctionCurrentVersion7D5C86E3dad486f78e1725da2340d446c21ddd39",
             "Version",
           ],
         },
@@ -333,7 +333,7 @@ exports[`returns expected CloudFormation stack 1`] = `
             "Arn",
           ],
         },
-        "Runtime": "nodejs20.x",
+        "Runtime": "nodejs22.x",
         "Tags": [
           {
             "Key": "aws-codedeploy-hooks",
@@ -343,7 +343,7 @@ exports[`returns expected CloudFormation stack 1`] = `
       },
       "Type": "AWS::Lambda::Function",
     },
-    "LambdaFunctionCurrentVersion7D5C86E3e2b46016d2d80a96993d54a126fb6e88": {
+    "LambdaFunctionCurrentVersion7D5C86E3dad486f78e1725da2340d446c21ddd39": {
       "Properties": {
         "FunctionName": {
           "Ref": "LambdaFunctionBF21E41F",
