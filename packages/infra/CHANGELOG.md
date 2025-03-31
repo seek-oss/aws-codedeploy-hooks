@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 2.2.0
+
+### Minor Changes
+
+- **HookStack:** Upgrade hooks to Node.js 22 ([#104](https://github.com/seek-oss/aws-codedeploy-hooks/pull/104))
+
 ## 2.1.4
 
 ### Patch Changes
