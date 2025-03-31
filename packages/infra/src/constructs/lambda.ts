@@ -22,7 +22,7 @@ export const createLambdaHookProps = (
 
   handler: 'index.handler',
 
-  runtime: aws_lambda.Runtime.NODEJS_20_X,
+  runtime: aws_lambda.Runtime.NODEJS_22_X,
 
   timeout: Duration.seconds(300),
 });

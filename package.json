@@ -17,10 +17,10 @@
   "devDependencies": {
     "@changesets/cli": "2.28.1",
     "@changesets/get-github-info": "0.6.0",
-    "@types/node": "^20.10.6",
+    "@types/node": "^22.13.14",
     "dotenv": "16.4.7",
     "esbuild": "~0.25.0",
-    "skuba": "9.1.0"
+    "skuba": "10.1.0"
   },
   "packageManager": "pnpm@9.15.4",
   "engines": {
@@ -30,6 +30,6 @@
     "entryPoint": "packages/hooks/src/index.ts",
     "template": "oss-npm-package",
     "type": "package",
-    "version": "9.1.0"
+    "version": "10.1.0"
   }
 }
