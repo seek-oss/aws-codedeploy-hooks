@@ -1,6 +1,6 @@
 {
   "name": "@seek/aws-codedeploy-infra",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "private": false,
   "description": "AWS CDK infrastructure for AWS CodeDeploy Hooks",
   "homepage": "https://github.com/seek-oss/aws-codedeploy-hooks/tree/main/packages/infra#readme",
