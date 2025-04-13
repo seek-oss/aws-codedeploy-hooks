@@ -29,7 +29,7 @@
   "dependencies": {
     "@seek/logger": "^9.0.0",
     "@types/aws-lambda": "^8.10.130",
-    "aws-cdk-lib": "^2.187.0",
+    "aws-cdk-lib": "^2.189.0",
     "constructs": "^10.3.0",
     "skuba-dive": "^2.0.0",
     "zod": "^3.22.4"
