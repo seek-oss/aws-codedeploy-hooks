@@ -35,7 +35,7 @@ Checks for a `user-agent` header that starts with either:
 Compatible with Gantry v2.3.7 and newer.
 
 `SKIP_SMOKE` will require additional setup. Consider setting the environment variable on your API based on the surrounding CI environment,
-like the Build message or an explicit environment variable against the build.
+like the build message or an explicit environment variable against the build.
 
 ### `isLambdaHook`
 
@@ -68,7 +68,7 @@ Checks for:
 - An empty event object
 - A custom `user-agent` in context that starts with `aws-codedeploy-hook-BeforeAllowTraffic/`
 
-`SKIP_SMOKE` will require additional setup. Consider setting the environment variable on your lambda based on the surrounding CI environment:
+`SKIP_SMOKE` will require additional setup. Consider setting the environment variable on your Lambda function based on the surrounding CI environment:
 
 ```typescript
 import { containsSkipDirective } from '@seek/aws-codedeploy-hooks';
