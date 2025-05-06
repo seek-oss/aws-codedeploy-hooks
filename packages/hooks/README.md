@@ -17,7 +17,7 @@ while continuing to run the checks as per usual on subsequent health check polli
 
 ```typescript
 const smokeTest = (req: Request) => {
-  if (process.env.SKIP_HOOK && isHttpHook(req)) {
+  if (process.env.SKIP_SMOKE && isHttpHook(req)) {
     // Expedite deployment even if dependencies are unhealthy.
     return;
   }
@@ -33,6 +33,20 @@ Checks for a `user-agent` header that starts with either:
 - `gantry-codedeploy-hook-BeforeAllowTraffic-`
 
 Compatible with Gantry v2.3.7 and newer.
+
+`SKIP_SMOKE` will require additional setup. Consider setting the environment variable on your lambda based on the surrounding CI environment:
+
+```typescript
+import { containsSkipDirective } from '@seek/aws-codedeploy-hooks';
+import { Env } from 'skuba-dive';
+
+const lambdaEnvironment = {
+  SKIP_SMOKE: containsSkipDirective(process.env.BUILDKITE_MESSAGE, 'smoke')
+    ? 'true'
+    : undefined,
+  // ... other environment variables
+};
+```
 
 ### `isLambdaHook`
 
