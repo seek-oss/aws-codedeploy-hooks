@@ -38,7 +38,6 @@ Compatible with Gantry v2.3.7 and newer.
 
 ```typescript
 import { containsSkipDirective } from '@seek/aws-codedeploy-hooks';
-import { Env } from 'skuba-dive';
 
 const lambdaEnvironment = {
   SKIP_SMOKE: containsSkipDirective(process.env.BUILDKITE_MESSAGE, 'smoke')
