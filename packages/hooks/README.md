@@ -49,7 +49,7 @@ while continuing to run the checks as per usual on subsequent health check polli
 ```typescript
 const handler = (event: Event, ctx: Context) => {
   if (!Object.entries(event).length) {
-    if (process.env.SKIP_HOOK && isLambdaHook(event, ctx)) {
+    if (process.env.SKIP_SMOKE && isLambdaHook(event, ctx)) {
       // Expedite deployment even if dependencies are unhealthy.
       return;
     }
