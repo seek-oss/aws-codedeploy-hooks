@@ -45,6 +45,7 @@ jobs:
           publish: pnpm run release
           version: pnpm run stage
           setupGitUser: false
+          commitMode: github-api
         env:
           GITHUB_TOKEN: ${{ secrets.SEEK_OSS_CI_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
