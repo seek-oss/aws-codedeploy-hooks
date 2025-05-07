@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 2.3.0
+
+### Minor Changes
+
+- **HookStack:** extend `HookStackProps` from `StackProps` ([#128](https://github.com/seek-oss/aws-codedeploy-hooks/pull/128))
+
 ## 2.2.0
 
 ### Minor Changes
