@@ -34,3 +34,27 @@ it('supports a custom ID', () => {
 
   template.resourceCountIs('AWS::Lambda::Function', 2);
 });
+
+describe('StackProps', () => {
+  it('should use default values when none are provided', () => {
+    const app = new App();
+
+    const defaultStack = new HookStack(app);
+    expect(defaultStack.stackName).toBe('aws-codedeploy-hooks');
+    expect(defaultStack.tags.hasTags()).toBeFalsy();
+  });
+
+  it('should override the defaults when provided', () => {
+    const app = new App();
+
+    const customStack = new HookStack(app, 'CustomStack', {
+      stackName: 'custom',
+      tags: { 'seek:custom:tag': 'value' },
+    });
+    expect(customStack.stackName).toBe('custom');
+    expect(customStack.tags.hasTags()).toBeTruthy();
+    expect(customStack.tags.tagValues()).toEqual({
+      'seek:custom:tag': 'value',
+    });
+  });
+});

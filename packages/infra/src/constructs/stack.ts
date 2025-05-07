@@ -1,22 +1,27 @@
-import { Stack, aws_iam, aws_lambda } from 'aws-cdk-lib';
+import { Stack, type StackProps, aws_iam, aws_lambda } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 
 import { createLambdaHookProps } from './lambda';
 
 type HookName = 'BeforeAllowTraffic' | 'AfterAllowTraffic';
 
-export type HookStackProps = {
+export type HookStackProps = StackProps & {
   prune?: {
     versionsToKeep?: number;
   };
 };
 
+const defaultProps: HookStackProps = {
+  description: 'AWS CodeDeploy hooks',
+  stackName: 'aws-codedeploy-hooks',
+  terminationProtection: true,
+};
+
 export class HookStack extends Stack {
   constructor(scope: Construct, id?: string, props: HookStackProps = {}) {
     super(scope, id ?? 'HookStack', {
-      description: 'AWS CodeDeploy hooks',
-      stackName: 'aws-codedeploy-hooks',
-      terminationProtection: true,
+      ...defaultProps,
+      ...props,
     });
 
     this.addHook('BeforeAllowTraffic', {}, ['lambda:InvokeFunction']);
