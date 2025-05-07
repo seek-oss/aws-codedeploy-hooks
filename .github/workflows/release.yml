@@ -39,6 +39,7 @@ jobs:
         with:
           publish: pnpm run release
           version: pnpm run stage
+          commitMode: github-api # To use GITHUB_TOKEN for the commit
         env:
           GITHUB_TOKEN: ${{ secrets.SEEK_OSS_CI_GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
