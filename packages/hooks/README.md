@@ -37,6 +37,36 @@ Compatible with Gantry v2.3.7 and newer.
 `SKIP_SMOKE` will require additional setup. Consider setting the environment variable on your API based on the surrounding CI environment,
 like the build message or an explicit environment variable against the build.
 
+For example, your Gantry resource file could look like this:
+
+```yaml
+kind: Service
+env:
+  SKIP_SMOKE: '{{ with env "BUILDKITE_MESSAGE" | lower }}{{ if contains "[skip smoke]" . }}true{{ else }}false{{ end }}{{ end }}'
+```
+
+Or, some magic to handle combinations like `[skip ci dev-deploy smoke]`:
+
+```yaml
+kind: Service
+env:
+  SKIP_SMOKE: '{{ with env "BUILDKITE_MESSAGE" | lower }}{{ if regexMatch "\\[skip\\b[^\\]]*\\bsmoke\\b[^\\]]*\\]" . }}true{{ else }}false{{ end }}{{ end }}'
+```
+
+With these in place,
+you can push a new commit or manually create a new build that includes `[skip smoke]` somewhere in its title:
+
+```yaml
+[skip smoke] Re-deploy for disaster recovery
+Re-deploy for disaster recovery [sKiP SmOkE]
+
+# you can also work with multiple directives if you chose the magic approach
+[skip ci smoke] Re-deploy for disaster recovery
+Please [skip smoke dev-deploy] work
+```
+
+The resulting Buildkite build will set `process.env.SKIP_SMOKE = true` on the ECS task and enable it to skip pre-deployment checks.
+
 ### `isLambdaHook`
 
 Whether the Lambda invocation originated from AWS CodeDeploy Hooks.
@@ -80,6 +110,20 @@ const lambdaEnvironment = {
   // ... other environment variables
 };
 ```
+
+With this in place,
+you can push a new commit or manually create a new build that includes `[skip smoke]` somewhere in its title:
+
+```yaml
+[skip smoke] Re-deploy for disaster recovery
+Re-deploy for disaster recovery [sKiP SmOkE]
+
+# you can also work with multiple directives
+[skip ci smoke] Re-deploy for disaster recovery
+Please [skip smoke dev-deploy] work
+```
+
+The resulting Buildkite build will set `process.env.SKIP_SMOKE = true` on the Lambda function and enable it to skip pre-deployment checks.
 
 ### `smokeTest.koaMiddleware`
 
