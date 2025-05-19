@@ -15,14 +15,13 @@ on:
     workflows:
       - Release
 
-env:
-  COREPACK_DEFAULT_TO_LATEST: 0
-
 permissions: {}
 
 jobs:
   core:
     name: Lint & Test
+    permissions:
+      checks: write
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
