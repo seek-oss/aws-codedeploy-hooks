@@ -15,7 +15,7 @@ jest.mock('../version', () => ({
 }));
 
 it('returns expected CloudFormation stack', () => {
-  const app = new App();
+  const app = new App({ context: { 'aws:cdk:bundling-stacks': [] } });
 
   const stack = new Stack(app);
 
