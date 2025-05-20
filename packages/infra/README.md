@@ -1,6 +1,7 @@
 # @seek/aws-codedeploy-infra
 
-[![npm package](https://img.shields.io/npm/v/%40seek/aws-codedeploy-infra)](https://www.npmjs.com/package/@seek/aws-codedeploy-infra)
+[![npm package](https://img.shields.io/npm/v/@seek/aws-codedeploy-infra?labelColor=cb0000&color=5b5b5b)](https://www.npmjs.com/package/@seek/aws-codedeploy-infra)
+[![Node.js version](https://img.shields.io/node/v/@seek/aws-codedeploy-infra?labelColor=5fa04e&color=5b5b5b)](https://www.npmjs.com/package/@seek/aws-codedeploy-infra)
 
 [AWS CDK] infrastructure for AWS CodeDeploy Hooks.
 
