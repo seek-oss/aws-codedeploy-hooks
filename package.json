@@ -22,7 +22,7 @@
     "esbuild": "~0.25.0",
     "skuba": "11.0.1"
   },
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.11.0",
   "engines": {
     "node": ">=20.10"
   },
