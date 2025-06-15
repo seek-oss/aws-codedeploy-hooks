@@ -33,8 +33,8 @@ importers:
         specifier: 3.804.0
         version: 3.804.0
       '@seek/logger':
-        specifier: ^9.0.0
-        version: 9.1.0
+        specifier: ^10.0.0
+        version: 10.0.0
       '@types/aws-lambda':
         specifier: ^8.10.130
         version: 8.10.149
@@ -54,8 +54,8 @@ importers:
   packages/infra:
     dependencies:
       '@seek/logger':
-        specifier: ^9.0.0
-        version: 9.1.0
+        specifier: ^10.0.0
+        version: 10.0.0
       '@types/aws-lambda':
         specifier: ^8.10.130
         version: 8.10.149
@@ -976,9 +976,9 @@ packages:
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
 
-  '@seek/logger@9.1.0':
-    resolution: {integrity: sha512-/aGbLuOpnj1HoiLjRJHO9m3eruxSkkPSeRoXjfCEkJoWBlymAT9HFnelM6ZNF77DeNc/iLUgg9SwxUDDqmishw==}
-    engines: {node: '>=18.18', npm: '>=5.5.0'}
+  '@seek/logger@10.0.0':
+    resolution: {integrity: sha512-VLvzLtkiFStd7SOcfZzt8Tfb7OVFOtLTU5qKQixBXCjTY8PIIAsibe2wgk6JhCUa2dnq1zY5TZuHBTNMt+ro1w==}
+    engines: {node: '>=20.9.0'}
 
   '@semantic-release/commit-analyzer@13.0.1':
     resolution: {integrity: sha512-wdnBPHKkr9HhNhXOhZD5a2LNl91+hs8CC2vsAVYxtZH3y0dV3wKn+uZSN61rdJQZ8EGxzWB3inWocBHV9+u/CQ==}
@@ -6337,7 +6337,7 @@ snapshots:
 
   '@sec-ant/readable-stream@0.4.1': {}
 
-  '@seek/logger@9.1.0':
+  '@seek/logger@10.0.0':
     dependencies:
       dtrim: 1.12.0
       fast-redact: 3.5.0
