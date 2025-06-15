@@ -1,6 +1,6 @@
 {
   "name": "@seek/aws-codedeploy-hooks",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "private": false,
   "description": "Runtime helpers for working with AWS CodeDeploy Hooks",
   "homepage": "https://github.com/seek-oss/aws-codedeploy-hooks/tree/main/packages/hooks#readme",

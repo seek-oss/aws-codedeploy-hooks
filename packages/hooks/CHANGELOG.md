@@ -1,5 +1,13 @@
 # @seek/aws-codedeploy-hooks
 
+## 2.0.0
+
+### Major Changes
+
+- Drop support for Node.js 18 ([#140](https://github.com/seek-oss/aws-codedeploy-hooks/pull/140))
+
+  This aligns with [`@seek/logger` 10](https://github.com/seek-oss/logger/releases/v10.0.0). The minimum supported version is now Node.js 20.9.0.
+
 ## 1.2.0
 
 ### Minor Changes
