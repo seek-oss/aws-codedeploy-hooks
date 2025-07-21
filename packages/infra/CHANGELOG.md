@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 3.0.1
+
+### Patch Changes
+
+- **deps:** zod ^4.0.0 ([#147](https://github.com/seek-oss/aws-codedeploy-hooks/pull/147))
+
 ## 3.0.0
 
 ### Major Changes
