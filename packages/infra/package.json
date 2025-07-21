@@ -32,7 +32,7 @@
     "aws-cdk-lib": "^2.189.1",
     "constructs": "^10.3.0",
     "skuba-dive": "^2.0.0",
-    "zod": "^3.22.4"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@aws-sdk/client-cloudformation": "3.848.0",
