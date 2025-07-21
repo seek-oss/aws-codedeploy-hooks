@@ -122,13 +122,14 @@ describe('lambda', () => {
     await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(`
       "Application revision not in expected format: [
         {
-          "received": "1.0",
-          "code": "invalid_literal",
-          "expected": "0.0",
+          "code": "invalid_value",
+          "values": [
+            "0.0"
+          ],
           "path": [
             "version"
           ],
-          "message": "Invalid literal value, expected \\"0.0\\""
+          "message": "Invalid input: expected \\"0.0\\""
         }
       ]"
     `);
