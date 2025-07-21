@@ -7,7 +7,7 @@ import {
   aws_sqs,
 } from 'aws-cdk-lib';
 
-import { LambdaDeployment } from './lambdaDeployment';
+import { LambdaDeployment } from './lambdaDeployment.js';
 
 jest.mock('../version', () => ({
   commit: 'abcdefg',

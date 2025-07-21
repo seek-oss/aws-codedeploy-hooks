@@ -3,7 +3,7 @@ import path from 'path';
 
 import esbuild from 'esbuild';
 
-import { assetDir, packageDir } from './dir';
+import { assetDir, packageDir } from './dir.js';
 
 export const bundleAssets = async () => {
   console.log(`Clearing ${path.relative(process.cwd(), assetDir)}...`);

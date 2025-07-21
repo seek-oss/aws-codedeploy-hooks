@@ -1,6 +1,6 @@
 export {
   LambdaDeployment,
   type LambdaDeploymentProps,
-} from './constructs/lambdaDeployment';
+} from './constructs/lambdaDeployment.js';
 
-export { HookStack, type HookStackProps } from './constructs/stack';
+export { HookStack, type HookStackProps } from './constructs/stack.js';

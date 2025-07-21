@@ -4,7 +4,7 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { LambdaClient, type LambdaClientConfig } from '@aws-sdk/client-lambda';
 
-import { config } from '../config';
+import { config } from '../config.js';
 
 const clientConfig = {
   maxAttempts: 8,

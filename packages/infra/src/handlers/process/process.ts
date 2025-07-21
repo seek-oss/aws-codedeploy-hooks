@@ -3,11 +3,11 @@ import {
   GetDeploymentCommand,
 } from '@aws-sdk/client-codedeploy';
 
-import { codeDeployClient } from '../framework/aws';
-import { getAbortSignal } from '../framework/context';
-import type { CodeDeployLifecycleHookEvent } from '../types';
+import { codeDeployClient } from '../framework/aws.js';
+import { getAbortSignal } from '../framework/context.js';
+import type { CodeDeployLifecycleHookEvent } from '../types.js';
 
-import { lambda } from './lambda/lambda';
+import { lambda } from './lambda/lambda.js';
 
 export const processEvent = async (
   event: CodeDeployLifecycleHookEvent,

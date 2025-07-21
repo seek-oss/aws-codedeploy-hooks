@@ -3,14 +3,14 @@ import {
   GetApplicationRevisionCommand,
 } from '@aws-sdk/client-codedeploy';
 
-import { config } from '../../config';
-import { codeDeployClient } from '../../framework/aws';
-import { getContext } from '../../framework/context';
+import { config } from '../../config.js';
+import { codeDeployClient } from '../../framework/aws.js';
+import { getContext } from '../../framework/context.js';
 
-import { prune } from './prune';
-import { type LambdaAppSpec, lambdaAppSpec } from './schema';
-import { smokeTest } from './smokeTest';
-import type { LambdaFunction } from './types';
+import { prune } from './prune.js';
+import { type LambdaAppSpec, lambdaAppSpec } from './schema.js';
+import { smokeTest } from './smokeTest.js';
+import type { LambdaFunction } from './types.js';
 
 export type Options = {
   applicationName: string;

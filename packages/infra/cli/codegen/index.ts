@@ -1,5 +1,5 @@
-import { bundleAssets } from './bundleAssets';
-import { writeVersion } from './writeVersion';
+import { bundleAssets } from './bundleAssets.js';
+import { writeVersion } from './writeVersion.js';
 
 const main = async () => {
   console.log(

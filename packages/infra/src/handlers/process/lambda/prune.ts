@@ -7,11 +7,11 @@ import {
 } from '@aws-sdk/client-lambda';
 import { Env } from 'skuba-dive';
 
-import { lambdaClient } from '../../framework/aws';
-import { getContext } from '../../framework/context';
-import { logger } from '../../framework/logging';
+import { lambdaClient } from '../../framework/aws.js';
+import { getContext } from '../../framework/context.js';
+import { logger } from '../../framework/logging.js';
 
-import type { LambdaFunction } from './types';
+import type { LambdaFunction } from './types.js';
 
 type Args = Pick<LambdaFunction, 'name'>;
 

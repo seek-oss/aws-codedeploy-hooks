@@ -2,7 +2,7 @@ import createLogger from '@seek/logger';
 import Koa from 'koa';
 import { agent } from 'supertest';
 
-import { koaMiddleware } from './koa';
+import { koaMiddleware } from './koa.js';
 
 const onError = jest.fn();
 const write = jest.fn();

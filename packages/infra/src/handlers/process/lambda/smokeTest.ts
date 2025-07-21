@@ -3,11 +3,11 @@ import {
   type InvokeCommandOutput,
 } from '@aws-sdk/client-lambda';
 
-import { config } from '../../config';
-import { lambdaClient } from '../../framework/aws';
-import { getContext } from '../../framework/context';
+import { config } from '../../config.js';
+import { lambdaClient } from '../../framework/aws.js';
+import { getContext } from '../../framework/context.js';
 
-import type { LambdaFunction } from './types';
+import type { LambdaFunction } from './types.js';
 
 const tryParsePayload = (response: InvokeCommandOutput) => {
   let payload: unknown = response.Payload?.transformToString();

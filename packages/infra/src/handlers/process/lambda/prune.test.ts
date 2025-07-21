@@ -8,7 +8,7 @@ import {
 } from '@aws-sdk/client-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
 
-import { prune } from './prune';
+import { prune } from './prune.js';
 
 const lambda = mockClient(LambdaClient);
 

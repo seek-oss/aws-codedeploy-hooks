@@ -1,4 +1,4 @@
-import { containsSkipDirective } from './containsSkipDirective';
+import { containsSkipDirective } from './containsSkipDirective.js';
 
 describe('containsSkipDirective', () => {
   it.each([

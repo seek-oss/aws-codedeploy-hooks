@@ -1,4 +1,4 @@
-export { isHttpHook } from './http';
-export { isLambdaHook } from './lambda';
-export { smokeTest } from './smokeTest';
-export { containsSkipDirective } from './containsSkipDirective';
+export { isHttpHook } from './http.js';
+export { isLambdaHook } from './lambda.js';
+export { smokeTest } from './smokeTest/index.js';
+export { containsSkipDirective } from './containsSkipDirective.js';

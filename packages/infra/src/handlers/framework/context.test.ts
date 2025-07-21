@@ -7,7 +7,7 @@ import {
   getRequestId,
   storage,
   withTimeout,
-} from './context';
+} from './context.js';
 
 const context = {
   abortSignal: new AbortController().signal,

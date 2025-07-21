@@ -3,9 +3,9 @@ import {
   PutLifecycleEventHookExecutionStatusCommand,
 } from '@aws-sdk/client-codedeploy';
 
-import { codeDeployClient } from './framework/aws';
-import { getAbortSignal } from './framework/context';
-import type { CodeDeployLifecycleHookEvent } from './types';
+import { codeDeployClient } from './framework/aws.js';
+import { getAbortSignal } from './framework/context.js';
+import type { CodeDeployLifecycleHookEvent } from './types.js';
 
 export const reportEventStatus = async (
   event: CodeDeployLifecycleHookEvent,

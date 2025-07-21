@@ -7,8 +7,8 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 
-import { lambda } from './lambda/lambda';
-import { parseDeploymentInfo, processEvent } from './process';
+import { lambda } from './lambda/lambda.js';
+import { parseDeploymentInfo, processEvent } from './process.js';
 
 const deploymentInfo: DeploymentInfo = {
   applicationName: 'mock-application-name',

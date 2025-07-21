@@ -4,9 +4,9 @@ import { InvokeCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { Uint8ArrayBlobAdapter } from '@smithy/util-stream';
 import { mockClient } from 'aws-sdk-client-mock';
 
-import { storage } from '../../framework/context';
+import { storage } from '../../framework/context.js';
 
-import { smokeTest } from './smokeTest';
+import { smokeTest } from './smokeTest.js';
 
 const lambda = mockClient(LambdaClient);
 

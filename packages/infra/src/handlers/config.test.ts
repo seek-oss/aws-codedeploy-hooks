@@ -8,7 +8,7 @@ describe('config', () => {
       process.env.ENVIRONMENT = environment;
 
       return jest.isolateModulesAsync(async () => {
-        await expect(import('./config')).resolves.toMatchObject({
+        await expect(import('./config.js')).resolves.toMatchObject({
           config: { environment },
         });
       });
@@ -20,7 +20,7 @@ describe('config', () => {
     delete process.env.ENVIRONMENT;
 
     return jest.isolateModulesAsync(async () => {
-      await expect(import('./config')).resolves.toMatchObject({
+      await expect(import('./config.js')).resolves.toMatchObject({
         config: { environment: 'production' },
       });
     });
@@ -31,7 +31,7 @@ describe('config', () => {
 
     return jest.isolateModulesAsync(async () => {
       await expect(
-        import('./config'),
+        import('./config.js'),
       ).rejects.toThrowErrorMatchingInlineSnapshot(
         `"The following environment variables are not set: AWS_DEFAULT_REGION, AWS_LAMBDA_FUNCTION_NAME, AWS_REGION, AWS_LAMBDA_FUNCTION_VERSION"`,
       );
@@ -46,7 +46,7 @@ describe('config', () => {
 
     return jest.isolateModulesAsync(async () => {
       await expect(
-        import('./config'),
+        import('./config.js'),
       ).rejects.toThrowErrorMatchingInlineSnapshot(
         `"The following environment variables are not set: AWS_DEFAULT_REGION, AWS_REGION"`,
       );
