@@ -1,7 +1,7 @@
 import { Stack, type StackProps, aws_iam, aws_lambda } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 
-import { createLambdaHookProps } from './lambda';
+import { createLambdaHookProps } from './lambda.js';
 
 type HookName = 'BeforeAllowTraffic' | 'AfterAllowTraffic';
 

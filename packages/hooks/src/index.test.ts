@@ -1,4 +1,4 @@
-import * as rootModule from '.';
+import * as rootModule from './index.js';
 
 describe('rootModule', () => {
   it('exports runtime helpers', () =>

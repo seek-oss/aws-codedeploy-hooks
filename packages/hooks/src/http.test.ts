@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import { agent } from 'supertest';
 
-import { isHttpHook } from './http';
+import { isHttpHook } from './http.js';
 
 describe('isHttpHook', () => {
   it('is compatible with Request', () =>

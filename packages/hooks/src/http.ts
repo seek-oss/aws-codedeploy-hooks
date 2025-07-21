@@ -1,4 +1,4 @@
-import { GANTRY_HOOK_PREFIX, USER_AGENT_PREFIX } from './constants';
+import { GANTRY_HOOK_PREFIX, USER_AGENT_PREFIX } from './constants.js';
 
 type HeadersClass = { get: (name: string) => string | null };
 

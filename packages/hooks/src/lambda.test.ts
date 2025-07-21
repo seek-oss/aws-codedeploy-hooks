@@ -1,6 +1,6 @@
 import type { Context, SQSEvent } from 'aws-lambda';
 
-import { isLambdaHook } from './lambda';
+import { isLambdaHook } from './lambda.js';
 
 describe('isLambdaHook', () => {
   it('is compatible with @types/aws-lambda', () =>

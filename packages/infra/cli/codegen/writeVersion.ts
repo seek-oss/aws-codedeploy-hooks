@@ -3,7 +3,7 @@ import path from 'path';
 
 import git from 'isomorphic-git';
 
-import { packageDir } from './dir';
+import { packageDir } from './dir.js';
 
 export const writeVersion = async () => {
   const [[commit], { version }] = await Promise.all([

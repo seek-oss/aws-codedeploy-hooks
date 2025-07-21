@@ -1,8 +1,8 @@
 import createLogger from '@seek/logger';
 
-import { config } from '../config';
+import { config } from '../config.js';
 
-import { getRequestId } from './context';
+import { getRequestId } from './context.js';
 
 export const testLogs: unknown[] = [];
 

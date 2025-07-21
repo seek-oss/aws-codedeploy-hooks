@@ -5,7 +5,7 @@ describe('logger', () => {
       process.env.ENVIRONMENT = environment;
 
       return jest.isolateModulesAsync(async () => {
-        await expect(import('./logging')).resolves.toMatchObject({
+        await expect(import('./logging.js')).resolves.toMatchObject({
           logger: expect.any(Object),
         });
       });

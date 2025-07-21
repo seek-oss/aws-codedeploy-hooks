@@ -1,6 +1,6 @@
 import { App, assertions } from 'aws-cdk-lib';
 
-import { HookStack } from './stack';
+import { HookStack } from './stack.js';
 
 it('returns expected CloudFormation stack', () => {
   const app = new App();

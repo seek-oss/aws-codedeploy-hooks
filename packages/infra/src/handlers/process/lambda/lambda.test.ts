@@ -9,10 +9,10 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 
-import { type Options, lambda } from './lambda';
-import { prune } from './prune';
-import type { LambdaAppSpec } from './schema';
-import { smokeTest } from './smokeTest';
+import { type Options, lambda } from './lambda.js';
+import { prune } from './prune.js';
+import type { LambdaAppSpec } from './schema.js';
+import { smokeTest } from './smokeTest.js';
 
 const codeDeploy = mockClient(CodeDeployClient);
 

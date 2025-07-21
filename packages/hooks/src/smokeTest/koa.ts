@@ -1,4 +1,4 @@
-import { type HttpRequest, isHttpHook } from '../http';
+import { type HttpRequest, isHttpHook } from '../http.js';
 
 type Context = { body: unknown; req: Readonly<HttpRequest>; status: number };
 

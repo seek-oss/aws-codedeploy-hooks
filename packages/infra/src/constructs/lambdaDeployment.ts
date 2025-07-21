@@ -1,7 +1,7 @@
 import { Tags, aws_codedeploy, aws_lambda } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
-import { commit, version } from '../version';
+import { commit, version } from '../version.js';
 
 const tagValue = `${version}-${commit}`;
 

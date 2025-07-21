@@ -1,11 +1,11 @@
 import { LifecycleEventStatus } from '@aws-sdk/client-codedeploy';
 import type { Context } from 'aws-lambda';
 
-import { storage, withTimeout } from './framework/context';
-import { logger } from './framework/logging';
-import { processEvent } from './process/process';
-import { reportEventStatus } from './report';
-import type { CodeDeployLifecycleHookEvent } from './types';
+import { storage, withTimeout } from './framework/context.js';
+import { logger } from './framework/logging.js';
+import { processEvent } from './process/process.js';
+import { reportEventStatus } from './report.js';
+import type { CodeDeployLifecycleHookEvent } from './types.js';
 
 export const handler = (
   event: CodeDeployLifecycleHookEvent,

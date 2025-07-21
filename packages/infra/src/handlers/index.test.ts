@@ -9,10 +9,10 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 
-import { testLogs } from './framework/logging';
-import { processEvent } from './process/process';
+import { testLogs } from './framework/logging.js';
+import { processEvent } from './process/process.js';
 
-import { handler } from '.';
+import { handler } from './index.js';
 
 const codeDeploy = mockClient(CodeDeployClient);
 
