@@ -18,8 +18,8 @@ importers:
         specifier: ^22.13.14
         version: 22.15.32
       dotenv:
-        specifier: 16.6.1
-        version: 16.6.1
+        specifier: 17.2.1
+        version: 17.2.1
       esbuild:
         specifier: ~0.25.0
         version: 0.25.5
@@ -2140,6 +2140,10 @@ packages:
 
   dotenv@16.6.1:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
+
+  dotenv@17.2.1:
+    resolution: {integrity: sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ==}
     engines: {node: '>=12'}
 
   dtrim@1.12.0:
@@ -7646,6 +7650,8 @@ snapshots:
       is-obj: 2.0.0
 
   dotenv@16.6.1: {}
+
+  dotenv@17.2.1: {}
 
   dtrim@1.12.0: {}
 
