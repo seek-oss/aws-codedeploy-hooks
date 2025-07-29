@@ -91,8 +91,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0(aws-sdk-client-mock@4.1.0)
       isomorphic-git:
-        specifier: 1.32.1
-        version: 1.32.1
+        specifier: 1.32.2
+        version: 1.32.2
       pino-pretty:
         specifier: 13.0.0
         version: 13.0.0
@@ -3047,8 +3047,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  isomorphic-git@1.32.1:
-    resolution: {integrity: sha512-NZCS7qpLkCZ1M/IrujYBD31sM6pd/fMVArK4fz4I7h6m0rUW2AsYU7S7zXeABuHL6HIfW6l53b4UQ/K441CQjg==}
+  isomorphic-git@1.32.2:
+    resolution: {integrity: sha512-pThiJmMDyPD5f4S8fpt3Zoq2P1pehetQNjAks7fco1N+UT3HFo3dRUYxxhrPqfBwrkYi7dguv25mZTt9DO/S+w==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -8716,7 +8716,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-git@1.32.1:
+  isomorphic-git@1.32.2:
     dependencies:
       async-lock: 1.4.1
       clean-git-ref: 2.0.1
@@ -10167,7 +10167,7 @@ snapshots:
       golden-fleece: 1.0.9
       ignore: 7.0.5
       is-installed-globally: 0.4.0
-      isomorphic-git: 1.32.1
+      isomorphic-git: 1.32.2
       jest: 30.0.3(@types/node@22.15.32)(ts-node@10.9.2(@types/node@22.15.32)(typescript@5.8.3))
       jest-watch-typeahead: 3.0.1(jest@30.0.3(@types/node@22.15.32)(ts-node@10.9.2(@types/node@22.15.32)(typescript@5.8.3)))
       lodash.mergewith: 4.6.2
