@@ -1,6 +1,6 @@
 import {
-  type DeploymentInfo,
   GetDeploymentCommand,
+  type DeploymentInfo as RawDeploymentInfo,
 } from '@aws-sdk/client-codedeploy';
 
 import { codeDeployClient } from '../framework/aws.js';
@@ -9,18 +9,29 @@ import type { CodeDeployLifecycleHookEvent } from '../types.js';
 
 import { lambda } from './lambda/lambda.js';
 
-export const processEvent = async (
+export type DeploymentInfo = {
+  applicationName: string;
+  revision: NonNullable<RawDeploymentInfo['revision']>;
+};
+
+export const getDeploymentInfo = async (
   event: CodeDeployLifecycleHookEvent,
-): Promise<unknown> => {
-  const { deploymentInfo } = await codeDeployClient.send(
-    new GetDeploymentCommand({ deploymentId: event.DeploymentId }),
-    { abortSignal: getAbortSignal() },
+): Promise<DeploymentInfo> =>
+  parseDeploymentInfo(
+    (
+      await codeDeployClient.send(
+        new GetDeploymentCommand({ deploymentId: event.DeploymentId }),
+        { abortSignal: getAbortSignal() },
+      )
+    ).deploymentInfo ?? {},
   );
 
-  const opts = parseDeploymentInfo(deploymentInfo ?? {});
+export const process = async (
+  deploymentInfo: DeploymentInfo,
+): Promise<unknown> => lambda(deploymentInfo);
 
-  return lambda(opts);
-};
+export const processEvent = async (event: CodeDeployLifecycleHookEvent) =>
+  process(await getDeploymentInfo(event));
 
 export const parseDeploymentInfo = ({
   applicationName,
@@ -28,7 +39,7 @@ export const parseDeploymentInfo = ({
   deploymentGroupName,
   deploymentStyle,
   revision,
-}: DeploymentInfo) => {
+}: RawDeploymentInfo): DeploymentInfo => {
   if (
     !applicationName ||
     !computePlatform ||

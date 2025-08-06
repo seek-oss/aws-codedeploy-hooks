@@ -10,17 +10,26 @@ import {
 import { mockClient } from 'aws-sdk-client-mock';
 
 import { testLogs } from './framework/logging.js';
-import { processEvent } from './process/process.js';
+import { getDeploymentInfo, process } from './process/process.js';
 
 import { handler } from './index.js';
 
 const codeDeploy = mockClient(CodeDeployClient);
 
-const processEventMock = jest.mocked(processEvent);
+const getDeploymentInfoMock = jest.mocked(getDeploymentInfo);
+const processMock = jest.mocked(process);
+
+beforeEach(() => {
+  getDeploymentInfoMock.mockResolvedValue({
+    applicationName: 'beep',
+    revision: { string: { content: 'stuff' } },
+  });
+});
 
 afterEach(() => {
   codeDeploy.reset();
-  processEventMock.mockReset();
+  getDeploymentInfoMock.mockReset();
+  processMock.mockReset();
   testLogs.length = 0;
 });
 
@@ -39,13 +48,13 @@ describe('handler', () => {
   };
 
   it('reports a success back to CodeDeploy', async () => {
-    processEventMock.mockResolvedValue(undefined);
+    processMock.mockResolvedValue(undefined);
 
     codeDeploy.on(PutLifecycleEventHookExecutionStatusCommand).resolves({});
 
     await expect(handler(event, context)).resolves.toBeUndefined();
 
-    expect(processEventMock).toHaveBeenCalledTimes(1);
+    expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
       1,
@@ -59,9 +68,14 @@ describe('handler', () => {
 
     expect(testLogs).toStrictEqual([
       {
+        applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        deploymentId: 'mock-deployment-id',
         level: 30,
         msg: 'Reported lifecycle event status',
+        revision: {
+          string: { content: 'stuff' },
+        },
         status: LifecycleEventStatus.SUCCEEDED,
         timestamp: expect.any(String),
       },
@@ -80,13 +94,13 @@ describe('handler', () => {
       },
     );
 
-    processEventMock.mockRejectedValue(err);
+    processMock.mockRejectedValue(err);
 
     codeDeploy.on(PutLifecycleEventHookExecutionStatusCommand).resolves({});
 
     await expect(handler(event, context)).resolves.toBeUndefined();
 
-    expect(processEventMock).toHaveBeenCalledTimes(1);
+    expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
       1,
@@ -100,7 +114,9 @@ describe('handler', () => {
 
     expect(testLogs).toStrictEqual([
       {
+        applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        deploymentId: 'mock-deployment-id',
         err: {
           message: err.message,
           payload: err.payload,
@@ -109,12 +125,20 @@ describe('handler', () => {
         },
         level: 50,
         msg: 'Failed to process lifecycle event',
+        revision: {
+          string: { content: 'stuff' },
+        },
         timestamp: expect.any(String),
       },
       {
+        applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        deploymentId: 'mock-deployment-id',
         level: 30,
         msg: 'Reported lifecycle event status',
+        revision: {
+          string: { content: 'stuff' },
+        },
         status: LifecycleEventStatus.FAILED,
         timestamp: expect.any(String),
       },
@@ -124,7 +148,7 @@ describe('handler', () => {
   it('throws on failure to report a success', async () => {
     const err = new Error('mock-error');
 
-    processEventMock.mockResolvedValue(undefined);
+    processMock.mockResolvedValue(undefined);
 
     codeDeploy.on(PutLifecycleEventHookExecutionStatusCommand).rejects(err);
 
@@ -134,7 +158,7 @@ describe('handler', () => {
       `"Failed to report lifecycle event status"`,
     );
 
-    expect(processEventMock).toHaveBeenCalledTimes(1);
+    expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
       1,
@@ -148,11 +172,16 @@ describe('handler', () => {
 
     expect(testLogs).toStrictEqual([
       {
+        applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        deploymentId: 'mock-deployment-id',
         err: expect.objectContaining({ message: err.message }),
         level: 50,
         msg: 'Failed to report lifecycle event status',
         status: LifecycleEventStatus.SUCCEEDED,
+        revision: {
+          string: { content: 'stuff' },
+        },
         timestamp: expect.any(String),
       },
     ]);
@@ -166,7 +195,7 @@ describe('handler', () => {
       .on(PutLifecycleEventHookExecutionStatusCommand)
       .rejects(reportError);
 
-    processEventMock.mockRejectedValue(processError);
+    processMock.mockRejectedValue(processError);
 
     await expect(
       handler(event, context),
@@ -174,7 +203,7 @@ describe('handler', () => {
       `"Failed to report lifecycle event status"`,
     );
 
-    expect(processEventMock).toHaveBeenCalledTimes(1);
+    expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
       1,
@@ -188,17 +217,27 @@ describe('handler', () => {
 
     expect(testLogs).toStrictEqual([
       {
+        applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        deploymentId: 'mock-deployment-id',
         err: expect.objectContaining({ message: processError.message }),
         level: 50,
         msg: 'Failed to process lifecycle event',
+        revision: {
+          string: { content: 'stuff' },
+        },
         timestamp: expect.any(String),
       },
       {
+        applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        deploymentId: 'mock-deployment-id',
         err: expect.objectContaining({ message: reportError.message }),
         level: 50,
         msg: 'Failed to report lifecycle event status',
+        revision: {
+          string: { content: 'stuff' },
+        },
         status: LifecycleEventStatus.FAILED,
         timestamp: expect.any(String),
       },
