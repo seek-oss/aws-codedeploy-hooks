@@ -1,5 +1,15 @@
 # @seek/aws-codedeploy-infra
 
+## 3.1.0
+
+### Minor Changes
+
+- Enhance logs with additional context ([#154](https://github.com/seek-oss/aws-codedeploy-hooks/pull/154))
+
+### Patch Changes
+
+- **deps:** zod ^4.0.0 ([#147](https://github.com/seek-oss/aws-codedeploy-hooks/pull/147))
+
 ## 3.0.0
 
 ### Major Changes
