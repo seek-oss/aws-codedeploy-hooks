@@ -1,17 +1,12 @@
 import { setTimeout } from 'timers/promises';
 import { inspect } from 'util';
 
-import {
-  getAbortSignal,
-  getContext,
-  getRequestId,
-  storage,
-  withTimeout,
-} from './context.js';
+import { getAbortSignal, getContext, storage, withTimeout } from './context.js';
 
 const context = {
   abortSignal: new AbortController().signal,
   requestId: 'mock-request-id',
+  deploymentId: 'mock-deployment-id',
 };
 
 describe('getAbortSignal', () => {
@@ -27,11 +22,6 @@ describe('getContext', () => {
 
   it('returns an empty object if there is no context', () =>
     expect(getContext()).toStrictEqual({}));
-});
-
-describe('getRequestId', () => {
-  it('returns the current request ID where available', () =>
-    storage.run(context, () => expect(getRequestId()).toBe(context.requestId)));
 });
 
 describe('withTimeout', () => {
