@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`returns expected CloudFormation stack 1`] = `
 {
@@ -344,6 +344,9 @@ exports[`returns expected CloudFormation stack 1`] = `
       "Type": "AWS::Lambda::Function",
     },
     "LambdaFunctionCurrentVersion7D5C86E3dad486f78e1725da2340d446c21ddd39": {
+      "Metadata": {
+        "aws:cdk:do-not-refactor": true,
+      },
       "Properties": {
         "FunctionName": {
           "Ref": "LambdaFunctionBF21E41F",
