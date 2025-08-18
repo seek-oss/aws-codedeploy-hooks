@@ -27,7 +27,7 @@
     "codegen": "skuba node cli/codegen"
   },
   "dependencies": {
-    "@seek/logger": "^10.0.0",
+    "@seek/logger": "^11.0.0",
     "@types/aws-lambda": "^8.10.130",
     "aws-cdk-lib": "^2.189.1",
     "constructs": "^10.3.0",
