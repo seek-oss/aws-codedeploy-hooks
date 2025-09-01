@@ -9,7 +9,7 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
 
-import { testLogs } from './framework/logging.js';
+import { stdoutMock } from './framework/logging.js';
 import { getDeploymentInfo, process } from './process/process.js';
 
 import { handler } from './index.js';
@@ -30,7 +30,7 @@ afterEach(() => {
   codeDeploy.reset();
   getDeploymentInfoMock.mockReset();
   processMock.mockReset();
-  testLogs.length = 0;
+  stdoutMock.clear();
 });
 
 describe('handler', () => {
@@ -66,10 +66,11 @@ describe('handler', () => {
       },
     );
 
-    expect(testLogs).toStrictEqual([
+    expect(stdoutMock.calls).toStrictEqual([
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        ddsource: 'nodejs',
         deploymentId: 'mock-deployment-id',
         level: 30,
         msg: 'Reported lifecycle event status',
@@ -112,10 +113,11 @@ describe('handler', () => {
       },
     );
 
-    expect(testLogs).toStrictEqual([
+    expect(stdoutMock.calls).toStrictEqual([
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        ddsource: 'nodejs',
         deploymentId: 'mock-deployment-id',
         err: {
           message: err.message,
@@ -133,6 +135,7 @@ describe('handler', () => {
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        ddsource: 'nodejs',
         deploymentId: 'mock-deployment-id',
         level: 30,
         msg: 'Reported lifecycle event status',
@@ -170,10 +173,11 @@ describe('handler', () => {
       },
     );
 
-    expect(testLogs).toStrictEqual([
+    expect(stdoutMock.calls).toStrictEqual([
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        ddsource: 'nodejs',
         deploymentId: 'mock-deployment-id',
         err: expect.objectContaining({ message: err.message }),
         level: 50,
@@ -215,10 +219,11 @@ describe('handler', () => {
       },
     );
 
-    expect(testLogs).toStrictEqual([
+    expect(stdoutMock.calls).toStrictEqual([
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        ddsource: 'nodejs',
         deploymentId: 'mock-deployment-id',
         err: expect.objectContaining({ message: processError.message }),
         level: 50,
@@ -231,6 +236,7 @@ describe('handler', () => {
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
+        ddsource: 'nodejs',
         deploymentId: 'mock-deployment-id',
         err: expect.objectContaining({ message: reportError.message }),
         level: 50,

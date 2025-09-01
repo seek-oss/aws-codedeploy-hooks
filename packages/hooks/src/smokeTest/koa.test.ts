@@ -1,19 +1,19 @@
-import createLogger from '@seek/logger';
+import { createDestination, createLogger } from '@seek/logger';
 import Koa from 'koa';
 import { agent } from 'supertest';
 
 import { koaMiddleware } from './koa.js';
 
 const onError = jest.fn();
-const write = jest.fn();
 
-const stdout = () => write.mock.calls.flat().join('').trim();
+const { destination, stdoutMock } = createDestination({ mock: true });
 
 afterEach(jest.clearAllMocks);
+afterEach(stdoutMock.clear);
 
 const logger = createLogger(
   { serializers: { err: (err) => String(err) }, timestamp: false },
-  { write: (msg) => write(msg) },
+  destination,
 );
 
 type Options = {
@@ -46,7 +46,7 @@ it.each`
     }).expect(200, 'Smoke test succeeded');
 
     expect(onError).not.toHaveBeenCalled();
-    expect(stdout()).toBeFalsy();
+    expect(stdoutMock.calls).toHaveLength(0);
   },
 );
 
@@ -64,9 +64,10 @@ it.each`
     }).expect(200, 'Smoke test skipped');
 
     expect(onError).not.toHaveBeenCalled();
-    expect(stdout()).toBe(
-      '{"level":30,"msg":"Smoke test succeeded in background"}',
-    );
+    expect(stdoutMock.onlyCall()).toStrictEqual({
+      level: 30,
+      msg: 'Smoke test succeeded in background',
+    });
   },
 );
 
@@ -86,9 +87,11 @@ it.each`
     }).expect(200, 'Smoke test skipped');
 
     expect(onError).not.toHaveBeenCalled();
-    expect(stdout()).toBe(
-      '{"level":40,"err":"Error: Badness!","msg":"Smoke test failed in background"}',
-    );
+    expect(stdoutMock.onlyCall()).toStrictEqual({
+      level: 40,
+      err: 'Error: Badness!',
+      msg: 'Smoke test failed in background',
+    });
   },
 );
 
@@ -106,9 +109,11 @@ it.each`
     }).expect(200, 'Smoke test skipped');
 
     expect(onError).not.toHaveBeenCalled();
-    expect(stdout()).toBe(
-      '{"level":40,"err":"Error: Badness!","msg":"Smoke test failed in background"}',
-    );
+    expect(stdoutMock.onlyCall()).toStrictEqual({
+      level: 40,
+      err: 'Error: Badness!',
+      msg: 'Smoke test failed in background',
+    });
   },
 );
 
@@ -130,7 +135,7 @@ it.each`
     }).expect(500, 'Internal Server Error');
 
     expect(onError).toHaveBeenCalledTimes(1);
-    expect(stdout()).toBeFalsy();
+    expect(stdoutMock.calls).toHaveLength(0);
   },
 );
 
@@ -150,7 +155,7 @@ it.each`
     }).expect(500, 'Internal Server Error');
 
     expect(onError).toHaveBeenCalledTimes(1);
-    expect(stdout()).toBeFalsy();
+    expect(stdoutMock.calls).toHaveLength(0);
   },
 );
 
@@ -164,9 +169,10 @@ it('passes no arguments to the smoke test function asynchronously', async () => 
   }).expect(200, 'Smoke test skipped');
 
   expect(onError).not.toHaveBeenCalled();
-  expect(stdout()).toBe(
-    '{"level":30,"msg":"Smoke test succeeded in background"}',
-  );
+  expect(stdoutMock.onlyCall()).toStrictEqual({
+    level: 30,
+    msg: 'Smoke test succeeded in background',
+  });
 
   expect(smokeTest).toHaveBeenCalledTimes(1);
   expect(smokeTest).toHaveBeenLastCalledWith();
@@ -182,7 +188,7 @@ it('passes no arguments to the smoke test function synchronously', async () => {
   }).expect(200, 'Smoke test succeeded');
 
   expect(onError).not.toHaveBeenCalled();
-  expect(stdout()).toBe('');
+  expect(stdoutMock.calls).toHaveLength(0);
 
   expect(smokeTest).toHaveBeenCalledTimes(1);
   expect(smokeTest).toHaveBeenLastCalledWith();
