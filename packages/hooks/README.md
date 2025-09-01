@@ -136,7 +136,7 @@ This may be used when a build needs to be expedited in a disaster recovery scena
 ```typescript
 import { Env } from 'skuba-dive';
 import Router from '@koa/router';
-import logger from '@seek/logger';
+import { createLogger } from '@seek/logger';
 
 const config = {
   skipHook: Env.boolean('SKIP_SMOKE', { default: false }),
