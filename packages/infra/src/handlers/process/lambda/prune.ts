@@ -59,7 +59,7 @@ export const pruneFunction = async ({ name }: Args): Promise<void> => {
   );
 
   await Promise.all(
-    versionsToPrune.map((version) =>
+    versionsToPrune.map(async (version) =>
       lambdaClient.send(
         new DeleteFunctionCommand({
           FunctionName: version.FunctionName,
