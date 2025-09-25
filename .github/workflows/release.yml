@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions: {}
 
 jobs:
   release:
-    name: Publish
+    name: Publish latest
+    if: github.event_name == 'push'
     permissions:
       id-token: write
     runs-on: ubuntu-latest
@@ -32,6 +34,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install latest npm
+        run: npm install -g npm@latest
+
       - name: Publish to npm
         uses: changesets/action@v1
         with:
@@ -39,4 +44,38 @@ jobs:
           version: pnpm run stage
         env:
           GITHUB_TOKEN: ${{ secrets.SEEK_OSS_CI_GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  snapshot:
+    name: Publish Snapshot
+    if: github.event_name == 'workflow_dispatch'
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.SEEK_OSS_CI_GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22.x
+          package-manager-cache: false
+
+      - name: Set up pnpm
+        run: corepack enable pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install latest npm
+        run: npm install -g npm@latest
+
+      - name: Publish to npm
+        uses: seek-oss/changesets-snapshot@v0
+        with:
+          pre-publish: pnpm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEEK_OSS_CI_GITHUB_TOKEN }}
