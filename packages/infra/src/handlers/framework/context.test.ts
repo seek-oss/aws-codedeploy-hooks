@@ -56,9 +56,11 @@ describe('withTimeout', () => {
         setTimeout(200, undefined, { signal: getAbortSignal() }),
       );
 
-    await expect(
-      withTimeout(task, 100),
-    ).rejects.toThrowErrorMatchingInlineSnapshot(`"The operation was aborted"`);
+    await expect(withTimeout(task, 100)).rejects
+      .toThrowErrorMatchingInlineSnapshot(`
+      "The operation was aborted
+      Cause: The operation was aborted due to timeout"
+    `);
 
     await expect(
       task.mock.results[0]!.value.catch((err: unknown) =>
@@ -92,9 +94,10 @@ describe('withTimeout', () => {
           // This won't time out
           withTimeout(task, TEST_TIMEOUT_MS + 1_000),
         ),
-      ).rejects.toThrowErrorMatchingInlineSnapshot(
-        `"The operation was aborted"`,
-      );
+      ).rejects.toThrowErrorMatchingInlineSnapshot(`
+        "The operation was aborted
+        Cause: The operation was aborted due to timeout"
+      `);
     },
     TEST_TIMEOUT_MS,
   );
