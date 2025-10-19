@@ -6,7 +6,12 @@ import git from 'isomorphic-git';
 import { packageDir } from './dir.js';
 
 export const writeVersion = async () => {
-  const [[commit], { version }] = await Promise.all([
+  const [
+    [commit],
+    {
+      default: { version },
+    },
+  ] = await Promise.all([
     git.log({
       dir: path.join(packageDir, '..', '..'),
       fs,
