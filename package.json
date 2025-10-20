@@ -20,7 +20,7 @@
     "@types/node": "^22.13.14",
     "dotenv": "16.6.1",
     "esbuild": "~0.25.0",
-    "skuba": "13.0.2"
+    "skuba": "13.0.3"
   },
   "packageManager": "pnpm@10.18.0",
   "engines": {
