@@ -42,6 +42,6 @@ export const isLambdaHook = (
 ): boolean =>
   Boolean(
     Object.keys(event).length === 0 &&
-      typeof clientContext?.Custom?.['user-agent'] === 'string' &&
-      clientContext.Custom['user-agent'].startsWith(USER_AGENT_PREFIX),
+    typeof clientContext?.Custom?.['user-agent'] === 'string' &&
+    clientContext.Custom['user-agent'].startsWith(USER_AGENT_PREFIX),
   );
