@@ -24,8 +24,8 @@ importers:
         specifier: ~0.25.0
         version: 0.25.12
       skuba:
-        specifier: 13.1.0
-        version: 13.1.0(@babel/core@7.28.5)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.48.1(@typescript-eslint/parser@8.48.1(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3))(@typescript-eslint/utils@8.48.1(eslint@9.39.1)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0)(skuba-dive@3.0.0)
+        specifier: 13.1.1
+        version: 13.1.1(@babel/core@7.28.5)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.48.1(@typescript-eslint/parser@8.48.1(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3))(@typescript-eslint/utils@8.48.1(eslint@9.39.1)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0)
 
   packages/hooks:
     devDependencies:
@@ -4560,15 +4560,10 @@ packages:
     resolution: {integrity: sha512-ryUGJ/xsXZhVDwXQgKPEMHcOagx4xqpbVB0Y8yJNN+JD8LQYweoFCGKROwuHhHCW24h+Ds2mXh9y4hHTvqGl/w==}
     engines: {node: '>=20.9.0'}
 
-  skuba@13.1.0:
-    resolution: {integrity: sha512-FNPLY7XPWBFAEEjfjUA8kbEd2qhjWMgd6Ne2LE/tSs67s6sKHaRacrU7oRmK/fNoVTZsUXP7mfyhODgR9Dzejg==}
+  skuba@13.1.1:
+    resolution: {integrity: sha512-xRcIfXt5t2Y3Tyzq4OcR3o8C/tb0rTBb2dBg9qOslJra7e6WYmenBOkUp9EKIcGDQd+E2AlvHFp/sKUkduCdiA==}
     engines: {node: '>=20.9.0'}
     hasBin: true
-    peerDependencies:
-      skuba-dive: 1 || 2 || 3
-    peerDependenciesMeta:
-      skuba-dive:
-        optional: true
 
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
@@ -10646,7 +10641,7 @@ snapshots:
 
   skuba-dive@3.0.0: {}
 
-  skuba@13.1.0(@babel/core@7.28.5)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.48.1(@typescript-eslint/parser@8.48.1(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3))(@typescript-eslint/utils@8.48.1(eslint@9.39.1)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0)(skuba-dive@3.0.0):
+  skuba@13.1.1(@babel/core@7.28.5)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.48.1(@typescript-eslint/parser@8.48.1(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3))(@typescript-eslint/utils@8.48.1(eslint@9.39.1)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.5))(jest-util@30.2.0):
     dependencies:
       '@esbuild-plugins/tsconfig-paths': 0.1.2(esbuild@0.27.1)(typescript@5.9.3)
       '@inquirer/prompts': 7.10.1(@types/node@22.19.1)
@@ -10695,8 +10690,6 @@ snapshots:
       tsx: 4.21.0
       typescript: 5.9.3
       zod: 4.1.13
-    optionalDependencies:
-      skuba-dive: 3.0.0
     transitivePeerDependencies:
       - '@babel/core'
       - '@jest/transform'
