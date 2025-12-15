@@ -71,14 +71,26 @@ describe('handler', () => {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
         ddsource: 'nodejs',
+        ddtags: 'env:test,version:aws-codedeploy-hook-LifecycleEvent/local',
         deploymentId: 'mock-deployment-id',
+        eeeoh: {
+          logs: {
+            datadog: {
+              enabled: true,
+              tier: 'tin',
+            },
+          },
+        },
+        env: 'test',
         level: 30,
         msg: 'Reported lifecycle event status',
         revision: {
           string: { content: 'stuff' },
         },
+        service: 'aws-codedeploy-hooks',
         status: LifecycleEventStatus.SUCCEEDED,
         timestamp: expect.any(String),
+        version: 'aws-codedeploy-hook-LifecycleEvent/local',
       },
     ]);
   });
@@ -118,8 +130,18 @@ describe('handler', () => {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
         ddsource: 'nodejs',
+        ddtags: 'env:test,version:aws-codedeploy-hook-LifecycleEvent/local',
         deploymentId: 'mock-deployment-id',
-        err: {
+        eeeoh: {
+          logs: {
+            datadog: {
+              enabled: true,
+              tier: 'tin',
+            },
+          },
+        },
+        env: 'test',
+        error: {
           message: err.message,
           payload: err.payload,
           stack: expect.any(String),
@@ -130,20 +152,34 @@ describe('handler', () => {
         revision: {
           string: { content: 'stuff' },
         },
+        service: 'aws-codedeploy-hooks',
         timestamp: expect.any(String),
+        version: 'aws-codedeploy-hook-LifecycleEvent/local',
       },
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
         ddsource: 'nodejs',
+        ddtags: 'env:test,version:aws-codedeploy-hook-LifecycleEvent/local',
         deploymentId: 'mock-deployment-id',
+        eeeoh: {
+          logs: {
+            datadog: {
+              enabled: true,
+              tier: 'tin',
+            },
+          },
+        },
+        env: 'test',
         level: 30,
         msg: 'Reported lifecycle event status',
         revision: {
           string: { content: 'stuff' },
         },
+        service: 'aws-codedeploy-hooks',
         status: LifecycleEventStatus.FAILED,
         timestamp: expect.any(String),
+        version: 'aws-codedeploy-hook-LifecycleEvent/local',
       },
     ]);
   });
@@ -178,15 +214,27 @@ describe('handler', () => {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
         ddsource: 'nodejs',
+        ddtags: 'env:test,version:aws-codedeploy-hook-LifecycleEvent/local',
         deploymentId: 'mock-deployment-id',
-        err: expect.objectContaining({ message: err.message }),
+        eeeoh: {
+          logs: {
+            datadog: {
+              enabled: true,
+              tier: 'tin',
+            },
+          },
+        },
+        env: 'test',
+        error: expect.objectContaining({ message: err.message }),
         level: 50,
         msg: 'Failed to report lifecycle event status',
         status: LifecycleEventStatus.SUCCEEDED,
         revision: {
           string: { content: 'stuff' },
         },
+        service: 'aws-codedeploy-hooks',
         timestamp: expect.any(String),
+        version: 'aws-codedeploy-hook-LifecycleEvent/local',
       },
     ]);
   });
@@ -224,28 +272,52 @@ describe('handler', () => {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
         ddsource: 'nodejs',
+        ddtags: 'env:test,version:aws-codedeploy-hook-LifecycleEvent/local',
         deploymentId: 'mock-deployment-id',
-        err: expect.objectContaining({ message: processError.message }),
+        eeeoh: {
+          logs: {
+            datadog: {
+              enabled: true,
+              tier: 'tin',
+            },
+          },
+        },
+        env: 'test',
+        error: expect.objectContaining({ message: processError.message }),
         level: 50,
         msg: 'Failed to process lifecycle event',
         revision: {
           string: { content: 'stuff' },
         },
+        service: 'aws-codedeploy-hooks',
         timestamp: expect.any(String),
+        version: 'aws-codedeploy-hook-LifecycleEvent/local',
       },
       {
         applicationName: 'beep',
         awsRequestId: context.awsRequestId,
         ddsource: 'nodejs',
+        ddtags: 'env:test,version:aws-codedeploy-hook-LifecycleEvent/local',
         deploymentId: 'mock-deployment-id',
-        err: expect.objectContaining({ message: reportError.message }),
+        eeeoh: {
+          logs: {
+            datadog: {
+              enabled: true,
+              tier: 'tin',
+            },
+          },
+        },
+        env: 'test',
+        error: expect.objectContaining({ message: reportError.message }),
         level: 50,
         msg: 'Failed to report lifecycle event status',
         revision: {
           string: { content: 'stuff' },
         },
+        service: 'aws-codedeploy-hooks',
         status: LifecycleEventStatus.FAILED,
         timestamp: expect.any(String),
+        version: 'aws-codedeploy-hook-LifecycleEvent/local',
       },
     ]);
   });
