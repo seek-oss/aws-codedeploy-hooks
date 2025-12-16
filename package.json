@@ -15,11 +15,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "2.29.7",
-    "@changesets/get-github-info": "0.6.0",
+    "@changesets/cli": "2.29.8",
+    "@changesets/get-github-info": "0.7.0",
     "@types/node": "^22.13.14",
     "dotenv": "16.6.1",
-    "esbuild": "~0.25.0",
+    "esbuild": "~0.27.0",
     "skuba": "13.1.1"
   },
   "packageManager": "pnpm@10.24.0",
