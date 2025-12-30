@@ -12,7 +12,12 @@ export { stdoutMock };
 
 export const logger = createLogger(
   {
-    base: null,
+    eeeoh: { datadog: 'tin' },
+    base: {
+      service: 'aws-codedeploy-hooks',
+      env: config.environment,
+      version: config.userAgent,
+    },
 
     mixin: () => {
       const context = getContext();
