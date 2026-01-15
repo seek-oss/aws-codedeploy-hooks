@@ -24,7 +24,7 @@
   },
   "packageManager": "pnpm@10.26.2",
   "engines": {
-    "node": ">=20.10"
+    "node": ">=22.14.0"
   },
   "skuba": {
     "entryPoint": "packages/hooks/src/index.ts",

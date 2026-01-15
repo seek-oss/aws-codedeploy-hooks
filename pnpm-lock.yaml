@@ -60,7 +60,7 @@ importers:
         specifier: ^8.10.130
         version: 8.10.159
       aws-cdk-lib:
-        specifier: ^2.189.1
+        specifier: ^2.224.0
         version: 2.233.0(constructs@10.4.4)
       constructs:
         specifier: ^10.3.0
