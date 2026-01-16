@@ -3,4 +3,4 @@
 '@seek/aws-codedeploy-infra': major
 ---
 
-Require Node 22.14.0+
+Require Node.js 22.14.0+
