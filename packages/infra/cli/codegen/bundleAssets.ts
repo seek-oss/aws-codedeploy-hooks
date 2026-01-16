@@ -33,6 +33,6 @@ export const bundleAssets = async () => {
     outdir: assetDir,
     platform: 'node',
     sourcemap: true,
-    target: 'node22',
+    target: 'node24',
   });
 };

@@ -20,16 +20,16 @@
     "@types/node": "^22.13.14",
     "dotenv": "16.6.1",
     "esbuild": "~0.27.0",
-    "skuba": "13.1.1"
+    "skuba": "14.0.1"
   },
   "packageManager": "pnpm@10.26.2",
   "engines": {
-    "node": ">=20.10"
+    "node": ">=22.14.0"
   },
   "skuba": {
     "entryPoint": "packages/hooks/src/index.ts",
     "template": "oss-npm-package",
     "type": "package",
-    "version": "13.0.2"
+    "version": "14.0.1"
   }
 }

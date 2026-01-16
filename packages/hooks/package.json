@@ -34,7 +34,7 @@
     "supertest": "^7.0.0"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22.14.0"
   },
   "publishConfig": {
     "main": "./lib/index.js",
