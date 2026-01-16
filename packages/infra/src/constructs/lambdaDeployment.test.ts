@@ -71,7 +71,10 @@ it('returns expected CloudFormation stack', () => {
     Tags: [{ Key: 'aws-codedeploy-hooks' }],
   });
 
-  const json = JSON.stringify(template.toJSON());
+  const json = JSON.stringify(template.toJSON()).replace(
+    /LambdaFunctionCurrentVersion([0-9a-zA-Z]+)"/g,
+    (_, hash) => `LambdaFunctionCurrentVersion${'x'.repeat(hash.length)}"`,
+  );
 
   expect(JSON.parse(json)).toMatchSnapshot();
 });
