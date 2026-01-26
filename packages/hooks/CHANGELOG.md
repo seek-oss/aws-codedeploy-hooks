@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-hooks
 
+## 3.0.0
+
+### Major Changes
+
+- Require Node.js 22.14.0+ ([#209](https://github.com/seek-oss/aws-codedeploy-hooks/pull/209))
+
 ## 2.0.0
 
 ### Major Changes
