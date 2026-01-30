@@ -38,6 +38,20 @@ describe('isLambdaHook', () => {
       ),
     ).toBe(false));
 
+  it('accepts a lowercase custom field in clientContext', () =>
+    expect(
+      isLambdaHook(
+        {},
+        {
+          clientContext: {
+            custom: {
+              'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
+            },
+          },
+        },
+      ),
+    ).toBe(true));
+
   it.each(['Mozilla/5.0', null, undefined, true])(
     'ignores a %p user agent',
     () =>
