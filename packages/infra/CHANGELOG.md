@@ -1,5 +1,23 @@
 # @seek/aws-codedeploy-infra
 
+## 4.0.0
+
+### Major Changes
+
+- Require Node.js 22.14.0+ ([#209](https://github.com/seek-oss/aws-codedeploy-hooks/pull/209))
+
+### Minor Changes
+
+- **HookStack:** Upgrade hooks to Node.js 24 ([#209](https://github.com/seek-oss/aws-codedeploy-hooks/pull/209))
+
+### Patch Changes
+
+- **deps:** @seek/logger ^11.0.0 ([#158](https://github.com/seek-oss/aws-codedeploy-hooks/pull/158))
+
+- Include `ddsource` in hook logs ([#166](https://github.com/seek-oss/aws-codedeploy-hooks/pull/166))
+
+- **deps:** skuba-dive ^3.0.0 ([#197](https://github.com/seek-oss/aws-codedeploy-hooks/pull/197))
+
 ## 3.1.0
 
 ### Minor Changes
