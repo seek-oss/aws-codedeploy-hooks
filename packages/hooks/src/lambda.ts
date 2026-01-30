@@ -1,8 +1,14 @@
 import { USER_AGENT_PREFIX } from './constants.js';
 
+type CustomClientContext = {
+  'user-agent'?: unknown;
+  [key: PropertyKey]: unknown;
+};
+
 type LambdaContext = {
   clientContext?: {
-    Custom?: { 'user-agent'?: unknown; [key: PropertyKey]: unknown };
+    Custom?: CustomClientContext;
+    custom?: CustomClientContext;
   };
 };
 
@@ -42,6 +48,8 @@ export const isLambdaHook = (
 ): boolean =>
   Boolean(
     Object.keys(event).length === 0 &&
-    typeof clientContext?.Custom?.['user-agent'] === 'string' &&
-    clientContext.Custom['user-agent'].startsWith(USER_AGENT_PREFIX),
+    ((typeof clientContext?.Custom?.['user-agent'] === 'string' &&
+      clientContext.Custom['user-agent'].startsWith(USER_AGENT_PREFIX)) ||
+      (typeof clientContext?.custom?.['user-agent'] === 'string' &&
+        clientContext.custom['user-agent'].startsWith(USER_AGENT_PREFIX))),
   );
