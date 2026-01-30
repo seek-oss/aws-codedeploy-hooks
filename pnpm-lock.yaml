@@ -24,8 +24,8 @@ importers:
         specifier: ~0.27.0
         version: 0.27.2
       skuba:
-        specifier: 14.0.1
-        version: 14.0.1(@babel/core@7.28.6)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.53.1(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.6))(jest-util@30.2.0)
+        specifier: 14.1.0
+        version: 14.1.0(@babel/core@7.28.6)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.53.1(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.6))(jest-util@30.2.0)
 
   packages/hooks:
     devDependencies:
@@ -2405,9 +2405,9 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  ejs@3.1.10:
-    resolution: {integrity: sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==}
-    engines: {node: '>=0.10.0'}
+  ejs@4.0.1:
+    resolution: {integrity: sha512-krvQtxc0btwSm/nvnt1UpnaFDFVJpJ0fdckmALpCgShsr/iGYHTnJiUliZTgmzq/UxTX33TtOQVKaNigMQp/6Q==}
+    engines: {node: '>=0.12.18'}
     hasBin: true
 
   electron-to-chromium@1.5.278:
@@ -4244,8 +4244,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.7.4:
-    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
+  prettier@3.8.1:
+    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -4541,8 +4541,8 @@ packages:
     resolution: {integrity: sha512-vgMSa1gs0816fGApdihz/Y0Jd5gMosyb3MO6JdDBWaUFd/Nn5PY+bPf/T2FWs0SgJux5tjC2Uf6nJ2mSPU/oPg==}
     engines: {node: '>=22.14.0'}
 
-  skuba@14.0.1:
-    resolution: {integrity: sha512-Oz+wopYXO5rXe+Jo2AV/5C7zIgaPNaQqsQBARFzsam4IW907ZxVycv/k05PwJ6QN+ULhYx0CosXbjSkhtJ3o7A==}
+  skuba@14.1.0:
+    resolution: {integrity: sha512-QzYmRu4lLdrf0CZA95PrQ5XFE8KrHxlv48t0V2739GR5hgFDJX8hF3IYhddNIlx+jy2/0PtMg2eAc8tZx4lecg==}
     engines: {node: '>=22.14.0'}
     hasBin: true
 
@@ -8187,7 +8187,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  ejs@3.1.10:
+  ejs@4.0.1:
     dependencies:
       jake: 10.9.4
 
@@ -10305,15 +10305,15 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-packagejson@2.5.22(prettier@3.7.4):
+  prettier-plugin-packagejson@2.5.22(prettier@3.8.1):
     dependencies:
       sort-package-json: 3.6.0
     optionalDependencies:
-      prettier: 3.7.4
+      prettier: 3.8.1
 
   prettier@2.8.8: {}
 
-  prettier@3.7.4: {}
+  prettier@3.8.1: {}
 
   pretty-format@30.2.0:
     dependencies:
@@ -10687,7 +10687,7 @@ snapshots:
 
   skuba-dive@4.0.1: {}
 
-  skuba@14.0.1(@babel/core@7.28.6)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.53.1(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.6))(jest-util@30.2.0):
+  skuba@14.1.0(@babel/core@7.28.6)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.53.1(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.28.6))(jest-util@30.2.0):
     dependencies:
       '@ast-grep/lang-json': 0.0.6
       '@ast-grep/napi': 0.40.5
@@ -10702,7 +10702,7 @@ snapshots:
       '@types/jest': 30.0.0
       '@types/node': 24.10.9
       concurrently: 9.2.1
-      ejs: 3.1.10
+      ejs: 4.0.1
       esbuild: 0.27.2
       eslint: 9.39.2
       eslint-config-skuba: 8.0.0(@typescript-eslint/eslint-plugin@8.53.1(@typescript-eslint/parser@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.53.1(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(jest@30.2.0(@types/node@24.10.9)(ts-node@10.9.2(@types/node@24.10.9)(typescript@5.9.3)))(typescript@5.9.3)
@@ -10725,8 +10725,8 @@ snapshots:
       npm-run-path: 4.0.1
       npm-which: 3.0.1
       picomatch: 4.0.3
-      prettier: 3.7.4
-      prettier-plugin-packagejson: 2.5.22(prettier@3.7.4)
+      prettier: 3.8.1
+      prettier-plugin-packagejson: 2.5.22(prettier@3.8.1)
       read-pkg-up: 7.0.1
       semantic-release: 25.0.2(typescript@5.9.3)
       simple-git: 3.30.0
