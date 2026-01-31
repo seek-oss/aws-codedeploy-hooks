@@ -15,21 +15,21 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "2.29.7",
-    "@changesets/get-github-info": "0.6.0",
+    "@changesets/cli": "2.29.8",
+    "@changesets/get-github-info": "0.7.0",
     "@types/node": "^22.13.14",
     "dotenv": "16.6.1",
-    "esbuild": "~0.25.0",
-    "skuba": "13.1.1"
+    "esbuild": "~0.27.0",
+    "skuba": "14.1.0"
   },
-  "packageManager": "pnpm@10.24.0",
+  "packageManager": "pnpm@10.28.1",
   "engines": {
-    "node": ">=20.10"
+    "node": ">=22.14.0"
   },
   "skuba": {
     "entryPoint": "packages/hooks/src/index.ts",
     "template": "oss-npm-package",
     "type": "package",
-    "version": "13.0.2"
+    "version": "14.1.0"
   }
 }
