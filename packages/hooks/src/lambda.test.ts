@@ -10,16 +10,13 @@ describe('isLambdaHook', () => {
 
   it('recognises the Lambda hook', () =>
     expect(
-      isLambdaHook(
-        {},
-        {
-          clientContext: {
-            Custom: {
-              'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
-            },
+      isLambdaHook({}, {
+        clientContext: {
+          Custom: {
+            'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
           },
         },
-      ),
+      } as unknown as Context),
     ).toBe(true));
 
   it('ignores a non-empty event', () =>
@@ -34,22 +31,19 @@ describe('isLambdaHook', () => {
               'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
             },
           },
-        },
+        } as unknown as Context,
       ),
     ).toBe(false));
 
   it('accepts a lowercase custom field in clientContext', () =>
     expect(
-      isLambdaHook(
-        {},
-        {
-          clientContext: {
-            custom: {
-              'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
-            },
+      isLambdaHook({}, {
+        clientContext: {
+          custom: {
+            'user-agent': 'aws-codedeploy-hook-BeforeAllowTraffic/123',
           },
         },
-      ),
+      } as unknown as Context),
     ).toBe(true));
 
   it.each(['Mozilla/5.0', null, undefined, true])(
@@ -64,7 +58,7 @@ describe('isLambdaHook', () => {
             clientContext: {
               Custom: { 'user-agent': 'Mozilla/5.0' },
             },
-          },
+          } as unknown as Context,
         ),
       ).toBe(false),
   );
@@ -76,6 +70,6 @@ describe('isLambdaHook', () => {
     ${'client context'}    | ${{ clientContext: {} }}
     ${'anything'}          | ${{}}
   `('ignores a context without $description', ({ context }) =>
-    expect(isLambdaHook({}, context)).toBe(false),
+    expect(isLambdaHook({}, context as unknown as Context)).toBe(false),
   );
 });
