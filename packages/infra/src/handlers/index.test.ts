@@ -96,6 +96,7 @@ describe('handler', () => {
         env: 'test',
         level: 30,
         msg: 'Reported lifecycle event status',
+        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -170,6 +171,7 @@ describe('handler', () => {
         },
         level: 50,
         msg: 'Failed to process lifecycle event',
+        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -194,6 +196,7 @@ describe('handler', () => {
         env: 'test',
         level: 30,
         msg: 'Reported lifecycle event status',
+        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -258,6 +261,7 @@ describe('handler', () => {
         error: expect.objectContaining({ message: err.message }),
         level: 50,
         msg: 'Failed to report lifecycle event status',
+        name: 'aws-codedeploy-hooks',
         status: LifecycleEventStatus.SUCCEEDED,
         revision: {
           string: { content: 'stuff' },
@@ -325,6 +329,7 @@ describe('handler', () => {
         error: expect.objectContaining({ message: processError.message }),
         level: 50,
         msg: 'Failed to process lifecycle event',
+        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -350,6 +355,7 @@ describe('handler', () => {
         error: expect.objectContaining({ message: reportError.message }),
         level: 50,
         msg: 'Failed to report lifecycle event status',
+        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },

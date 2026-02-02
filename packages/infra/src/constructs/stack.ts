@@ -32,6 +32,7 @@ export class HookStack extends Stack {
         VERSIONS_TO_KEEP: (props.prune?.versionsToKeep ?? 3).toString(),
       },
       [
+        'lambda:GetFunction',
         'lambda:ListAliases',
         'lambda:ListVersionsByFunction',
         'lambda:DeleteFunction',
