@@ -7,6 +7,7 @@ import {
   LifecycleEventStatus,
   PutLifecycleEventHookExecutionStatusCommand,
 } from '@aws-sdk/client-codedeploy';
+import { GetFunctionCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
 
 import { stdoutMock } from './framework/logging.js';
@@ -15,6 +16,7 @@ import { getDeploymentInfo, process } from './process/process.js';
 import { handler } from './index.js';
 
 const codeDeploy = mockClient(CodeDeployClient);
+const lambda = mockClient(LambdaClient);
 
 const getDeploymentInfoMock = jest.mocked(getDeploymentInfo);
 const processMock = jest.mocked(process);
@@ -28,6 +30,7 @@ beforeEach(() => {
 
 afterEach(() => {
   codeDeploy.reset();
+  lambda.reset();
   getDeploymentInfoMock.mockReset();
   processMock.mockReset();
   stdoutMock.clear();
@@ -48,6 +51,15 @@ describe('handler', () => {
   };
 
   it('reports a success back to CodeDeploy', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-function',
+      },
+      Tags: {
+        service: 'aws-codedeploy-hooks',
+      },
+    });
+
     processMock.mockResolvedValue(undefined);
 
     codeDeploy.on(PutLifecycleEventHookExecutionStatusCommand).resolves({});
@@ -96,6 +108,15 @@ describe('handler', () => {
   });
 
   it('reports a failure back to CodeDeploy', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-function',
+      },
+      Tags: {
+        service: 'aws-codedeploy-hooks',
+      },
+    });
+
     const err = Object.assign(
       new Error('Lambda function responded with error: Unhandled'),
       {
@@ -185,6 +206,15 @@ describe('handler', () => {
   });
 
   it('throws on failure to report a success', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-function',
+      },
+      Tags: {
+        service: 'aws-codedeploy-hooks',
+      },
+    });
+
     const err = new Error('mock-error');
 
     processMock.mockResolvedValue(undefined);
@@ -240,6 +270,15 @@ describe('handler', () => {
   });
 
   it('throws on failure to report a failure', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-function',
+      },
+      Tags: {
+        service: 'aws-codedeploy-hooks',
+      },
+    });
+
     const processError = new Error('mock-process-error');
     const reportError = new Error('mock-report-error');
 

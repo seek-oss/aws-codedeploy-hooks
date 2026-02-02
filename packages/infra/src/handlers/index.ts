@@ -1,8 +1,11 @@
 import { LifecycleEventStatus } from '@aws-sdk/client-codedeploy';
+import { GetFunctionCommand } from '@aws-sdk/client-lambda';
 import type { Context } from 'aws-lambda';
 
+import { config } from './config.js';
+import { lambdaClient } from './framework/aws.js';
 import { storage, withTimeout } from './framework/context.js';
-import { logger } from './framework/logging.js';
+import { getLogger } from './framework/logging.js';
 import {
   type DeploymentInfo,
   getDeploymentInfo,
@@ -18,6 +21,13 @@ export const handler = (
   storage.run(
     { requestId: context.awsRequestId, deploymentId: event.DeploymentId },
     async () => {
+      const metadata = await lambdaClient.send(
+        new GetFunctionCommand({
+          FunctionName: config.functionName,
+        }),
+      );
+      const logger = getLogger(metadata);
+
       // Reserve a generous 30 seconds to report the status back to CodeDeploy.
       const timeoutMs = context.getRemainingTimeInMillis() - 30_000;
 

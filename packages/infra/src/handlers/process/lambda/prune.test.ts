@@ -2,6 +2,7 @@ import 'aws-sdk-client-mock-jest';
 
 import {
   DeleteFunctionCommand,
+  GetFunctionCommand,
   LambdaClient,
   ListAliasesCommand,
   ListVersionsByFunctionCommand,
@@ -24,6 +25,15 @@ afterEach(() => lambda.reset());
 
 describe('prune', () => {
   it('deletes versions from one function', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-name',
+      },
+      Tags: {
+        service: 'test-service',
+      },
+    });
+
     lambda
       .on(ListVersionsByFunctionCommand, { FunctionName: 'mock-name' })
       .resolves({
@@ -52,6 +62,15 @@ describe('prune', () => {
   });
 
   it('deletes versions from multiple functions', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-name',
+      },
+      Tags: {
+        service: 'test-service',
+      },
+    });
+
     lambda
       .on(ListVersionsByFunctionCommand, { FunctionName: 'mock-name-1' })
       .resolves({
@@ -100,6 +119,15 @@ describe('prune', () => {
   });
 
   it('paginates', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-name',
+      },
+      Tags: {
+        service: 'test-service',
+      },
+    });
+
     lambda
       .on(ListVersionsByFunctionCommand, {
         FunctionName: 'mock-name',
@@ -150,6 +178,15 @@ describe('prune', () => {
   });
 
   it('skips if nothing to delete', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-name',
+      },
+      Tags: {
+        service: 'test-service',
+      },
+    });
+
     lambda.on(ListVersionsByFunctionCommand).resolves({
       Versions: ['1', '2', '3', '4', '$LATEST'].map((Version) => ({
         Version,
@@ -167,6 +204,15 @@ describe('prune', () => {
   });
 
   it('handles empty responses', async () => {
+    lambda.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-name',
+      },
+      Tags: {
+        service: 'test-service',
+      },
+    });
+
     lambda.on(ListVersionsByFunctionCommand).resolves({});
     lambda
       .on(ListAliasesCommand)
