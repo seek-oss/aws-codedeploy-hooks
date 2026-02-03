@@ -31,7 +31,7 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Variables": {
             "NODE_ENV": "production",
             "NODE_OPTIONS": "--enable-source-maps",
-            "VERSION": "4.0.0",
+            "VERSION": "4.0.1",
             "VERSIONS_TO_KEEP": "3",
           },
         },
@@ -167,7 +167,7 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Variables": {
             "NODE_ENV": "production",
             "NODE_OPTIONS": "--enable-source-maps",
-            "VERSION": "4.0.0",
+            "VERSION": "4.0.1",
           },
         },
         "FunctionName": "aws-codedeploy-hook-BeforeAllowTraffic",
