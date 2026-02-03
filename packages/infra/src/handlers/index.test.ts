@@ -95,8 +95,10 @@ describe('handler', () => {
         },
         env: 'test',
         level: 30,
+        logger: {
+          name: 'aws-codedeploy-hook-LifecycleEvent',
+        },
         msg: 'Reported lifecycle event status',
-        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -170,8 +172,10 @@ describe('handler', () => {
           type: 'Error',
         },
         level: 50,
+        logger: {
+          name: 'aws-codedeploy-hook-LifecycleEvent',
+        },
         msg: 'Failed to process lifecycle event',
-        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -195,8 +199,10 @@ describe('handler', () => {
         },
         env: 'test',
         level: 30,
+        logger: {
+          name: 'aws-codedeploy-hook-LifecycleEvent',
+        },
         msg: 'Reported lifecycle event status',
-        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -260,8 +266,10 @@ describe('handler', () => {
         env: 'test',
         error: expect.objectContaining({ message: err.message }),
         level: 50,
+        logger: {
+          name: 'aws-codedeploy-hook-LifecycleEvent',
+        },
         msg: 'Failed to report lifecycle event status',
-        name: 'aws-codedeploy-hooks',
         status: LifecycleEventStatus.SUCCEEDED,
         revision: {
           string: { content: 'stuff' },
@@ -328,8 +336,10 @@ describe('handler', () => {
         env: 'test',
         error: expect.objectContaining({ message: processError.message }),
         level: 50,
+        logger: {
+          name: 'aws-codedeploy-hook-LifecycleEvent',
+        },
         msg: 'Failed to process lifecycle event',
-        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },
@@ -354,8 +364,10 @@ describe('handler', () => {
         env: 'test',
         error: expect.objectContaining({ message: reportError.message }),
         level: 50,
+        logger: {
+          name: 'aws-codedeploy-hook-LifecycleEvent',
+        },
         msg: 'Failed to report lifecycle event status',
-        name: 'aws-codedeploy-hooks',
         revision: {
           string: { content: 'stuff' },
         },

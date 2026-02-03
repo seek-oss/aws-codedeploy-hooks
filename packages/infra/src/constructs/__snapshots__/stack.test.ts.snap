@@ -31,6 +31,7 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Variables": {
             "NODE_ENV": "production",
             "NODE_OPTIONS": "--enable-source-maps",
+            "VERSION": "3.1.0",
             "VERSIONS_TO_KEEP": "3",
           },
         },
@@ -166,6 +167,7 @@ exports[`returns expected CloudFormation stack 1`] = `
           "Variables": {
             "NODE_ENV": "production",
             "NODE_OPTIONS": "--enable-source-maps",
+            "VERSION": "3.1.0",
           },
         },
         "FunctionName": "aws-codedeploy-hook-BeforeAllowTraffic",
@@ -221,6 +223,7 @@ exports[`returns expected CloudFormation stack 1`] = `
                 "codedeploy:GetApplicationRevision",
                 "codedeploy:GetDeployment",
                 "codedeploy:PutLifecycleEventHookExecutionStatus",
+                "lambda:GetFunction",
                 "lambda:InvokeFunction",
               ],
               "Effect": "Allow",
@@ -231,6 +234,7 @@ exports[`returns expected CloudFormation stack 1`] = `
                 "codedeploy:GetApplicationRevision",
                 "codedeploy:GetDeployment",
                 "codedeploy:PutLifecycleEventHookExecutionStatus",
+                "lambda:GetFunction",
                 "lambda:InvokeFunction",
               ],
               "Condition": {
@@ -246,6 +250,7 @@ exports[`returns expected CloudFormation stack 1`] = `
                 "codedeploy:GetApplicationRevision",
                 "codedeploy:GetDeployment",
                 "codedeploy:PutLifecycleEventHookExecutionStatus",
+                "lambda:GetFunction",
                 "lambda:InvokeFunction",
               ],
               "Condition": {
