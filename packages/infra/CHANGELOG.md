@@ -1,5 +1,12 @@
 # @seek/aws-codedeploy-infra
 
+## 4.0.1
+
+### Patch Changes
+
+- Fix BeforeAllowTraffic permissions ([#213](https://github.com/seek-oss/aws-codedeploy-hooks/pull/213))
+  Add [standard attributes](https://docs.datadoghq.com/standard-attributes/?search=logger) to logs
+
 ## 4.0.0
 
 ### Major Changes
