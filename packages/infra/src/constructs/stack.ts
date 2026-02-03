@@ -24,7 +24,10 @@ export class HookStack extends Stack {
       ...props,
     });
 
-    this.addHook('BeforeAllowTraffic', {}, ['lambda:InvokeFunction']);
+    this.addHook('BeforeAllowTraffic', {}, [
+      'lambda:GetFunction',
+      'lambda:InvokeFunction',
+    ]);
 
     this.addHook(
       'AfterAllowTraffic',
