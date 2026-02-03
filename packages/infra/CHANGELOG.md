@@ -1,5 +1,28 @@
 # @seek/aws-codedeploy-infra
 
+## 4.0.0
+
+### Major Changes
+
+- Require Node.js 22.14.0+ ([#209](https://github.com/seek-oss/aws-codedeploy-hooks/pull/209))
+
+### Minor Changes
+
+- **HookStack:** Upgrade hooks to Node.js 24 ([#209](https://github.com/seek-oss/aws-codedeploy-hooks/pull/209))
+
+- Enhanced logging and added Datadog integration: ([#200](https://github.com/seek-oss/aws-codedeploy-hooks/pull/200))
+  - Logger now dynamically resolves `service` field from Lambda function metadata, prioritizing `Tags.service`, then `DD_SERVICE` environment variable, falling back to the function name or a default of `aws-codedeploy-hooks`
+  - Set [Datadog log tier](https://github.com/seek-oss/logger/blob/master/docs/eeeoh.md#datadog-log-tiers) to `tin`
+  - Set [logger.name](https://docs.datadoghq.com/standard-attributes/?search=logger) to `aws-codedeploy-hooks`
+
+### Patch Changes
+
+- **deps:** @seek/logger ^11.0.0 ([#158](https://github.com/seek-oss/aws-codedeploy-hooks/pull/158))
+
+- Include `ddsource` in hook logs ([#166](https://github.com/seek-oss/aws-codedeploy-hooks/pull/166))
+
+- **deps:** skuba-dive ^3.0.0 ([#197](https://github.com/seek-oss/aws-codedeploy-hooks/pull/197))
+
 ## 3.1.0
 
 ### Minor Changes
