@@ -1,5 +1,15 @@
 # @seek/aws-codedeploy-hooks
 
+## 3.0.0
+
+### Major Changes
+
+- Require Node.js 22.14.0+ ([#209](https://github.com/seek-oss/aws-codedeploy-hooks/pull/209))
+
+### Patch Changes
+
+- Allow for passing lowercase `custom` field in `clientContext` ([#207](https://github.com/seek-oss/aws-codedeploy-hooks/pull/207))
+
 ## 2.0.0
 
 ### Major Changes
