@@ -1,6 +1,8 @@
 import { Stack, type StackProps, aws_iam, aws_lambda } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 
+import { version } from '../version.js';
+
 import { createLambdaHookProps } from './lambda.js';
 
 type HookName = 'BeforeAllowTraffic' | 'AfterAllowTraffic';
@@ -24,11 +26,18 @@ export class HookStack extends Stack {
       ...props,
     });
 
-    this.addHook('BeforeAllowTraffic', {}, ['lambda:InvokeFunction']);
+    this.addHook(
+      'BeforeAllowTraffic',
+      {
+        VERSION: version,
+      },
+      ['lambda:GetFunction', 'lambda:InvokeFunction'],
+    );
 
     this.addHook(
       'AfterAllowTraffic',
       {
+        VERSION: version,
         VERSIONS_TO_KEEP: (props.prune?.versionsToKeep ?? 3).toString(),
       },
       [

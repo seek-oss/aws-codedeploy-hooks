@@ -15,7 +15,6 @@ export const getLogger = (lambdaFunction: GetFunctionCommandOutput) =>
   createLogger(
     {
       eeeoh: { datadog: 'tin' },
-      name: 'aws-codedeploy-hooks',
       base: {
         service:
           lambdaFunction.Tags?.service ??
@@ -24,6 +23,10 @@ export const getLogger = (lambdaFunction: GetFunctionCommandOutput) =>
           'aws-codedeploy-hooks',
         env: config.environment,
         version: config.userAgent,
+        logger: {
+          name: process.env.AWS_LAMBDA_FUNCTION_NAME,
+          version: process.env.VERSION,
+        },
       },
 
       mixin: () => {
