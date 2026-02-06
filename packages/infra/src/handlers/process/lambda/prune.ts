@@ -9,8 +9,8 @@ import {
 import { Env } from 'skuba-dive';
 
 import { lambdaClient } from '../../framework/aws.js';
-import { getContext } from '../../framework/context.js';
-import { getLogger } from '../../framework/logging.js';
+import { getContext, updateTargetLambda } from '../../framework/context.js';
+import { logger } from '../../framework/logging.js';
 
 import type { LambdaFunction } from './types.js';
 
@@ -36,7 +36,12 @@ export const pruneFunction = async ({ name }: Args): Promise<void> => {
     lambdaClient.send(getFunctionCommand),
   ]);
 
-  const logger = getLogger(metadata);
+  updateTargetLambda({
+    service:
+      metadata.Tags?.service ??
+      metadata.Configuration?.Environment?.Variables?.DD_SERVICE ??
+      metadata.Configuration?.FunctionName,
+  });
 
   const aliasMap = new Map(
     aliases.flatMap((alias) =>
