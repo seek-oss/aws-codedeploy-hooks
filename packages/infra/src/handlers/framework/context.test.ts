@@ -1,7 +1,13 @@
 import { setTimeout } from 'timers/promises';
 import { inspect } from 'util';
 
-import { getAbortSignal, getContext, storage, withTimeout } from './context.js';
+import {
+  getAbortSignal,
+  getContext,
+  storage,
+  updateTargetLambdaMetadata,
+  withTimeout,
+} from './context.js';
 
 const context = {
   abortSignal: new AbortController().signal,
@@ -101,4 +107,84 @@ describe('withTimeout', () => {
     },
     TEST_TIMEOUT_MS,
   );
+});
+
+describe('updateTargetLambdaMetadata', () => {
+  it('updates the targetLambdaService in context based on Lambda metadata', () => {
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {
+            DD_SERVICE: 'my-service',
+          },
+        },
+      },
+      Tags: {
+        service: 'my-tagged-service',
+      },
+      $metadata: {},
+    };
+
+    storage.run({}, () => {
+      updateTargetLambdaMetadata(lambdaMetaData);
+
+      expect(getContext().targetLambdaService).toBe('my-tagged-service');
+    });
+  });
+
+  it('falls back to DD_SERVICE env var when service tag is not present', () => {
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {
+            DD_SERVICE: 'my-service',
+          },
+        },
+      },
+      Tags: {},
+      $metadata: {},
+    };
+
+    storage.run({}, () => {
+      updateTargetLambdaMetadata(lambdaMetaData);
+
+      expect(getContext().targetLambdaService).toBe('my-service');
+    });
+  });
+
+  it('falls back to function name when neither service tag nor DD_SERVICE env var are present', () => {
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {},
+        },
+      },
+      Tags: {},
+      $metadata: {},
+    };
+
+    storage.run({}, () => {
+      updateTargetLambdaMetadata(lambdaMetaData);
+
+      expect(getContext().targetLambdaService).toBe('my-function');
+    });
+  });
+
+  it('does not throw if context is not available', () => {
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {},
+        },
+      },
+      Tags: {},
+      $metadata: {},
+    };
+
+    expect(() => updateTargetLambdaMetadata(lambdaMetaData)).not.toThrow();
+  });
 });

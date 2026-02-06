@@ -2,10 +2,14 @@ import {
   type DeploymentInfo,
   GetApplicationRevisionCommand,
 } from '@aws-sdk/client-codedeploy';
+import { GetFunctionCommand } from '@aws-sdk/client-lambda';
 
 import { config } from '../../config.js';
-import { codeDeployClient } from '../../framework/aws.js';
-import { getContext } from '../../framework/context.js';
+import { codeDeployClient, lambdaClient } from '../../framework/aws.js';
+import {
+  getContext,
+  updateTargetLambdaMetadata,
+} from '../../framework/context.js';
 
 import { prune } from './prune.js';
 import { type LambdaAppSpec, lambdaAppSpec } from './schema.js';
@@ -48,6 +52,19 @@ export const lambda = async ({
       version: resource.Properties.TargetVersion,
     })),
   );
+
+  const firstFn = fns[0];
+  /*  istanbul ignore next - There is a minimum of one Lambda function resource which is validated by the LambdaAppSpec schema */
+  if (firstFn) {
+    const targetMetadata = await lambdaClient.send(
+      new GetFunctionCommand({
+        FunctionName: firstFn.name,
+      }),
+      { abortSignal },
+    );
+
+    updateTargetLambdaMetadata(targetMetadata);
+  }
 
   switch (inferLifecycleEvent(appSpec.Hooks)) {
     case 'BeforeAllowTraffic':

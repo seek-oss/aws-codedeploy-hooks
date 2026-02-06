@@ -1,9 +1,12 @@
 import { AsyncLocalStorage } from 'async_hooks';
 
+import type { GetFunctionCommandOutput } from '@aws-sdk/client-lambda';
+
 type Context = {
   abortSignal?: AbortSignal;
   requestId?: string;
   deploymentId?: string;
+  targetLambdaService?: string;
 };
 
 export const storage = new AsyncLocalStorage<Context>();
@@ -11,6 +14,18 @@ export const storage = new AsyncLocalStorage<Context>();
 export const getContext = (): Context => storage.getStore() ?? {};
 
 export const getAbortSignal = () => storage.getStore()?.abortSignal;
+
+export const updateTargetLambdaMetadata = (
+  targetLambdaMetadata: GetFunctionCommandOutput,
+): void => {
+  const store = storage.getStore();
+  if (store) {
+    store.targetLambdaService =
+      targetLambdaMetadata.Tags?.service ??
+      targetLambdaMetadata.Configuration?.Environment?.Variables?.DD_SERVICE ??
+      targetLambdaMetadata.Configuration?.FunctionName;
+  }
+};
 
 export const withTimeout = async <T>(
   task: () => Promise<T>,
