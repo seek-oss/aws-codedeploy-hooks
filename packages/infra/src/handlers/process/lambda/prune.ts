@@ -2,17 +2,13 @@ import {
   type AliasConfiguration,
   DeleteFunctionCommand,
   type FunctionConfiguration,
-  GetFunctionCommand,
   ListAliasesCommand,
   ListVersionsByFunctionCommand,
 } from '@aws-sdk/client-lambda';
 import { Env } from 'skuba-dive';
 
 import { lambdaClient } from '../../framework/aws.js';
-import {
-  getContext,
-  updateTargetLambdaMetadata,
-} from '../../framework/context.js';
+import { getContext } from '../../framework/context.js';
 import { logger } from '../../framework/logging.js';
 
 import type { LambdaFunction } from './types.js';
@@ -29,17 +25,10 @@ export const pruneFunction = async ({ name }: Args): Promise<void> => {
   const versionsToKeep = Env.nonNegativeInteger('VERSIONS_TO_KEEP');
   const { abortSignal } = getContext();
 
-  const getFunctionCommand = new GetFunctionCommand({
-    FunctionName: name,
-  });
-
-  const [aliases, versions, targetLambdaMetadata] = await Promise.all([
+  const [aliases, versions] = await Promise.all([
     listAliases(name, abortSignal),
     listLambdaVersions(name, abortSignal),
-    lambdaClient.send(getFunctionCommand),
   ]);
-
-  updateTargetLambdaMetadata(targetLambdaMetadata);
 
   const aliasMap = new Map(
     aliases.flatMap((alias) =>

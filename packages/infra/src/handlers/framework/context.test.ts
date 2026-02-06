@@ -172,4 +172,19 @@ describe('updateTargetLambdaMetadata', () => {
       expect(getContext().targetLambdaService).toBe('my-function');
     });
   });
+
+  it('does not throw if context is not available', () => {
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {},
+        },
+      },
+      Tags: {},
+      $metadata: {},
+    };
+
+    expect(() => updateTargetLambdaMetadata(lambdaMetaData)).not.toThrow();
+  });
 });
