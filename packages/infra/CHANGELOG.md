@@ -1,5 +1,13 @@
 # @seek/aws-codedeploy-infra
 
+## 4.0.2
+
+### Patch Changes
+
+- Fix a bug in the `BeforeAllowTraffic` hook that was causing it to retrieve metadata from itself instead of the target Lambda function being deployed. ([#215](https://github.com/seek-oss/aws-codedeploy-hooks/pull/215))
+
+  The hook now correctly fetches metadata from the target function, which allows the deployment to proceed and populates the service field in hook logs with the target function's name.
+
 ## 4.0.1
 
 ### Patch Changes
