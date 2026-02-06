@@ -30,8 +30,8 @@ export const logger = createLogger(
         awsRequestId: context.requestId,
         deploymentId: context.deploymentId,
 
-        ...(context.targetLambda?.service
-          ? { service: context.targetLambda.service }
+        ...(context.targetLambdaService
+          ? { service: context.targetLambdaService }
           : {}),
       };
     },

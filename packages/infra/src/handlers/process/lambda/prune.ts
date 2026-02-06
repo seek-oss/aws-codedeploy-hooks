@@ -30,18 +30,13 @@ export const pruneFunction = async ({ name }: Args): Promise<void> => {
     FunctionName: name,
   });
 
-  const [aliases, versions, metadata] = await Promise.all([
+  const [aliases, versions, targetMetadata] = await Promise.all([
     listAliases(name, abortSignal),
     listLambdaVersions(name, abortSignal),
     lambdaClient.send(getFunctionCommand),
   ]);
 
-  updateTargetLambda({
-    service:
-      metadata.Tags?.service ??
-      metadata.Configuration?.Environment?.Variables?.DD_SERVICE ??
-      metadata.Configuration?.FunctionName,
-  });
+  updateTargetLambda(targetMetadata);
 
   const aliasMap = new Map(
     aliases.flatMap((alias) =>

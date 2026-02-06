@@ -1,5 +1,6 @@
 jest.mock('./smokeTest');
 jest.mock('./prune');
+jest.mock('../../framework/context');
 
 import 'aws-sdk-client-mock-jest';
 
@@ -7,7 +8,10 @@ import {
   CodeDeployClient,
   GetApplicationRevisionCommand,
 } from '@aws-sdk/client-codedeploy';
+import { GetFunctionCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
+
+import { getContext, updateTargetLambda } from '../../framework/context.js';
 
 import { type Options, lambda } from './lambda.js';
 import { prune } from './prune.js';
@@ -15,14 +19,24 @@ import type { LambdaAppSpec } from './schema.js';
 import { smokeTest } from './smokeTest.js';
 
 const codeDeploy = mockClient(CodeDeployClient);
+const lambdaClientMock = mockClient(LambdaClient);
 
 const smokeTestMock = jest.mocked(smokeTest);
 const pruneMock = jest.mocked(prune);
+const updateTargetLambdaMock = jest.mocked(updateTargetLambda);
+const getContextMock = jest.mocked(getContext);
+
+beforeEach(() => {
+  getContextMock.mockReturnValue({});
+});
 
 afterEach(() => {
   codeDeploy.reset();
+  lambdaClientMock.reset();
   smokeTestMock.mockReset();
   pruneMock.mockReset();
+  updateTargetLambdaMock.mockReset();
+  getContextMock.mockReset();
 });
 
 describe('lambda', () => {
@@ -62,6 +76,12 @@ describe('lambda', () => {
         string: {
           content: JSON.stringify(appSpec),
         },
+      },
+    });
+
+    lambdaClientMock.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-lambda-name',
       },
     });
 
@@ -150,6 +170,12 @@ describe('lambda', () => {
       },
     });
 
+    lambdaClientMock.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-lambda-name',
+      },
+    });
+
     await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(
       `"You cannot configure the same Lambda function for BeforeAllowTraffic and AfterAllowTraffic"`,
     );
@@ -169,6 +195,12 @@ describe('lambda', () => {
       },
     });
 
+    lambdaClientMock.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-lambda-name',
+      },
+    });
+
     await expect(lambda(opts)).resolves.toBeUndefined();
 
     expect(pruneMock).toHaveBeenCalledTimes(1);
@@ -183,6 +215,12 @@ describe('lambda', () => {
             Hooks: [{ BeforeAllowTraffic: 'another-hook' }],
           }),
         },
+      },
+    });
+
+    lambdaClientMock.on(GetFunctionCommand).resolves({
+      Configuration: {
+        FunctionName: 'mock-lambda-name',
       },
     });
 

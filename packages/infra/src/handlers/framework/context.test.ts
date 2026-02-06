@@ -102,3 +102,71 @@ describe('withTimeout', () => {
     TEST_TIMEOUT_MS,
   );
 });
+
+describe('updateTargetLambda', () => {
+  it('updates the targetLambdaService in context based on Lambda metadata', () => {
+    const { updateTargetLambda } = jest.requireActual('./context.js');
+
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {
+            DD_SERVICE: 'my-service',
+          },
+        },
+      },
+      Tags: {
+        service: 'my-tagged-service',
+      },
+    };
+
+    storage.run({}, () => {
+      updateTargetLambda(lambdaMetaData);
+
+      expect(getContext().targetLambdaService).toBe('my-tagged-service');
+    });
+  });
+
+  it('falls back to DD_SERVICE env var when service tag is not present', () => {
+    const { updateTargetLambda } = jest.requireActual('./context.js');
+
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {
+            DD_SERVICE: 'my-service',
+          },
+        },
+      },
+      Tags: {},
+    };
+
+    storage.run({}, () => {
+      updateTargetLambda(lambdaMetaData);
+
+      expect(getContext().targetLambdaService).toBe('my-service');
+    });
+  });
+
+  it('falls back to function name when neither service tag nor DD_SERVICE env var are present', () => {
+    const { updateTargetLambda } = jest.requireActual('./context.js');
+
+    const lambdaMetaData = {
+      Configuration: {
+        FunctionName: 'my-function',
+        Environment: {
+          Variables: {},
+        },
+      },
+      Tags: {},
+    };
+
+    storage.run({}, () => {
+      updateTargetLambda(lambdaMetaData);
+
+      expect(getContext().targetLambdaService).toBe('my-function');
+    });
+  });
+});

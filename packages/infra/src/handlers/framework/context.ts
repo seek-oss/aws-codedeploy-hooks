@@ -1,12 +1,12 @@
 import { AsyncLocalStorage } from 'async_hooks';
 
+import type { GetFunctionCommandOutput } from '@aws-sdk/client-lambda';
+
 type Context = {
   abortSignal?: AbortSignal;
   requestId?: string;
   deploymentId?: string;
-  targetLambda?: {
-    service?: string;
-  };
+  targetLambdaService?: string;
 };
 
 export const storage = new AsyncLocalStorage<Context>();
@@ -16,11 +16,14 @@ export const getContext = (): Context => storage.getStore() ?? {};
 export const getAbortSignal = () => storage.getStore()?.abortSignal;
 
 export const updateTargetLambda = (
-  targetLambda: NonNullable<Context['targetLambda']>,
+  targetLambdaMetaData: GetFunctionCommandOutput,
 ): void => {
   const store = storage.getStore();
   if (store) {
-    store.targetLambda = targetLambda;
+    store.targetLambdaService =
+      targetLambdaMetaData.Tags?.service ??
+      targetLambdaMetaData.Configuration?.Environment?.Variables?.DD_SERVICE ??
+      targetLambdaMetaData.Configuration?.FunctionName;
   }
 };
 

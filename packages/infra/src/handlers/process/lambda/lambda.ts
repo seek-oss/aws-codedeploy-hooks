@@ -51,6 +51,7 @@ export const lambda = async ({
   );
 
   const firstFn = fns[0];
+  /*  istanbul ignore next - There is a minimum of one Lambda function resource which is validated by the LambdaAppSpec schema */
   if (firstFn) {
     const targetMetadata = await lambdaClient.send(
       new GetFunctionCommand({
@@ -59,12 +60,7 @@ export const lambda = async ({
       { abortSignal },
     );
 
-    updateTargetLambda({
-      service:
-        targetMetadata.Tags?.service ??
-        targetMetadata.Configuration?.Environment?.Variables?.DD_SERVICE ??
-        targetMetadata.Configuration?.FunctionName,
-    });
+    updateTargetLambda(targetMetadata);
   }
 
   switch (inferLifecycleEvent(appSpec.Hooks)) {
