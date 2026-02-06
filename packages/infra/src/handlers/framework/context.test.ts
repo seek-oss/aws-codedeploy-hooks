@@ -109,7 +109,7 @@ describe('withTimeout', () => {
   );
 });
 
-describe('updateTargetLambdaMetadataMetadata', () => {
+describe('updateTargetLambdaMetadata', () => {
   it('updates the targetLambdaService in context based on Lambda metadata', () => {
     const lambdaMetaData = {
       Configuration: {
