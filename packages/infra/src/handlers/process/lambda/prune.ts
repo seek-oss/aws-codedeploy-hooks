@@ -9,7 +9,10 @@ import {
 import { Env } from 'skuba-dive';
 
 import { lambdaClient } from '../../framework/aws.js';
-import { getContext, updateTargetLambda } from '../../framework/context.js';
+import {
+  getContext,
+  updateTargetLambdaMetadata,
+} from '../../framework/context.js';
 import { logger } from '../../framework/logging.js';
 
 import type { LambdaFunction } from './types.js';
@@ -30,13 +33,13 @@ export const pruneFunction = async ({ name }: Args): Promise<void> => {
     FunctionName: name,
   });
 
-  const [aliases, versions, targetMetadata] = await Promise.all([
+  const [aliases, versions, targetLambdaMetadata] = await Promise.all([
     listAliases(name, abortSignal),
     listLambdaVersions(name, abortSignal),
     lambdaClient.send(getFunctionCommand),
   ]);
 
-  updateTargetLambda(targetMetadata);
+  updateTargetLambdaMetadata(targetLambdaMetadata);
 
   const aliasMap = new Map(
     aliases.flatMap((alias) =>

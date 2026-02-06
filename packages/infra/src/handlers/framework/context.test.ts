@@ -1,7 +1,13 @@
 import { setTimeout } from 'timers/promises';
 import { inspect } from 'util';
 
-import { getAbortSignal, getContext, storage, withTimeout } from './context.js';
+import {
+  getAbortSignal,
+  getContext,
+  storage,
+  updateTargetLambdaMetadata,
+  withTimeout,
+} from './context.js';
 
 const context = {
   abortSignal: new AbortController().signal,
@@ -103,10 +109,8 @@ describe('withTimeout', () => {
   );
 });
 
-describe('updateTargetLambda', () => {
+describe('updateTargetLambdaMetadataMetadata', () => {
   it('updates the targetLambdaService in context based on Lambda metadata', () => {
-    const { updateTargetLambda } = jest.requireActual('./context.js');
-
     const lambdaMetaData = {
       Configuration: {
         FunctionName: 'my-function',
@@ -119,18 +123,17 @@ describe('updateTargetLambda', () => {
       Tags: {
         service: 'my-tagged-service',
       },
+      $metadata: {},
     };
 
     storage.run({}, () => {
-      updateTargetLambda(lambdaMetaData);
+      updateTargetLambdaMetadata(lambdaMetaData);
 
       expect(getContext().targetLambdaService).toBe('my-tagged-service');
     });
   });
 
   it('falls back to DD_SERVICE env var when service tag is not present', () => {
-    const { updateTargetLambda } = jest.requireActual('./context.js');
-
     const lambdaMetaData = {
       Configuration: {
         FunctionName: 'my-function',
@@ -141,18 +144,17 @@ describe('updateTargetLambda', () => {
         },
       },
       Tags: {},
+      $metadata: {},
     };
 
     storage.run({}, () => {
-      updateTargetLambda(lambdaMetaData);
+      updateTargetLambdaMetadata(lambdaMetaData);
 
       expect(getContext().targetLambdaService).toBe('my-service');
     });
   });
 
   it('falls back to function name when neither service tag nor DD_SERVICE env var are present', () => {
-    const { updateTargetLambda } = jest.requireActual('./context.js');
-
     const lambdaMetaData = {
       Configuration: {
         FunctionName: 'my-function',
@@ -161,10 +163,11 @@ describe('updateTargetLambda', () => {
         },
       },
       Tags: {},
+      $metadata: {},
     };
 
     storage.run({}, () => {
-      updateTargetLambda(lambdaMetaData);
+      updateTargetLambdaMetadata(lambdaMetaData);
 
       expect(getContext().targetLambdaService).toBe('my-function');
     });

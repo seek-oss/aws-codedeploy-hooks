@@ -15,15 +15,15 @@ export const getContext = (): Context => storage.getStore() ?? {};
 
 export const getAbortSignal = () => storage.getStore()?.abortSignal;
 
-export const updateTargetLambda = (
-  targetLambdaMetaData: GetFunctionCommandOutput,
+export const updateTargetLambdaMetadata = (
+  targetLambdaMetadata: GetFunctionCommandOutput,
 ): void => {
   const store = storage.getStore();
   if (store) {
     store.targetLambdaService =
-      targetLambdaMetaData.Tags?.service ??
-      targetLambdaMetaData.Configuration?.Environment?.Variables?.DD_SERVICE ??
-      targetLambdaMetaData.Configuration?.FunctionName;
+      targetLambdaMetadata.Tags?.service ??
+      targetLambdaMetadata.Configuration?.Environment?.Variables?.DD_SERVICE ??
+      targetLambdaMetadata.Configuration?.FunctionName;
   }
 };
 

@@ -11,7 +11,10 @@ import {
 import { GetFunctionCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
 
-import { getContext, updateTargetLambda } from '../../framework/context.js';
+import {
+  getContext,
+  updateTargetLambdaMetadata,
+} from '../../framework/context.js';
 
 import { type Options, lambda } from './lambda.js';
 import { prune } from './prune.js';
@@ -23,7 +26,7 @@ const lambdaClientMock = mockClient(LambdaClient);
 
 const smokeTestMock = jest.mocked(smokeTest);
 const pruneMock = jest.mocked(prune);
-const updateTargetLambdaMock = jest.mocked(updateTargetLambda);
+const updateTargetLambdaMetadataMock = jest.mocked(updateTargetLambdaMetadata);
 const getContextMock = jest.mocked(getContext);
 
 beforeEach(() => {
@@ -35,7 +38,7 @@ afterEach(() => {
   lambdaClientMock.reset();
   smokeTestMock.mockReset();
   pruneMock.mockReset();
-  updateTargetLambdaMock.mockReset();
+  updateTargetLambdaMetadataMock.mockReset();
   getContextMock.mockReset();
 });
 

@@ -6,7 +6,10 @@ import { GetFunctionCommand } from '@aws-sdk/client-lambda';
 
 import { config } from '../../config.js';
 import { codeDeployClient, lambdaClient } from '../../framework/aws.js';
-import { getContext, updateTargetLambda } from '../../framework/context.js';
+import {
+  getContext,
+  updateTargetLambdaMetadata,
+} from '../../framework/context.js';
 
 import { prune } from './prune.js';
 import { type LambdaAppSpec, lambdaAppSpec } from './schema.js';
@@ -60,7 +63,7 @@ export const lambda = async ({
       { abortSignal },
     );
 
-    updateTargetLambda(targetMetadata);
+    updateTargetLambdaMetadata(targetMetadata);
   }
 
   switch (inferLifecycleEvent(appSpec.Hooks)) {
