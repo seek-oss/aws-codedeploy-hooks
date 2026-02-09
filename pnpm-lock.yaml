@@ -91,8 +91,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0(aws-sdk-client-mock@4.1.0)
       isomorphic-git:
-        specifier: 1.36.1
-        version: 1.36.1
+        specifier: 1.36.3
+        version: 1.36.3
       pino-pretty:
         specifier: 13.1.3
         version: 13.1.3
@@ -2928,6 +2928,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@13.0.0:
@@ -2936,7 +2937,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-dirs@3.0.1:
     resolution: {integrity: sha512-NBcGGFbBA9s1VzD41QXDG+3++t9Mn5t1FpLdhESY6oKY4gYTFpX4wO3sqGUa0Srjtbfj3szX0RnemmrVRUdULA==}
@@ -3320,8 +3321,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  isomorphic-git@1.36.1:
-    resolution: {integrity: sha512-fC8SRT8MwoaXDK8G4z5biPEbqf2WyEJUb2MJ2ftSd39/UIlsnoZxLGux+lae0poLZO4AEcx6aUVOh5bV+P8zFA==}
+  isomorphic-git@1.36.3:
+    resolution: {integrity: sha512-bHF1nQTjL0IfSo13BHDO8oQ6SvYNQduTAdPJdSmrJ5JwZY2fsyjLujEXav5hqPCegSCAnc75ZsBUHqT/NqR7QA==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3559,7 +3560,6 @@ packages:
   keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
     engines: {node: '>= 0.6'}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -6893,7 +6893,7 @@ snapshots:
       '@octokit/types': 16.0.0
       fs-extra: 11.3.3
       ignore: 7.0.5
-      isomorphic-git: 1.36.1
+      isomorphic-git: 1.36.3
       zod: 4.3.6
 
   '@smithy/abort-controller@4.2.8':
@@ -9242,7 +9242,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-git@1.36.1:
+  isomorphic-git@1.36.3:
     dependencies:
       async-lock: 1.4.1
       clean-git-ref: 2.0.1
@@ -10700,7 +10700,7 @@ snapshots:
       golden-fleece: 1.0.9
       ignore: 7.0.5
       is-installed-globally: 0.4.0
-      isomorphic-git: 1.36.1
+      isomorphic-git: 1.36.3
       jest: 30.2.0(@types/node@22.19.7)(ts-node@10.9.2(@types/node@24.10.9)(typescript@5.9.3))
       jest-watch-typeahead: 3.0.1(jest@30.2.0(@types/node@24.10.9)(ts-node@10.9.2(@types/node@24.10.9)(typescript@5.9.3)))
       lodash.mergewith: 4.6.2
