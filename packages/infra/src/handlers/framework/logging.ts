@@ -27,11 +27,11 @@ export const logger = createLogger(
       const context = getContext();
 
       return {
-        awsRequestId: context.requestId,
-        deploymentId: context.deploymentId,
+        awsRequestId: context.invocation.requestId,
+        deploymentId: context.invocation.deploymentId,
 
-        ...(context.targetLambdaService
-          ? { service: context.targetLambdaService }
+        ...(context.invocation.targetLambdaService
+          ? { service: context.invocation.targetLambdaService }
           : {}),
       };
     },

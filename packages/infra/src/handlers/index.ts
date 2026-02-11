@@ -16,7 +16,12 @@ export const handler = (
   context: Pick<Context, 'awsRequestId' | 'getRemainingTimeInMillis'>,
 ): Promise<void> =>
   storage.run(
-    { requestId: context.awsRequestId, deploymentId: event.DeploymentId },
+    {
+      invocation: {
+        requestId: context.awsRequestId,
+        deploymentId: event.DeploymentId,
+      },
+    },
     async () => {
       // Reserve a generous 30 seconds to report the status back to CodeDeploy.
       const timeoutMs = context.getRemainingTimeInMillis() - 30_000;

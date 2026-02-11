@@ -11,8 +11,10 @@ import {
 
 const context = {
   abortSignal: new AbortController().signal,
-  requestId: 'mock-request-id',
-  deploymentId: 'mock-deployment-id',
+  invocation: {
+    deploymentId: 'mock-deployment-id',
+    requestId: 'mock-request-id',
+  },
 };
 
 describe('getAbortSignal', () => {
@@ -26,8 +28,8 @@ describe('getContext', () => {
   it('returns the current context where available', () =>
     storage.run(context, () => expect(getContext()).toStrictEqual(context)));
 
-  it('returns an empty object if there is no context', () =>
-    expect(getContext()).toStrictEqual({}));
+  it('returns a placeholder object if there is no context', () =>
+    expect(getContext()).toStrictEqual({invocation:{}}));
 });
 
 describe('withTimeout', () => {
@@ -47,8 +49,9 @@ describe('withTimeout', () => {
     const task = jest.fn().mockResolvedValue(result);
 
     await expect(
-      storage.run({ abortSignal: new AbortController().signal }, () =>
-        withTimeout(task, 100),
+      storage.run(
+        { abortSignal: new AbortController().signal, invocation: {} },
+        () => withTimeout(task, 100),
       ),
     ).resolves.toBe(result);
 
@@ -96,7 +99,7 @@ describe('withTimeout', () => {
       const abortSignal = AbortSignal.timeout(100);
 
       await expect(
-        storage.run({ abortSignal }, () =>
+        storage.run({ abortSignal, invocation: {} }, () =>
           // This won't time out
           withTimeout(task, TEST_TIMEOUT_MS + 1_000),
         ),
@@ -126,10 +129,12 @@ describe('updateTargetLambdaMetadata', () => {
       $metadata: {},
     };
 
-    storage.run({}, () => {
+    storage.run({ invocation: {} }, () => {
       updateTargetLambdaMetadata(lambdaMetaData);
 
-      expect(getContext().targetLambdaService).toBe('my-tagged-service');
+      expect(getContext().invocation.targetLambdaService).toBe(
+        'my-tagged-service',
+      );
     });
   });
 
@@ -147,10 +152,10 @@ describe('updateTargetLambdaMetadata', () => {
       $metadata: {},
     };
 
-    storage.run({}, () => {
+    storage.run({ invocation: {} }, () => {
       updateTargetLambdaMetadata(lambdaMetaData);
 
-      expect(getContext().targetLambdaService).toBe('my-service');
+      expect(getContext().invocation.targetLambdaService).toBe('my-service');
     });
   });
 
@@ -166,10 +171,10 @@ describe('updateTargetLambdaMetadata', () => {
       $metadata: {},
     };
 
-    storage.run({}, () => {
+    storage.run({ invocation: {} }, () => {
       updateTargetLambdaMetadata(lambdaMetaData);
 
-      expect(getContext().targetLambdaService).toBe('my-function');
+      expect(getContext().invocation.targetLambdaService).toBe('my-function');
     });
   });
 
