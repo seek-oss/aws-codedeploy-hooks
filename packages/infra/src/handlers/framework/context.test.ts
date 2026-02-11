@@ -29,7 +29,7 @@ describe('getContext', () => {
     storage.run(context, () => expect(getContext()).toStrictEqual(context)));
 
   it('returns a placeholder object if there is no context', () =>
-    expect(getContext()).toStrictEqual({invocation:{}}));
+    expect(getContext()).toStrictEqual({ invocation: {} }));
 });
 
 describe('withTimeout', () => {
