@@ -58,7 +58,9 @@ describe('smokeTest', () => {
     lambda.on(InvokeCommand).resolves({ StatusCode: 200 });
 
     await expect(
-      storage.run({ requestId: 'mock-request-id' }, () => smokeTest(oneFn)),
+      storage.run({ invocation: { requestId: 'mock-request-id' } }, () =>
+        smokeTest(oneFn),
+      ),
     ).resolves.toBeUndefined();
 
     const [invocation] = lambda.commandCalls(InvokeCommand);
@@ -83,7 +85,7 @@ describe('smokeTest', () => {
     lambda.on(InvokeCommand).resolves({ StatusCode: 200 });
 
     await expect(
-      storage.run({ requestId: 'mock-request-id' }, () =>
+      storage.run({ invocation: { requestId: 'mock-request-id' } }, () =>
         smokeTest([
           { name: 'mock-name-1', version: 'mock-version-1' },
           { name: 'mock-name-2', version: 'mock-version-2' },

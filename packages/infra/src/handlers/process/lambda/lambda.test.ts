@@ -30,7 +30,7 @@ const updateTargetLambdaMetadataMock = jest.mocked(updateTargetLambdaMetadata);
 const getContextMock = jest.mocked(getContext);
 
 beforeEach(() => {
-  getContextMock.mockReturnValue({});
+  getContextMock.mockReturnValue({ invocation: {} });
 });
 
 afterEach(() => {

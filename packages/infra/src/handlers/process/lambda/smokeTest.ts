@@ -29,7 +29,10 @@ export const smokeTestFunction = async ({
   name,
   version,
 }: LambdaFunction): Promise<void> => {
-  const { abortSignal, requestId } = getContext();
+  const {
+    abortSignal,
+    invocation: { requestId },
+  } = getContext();
 
   const meta = {
     Custom: {
