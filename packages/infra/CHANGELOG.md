@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 4.0.3
+
+### Patch Changes
+
+- Fix propagation of `service` tag in logs ([#219](https://github.com/seek-oss/aws-codedeploy-hooks/pull/219))
+
 ## 4.0.2
 
 ### Patch Changes
