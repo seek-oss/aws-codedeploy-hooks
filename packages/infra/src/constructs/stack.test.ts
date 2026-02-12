@@ -17,10 +17,12 @@ it('returns expected CloudFormation stack', () => {
     0,
   );
 
-  const json = JSON.stringify(template.toJSON()).replaceAll(
-    /"S3Key":"([0-9a-f]+)\.zip"/g,
-    (_, hash) => `"S3Key":"${'x'.repeat(hash.length)}.zip"`,
-  );
+  const json = JSON.stringify(template.toJSON())
+    .replaceAll(
+      /"S3Key":"([0-9a-f]+)\.zip"/g,
+      (_, hash) => `"S3Key":"${'x'.repeat(hash.length)}.zip"`,
+    )
+    .replaceAll(/"VERSION":"\d+\.\d+\.\d+"/g, `"VERSION":"x.y.z"`);
 
   expect(JSON.parse(json)).toMatchSnapshot();
 });
