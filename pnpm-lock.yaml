@@ -46,7 +46,7 @@ importers:
         version: 6.0.3
       koa:
         specifier: ^3.0.1
-        version: 3.1.2
+        version: 3.1.1
       supertest:
         specifier: ^7.0.0
         version: 7.2.2
@@ -91,8 +91,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0(aws-sdk-client-mock@4.1.0)
       isomorphic-git:
-        specifier: 1.36.1
-        version: 1.36.1
+        specifier: 1.37.2
+        version: 1.37.2
       pino-pretty:
         specifier: 13.1.3
         version: 13.1.3
@@ -2183,9 +2183,9 @@ packages:
   constructs@10.4.5:
     resolution: {integrity: sha512-fOoP70YLevMZr5avJHx2DU3LNYmC6wM8OwdrNewMZou1kZnPGOeVzBrRjZNgFDHUlulYUjkpFRSpTE3D+n+ZSg==}
 
-  content-disposition@1.0.1:
-    resolution: {integrity: sha512-oIXISMynqSqm241k6kcQ5UwttDILMK4BiurCfGEREw6+X9jkkpEe5T9FZaApyLGGOnFuyMWZpdolTXMtvEJ08Q==}
-    engines: {node: '>=18'}
+  content-disposition@0.5.4:
+    resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
+    engines: {node: '>= 0.6'}
 
   content-type@1.0.5:
     resolution: {integrity: sha512-nTjqfcBFEipKdXCv4YDQWCfmcLZKm81ldF0pAopTvyrFGVbcR6P/VAAd5G7N+0tTr8QqiU0tFadD6FK4NtJwOA==}
@@ -3321,8 +3321,8 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  isomorphic-git@1.36.1:
-    resolution: {integrity: sha512-fC8SRT8MwoaXDK8G4z5biPEbqf2WyEJUb2MJ2ftSd39/UIlsnoZxLGux+lae0poLZO4AEcx6aUVOh5bV+P8zFA==}
+  isomorphic-git@1.37.2:
+    resolution: {integrity: sha512-HCQBBKmXIMPdHgYGstSBNp6MNmVcMQBbUqJF8xfywFmlpNseO4KKex59YlXqNxhRxmv3fUZwvNWvMyOdc1VvhA==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3567,8 +3567,8 @@ packages:
   koa-compose@4.1.0:
     resolution: {integrity: sha512-8ODW8TrDuMYvXRwra/Kh7/rJo9BtOfPc6qO8eAfC80CnCvSjSl0bkRM24X6/XBBEyj0v1nRUQ1LyOy3dbqOWXw==}
 
-  koa@3.1.2:
-    resolution: {integrity: sha512-2LOQnFKu3m0VxpE+5sb5+BRTSKrXmNxGgxVRiKwD9s5KQB1zID/FRXhtzeV7RT1L2GVpdEEAfVuclFOMGl1ikA==}
+  koa@3.1.1:
+    resolution: {integrity: sha512-KDDuvpfqSK0ZKEO2gCPedNjl5wYpfj+HNiuVRlbhd1A88S3M0ySkdf2V/EJ4NWt5dwh5PXCdcenrKK2IQJAxsg==}
     engines: {node: '>= 18'}
 
   leven@3.1.0:
@@ -6893,7 +6893,7 @@ snapshots:
       '@octokit/types': 16.0.0
       fs-extra: 11.3.3
       ignore: 7.0.5
-      isomorphic-git: 1.36.1
+      isomorphic-git: 1.37.2
       zod: 4.3.6
 
   '@smithy/abort-controller@4.2.8':
@@ -7998,7 +7998,9 @@ snapshots:
 
   constructs@10.4.5: {}
 
-  content-disposition@1.0.1: {}
+  content-disposition@0.5.4:
+    dependencies:
+      safe-buffer: 5.2.1
 
   content-type@1.0.5: {}
 
@@ -9240,7 +9242,7 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-git@1.36.1:
+  isomorphic-git@1.37.2:
     dependencies:
       async-lock: 1.4.1
       clean-git-ref: 2.0.1
@@ -9697,10 +9699,10 @@ snapshots:
 
   koa-compose@4.1.0: {}
 
-  koa@3.1.2:
+  koa@3.1.1:
     dependencies:
       accepts: 1.3.8
-      content-disposition: 1.0.1
+      content-disposition: 0.5.4
       content-type: 1.0.5
       cookies: 0.9.1
       delegates: 1.0.0
@@ -10698,7 +10700,7 @@ snapshots:
       golden-fleece: 1.0.9
       ignore: 7.0.5
       is-installed-globally: 0.4.0
-      isomorphic-git: 1.36.1
+      isomorphic-git: 1.37.2
       jest: 30.2.0(@types/node@22.19.7)(ts-node@10.9.2(@types/node@24.10.9)(typescript@5.9.3))
       jest-watch-typeahead: 3.0.1(jest@30.2.0(@types/node@24.10.9)(ts-node@10.9.2(@types/node@24.10.9)(typescript@5.9.3)))
       lodash.mergewith: 4.6.2
