@@ -33,8 +33,8 @@ importers:
         specifier: 3.998.0
         version: 3.998.0
       '@seek/logger':
-        specifier: ^11.0.0
-        version: 11.3.0
+        specifier: ^12.0.0
+        version: 12.0.0
       '@types/aws-lambda':
         specifier: ^8.10.130
         version: 8.10.160
@@ -54,8 +54,8 @@ importers:
   packages/infra:
     dependencies:
       '@seek/logger':
-        specifier: ^11.1.0
-        version: 11.3.0
+        specifier: ^12.0.0
+        version: 12.0.0
       '@types/aws-lambda':
         specifier: ^8.10.130
         version: 8.10.160
@@ -1180,9 +1180,9 @@ packages:
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
 
-  '@seek/logger@11.3.0':
-    resolution: {integrity: sha512-hMohjrTyD/OCT4ijzJofQj/g890WtovW1T34LUZDc1Eixx651irWamokr4JsZSwiRkOOPYA9ht6T1rl+a7gj5w==}
-    engines: {node: '>=20.9.0'}
+  '@seek/logger@12.0.0':
+    resolution: {integrity: sha512-Kpab1zm4c0Hg8Y6GDT1XCU/+D6bG9ln5iS3ZloaQ2mb8ulX6eBNLnhHW18KJ5nC2xJXjjHr12nhFQH4Be4z8zg==}
+    engines: {node: '>=22.14.0'}
 
   '@semantic-release/commit-analyzer@13.0.1':
     resolution: {integrity: sha512-wdnBPHKkr9HhNhXOhZD5a2LNl91+hs8CC2vsAVYxtZH3y0dV3wKn+uZSN61rdJQZ8EGxzWB3inWocBHV9+u/CQ==}
@@ -2381,8 +2381,8 @@ packages:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
-  dtrim@1.13.2:
-    resolution: {integrity: sha512-s8SNTAh7J62jK7z3jZIFu+UB8chblbtokdcrbHSaCE6vceKiBuDksPPrFg15HziBxNaeVNj262YpbvvB94Eurg==}
+  dtrim@1.13.3:
+    resolution: {integrity: sha512-vbYv/ym5xZWwH4iOHGEXw98P6+hMUaJ6j1SNPBTWPJt945VtFFb/y1XiYwfTCeuMvRmUTb8Yu19uc7B5+hDBbA==}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -6733,10 +6733,10 @@ snapshots:
 
   '@sec-ant/readable-stream@0.4.1': {}
 
-  '@seek/logger@11.3.0':
+  '@seek/logger@12.0.0':
     dependencies:
       '@pinojs/redact': 0.4.0
-      dtrim: 1.13.2
+      dtrim: 1.13.3
       pino: 10.3.0
       pino-std-serializers: 7.1.0
 
@@ -8107,7 +8107,7 @@ snapshots:
 
   dotenv@16.6.1: {}
 
-  dtrim@1.13.2: {}
+  dtrim@1.13.3: {}
 
   dunder-proto@1.0.1:
     dependencies:
