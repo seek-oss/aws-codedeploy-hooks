@@ -13,12 +13,19 @@
   },
   "license": "MIT",
   "sideEffects": false,
-  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "@seek/aws-codedeploy-hooks/source": "./src/index.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.cts",
   "files": [
-    "lib*/**/*.d.ts",
-    "lib*/**/*.js",
-    "lib*/**/*.js.map",
-    "lib*/**/*.json"
+    "lib"
   ],
   "scripts": {
     "build": "skuba build"
@@ -37,10 +44,13 @@
     "node": ">=22.14.0"
   },
   "publishConfig": {
-    "main": "./lib/index.js",
-    "module": "./lib/index.js",
-    "provenance": true,
-    "types": "./lib/index.d.ts"
+    "exports": {
+      ".": {
+        "import": "./lib/index.mjs",
+        "require": "./lib/index.cjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "skuba": {
     "build": "esbuild"
