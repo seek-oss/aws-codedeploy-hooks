@@ -28,7 +28,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "pnpm run --silent codegen && skuba build",
+    "build": "pnpm run --silent codegen && skuba build-package",
     "codegen": "skuba node cli/codegen"
   },
   "dependencies": {

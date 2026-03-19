@@ -13,5 +13,5 @@ export default defineConfig({
   attw: true,
   unbundle: true, // TODO: determine if your project can be bundled
   exports: { devExports: '@seek/aws-codedeploy-hooks/source' },
-  copy: ['assets/**/*'],
+  copy: ['./src/assets'],
 });

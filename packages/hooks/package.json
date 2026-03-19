@@ -28,7 +28,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "skuba build"
+    "build": "skuba build-package"
   },
   "dependencies": {},
   "devDependencies": {
