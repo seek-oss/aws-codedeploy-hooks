@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true, // tsdown has optional peer deps
+    "customConditions": ["@seek/aws-codedeploy-hooks/source"],
     "rootDir": ".",
     "composite": true,
     "lib": ["ES2023"],
