@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true, // tsdown has optional peer deps
     "outDir": "lib"
   },
   "exclude": ["lib*/**/*"],
