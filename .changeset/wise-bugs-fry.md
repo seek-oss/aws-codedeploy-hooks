@@ -3,4 +3,4 @@
 '@seek/aws-codedeploy-infra': minor
 ---
 
-Update build output
+Publish dual ESM/CJS package
