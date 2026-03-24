@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-infra
 
+## 4.1.0
+
+### Minor Changes
+
+- Publish dual ESM/CJS package ([#230](https://github.com/seek-oss/aws-codedeploy-hooks/pull/230))
+
 ## 4.0.4
 
 ### Patch Changes
