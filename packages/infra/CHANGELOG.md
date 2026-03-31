@@ -1,5 +1,25 @@
 # @seek/aws-codedeploy-infra
 
+## 4.1.1
+
+### Patch Changes
+
+- **HookStack:** Bundle handlers with rolldown ([#238](https://github.com/seek-oss/aws-codedeploy-hooks/pull/238))
+
+  This fixes the following `Init Error` in the hooks:
+
+  ```json
+  {
+    "errorType": "Error",
+    "errorMessage": "Dynamic require of \"node:os\" is not supported",
+    "stack": [
+      "Error: Dynamic require of \"node:os\" is not supported",
+      "    at file:///var/task/index.mjs:11:9",
+      "    at ../../node_modules/.pnpm/pino@10.3.1/node_modules/pino/pino.js (/node_modules/.pnpm/pino@10.3.1/node_modules/pino/pino.js:3:12)"
+    ]
+  }
+  ```
+
 ## 4.1.0
 
 ### Minor Changes
