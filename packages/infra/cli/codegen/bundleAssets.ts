@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import esbuild from 'esbuild';
+import { rolldown } from 'rolldown';
 
 import { assetDir, packageDir } from './dir.js';
 
@@ -14,25 +14,22 @@ export const bundleAssets = async () => {
     `Bundling handlers into ${path.relative(process.cwd(), assetDir)}...`,
   );
 
-  await esbuild.build({
-    bundle: true,
-    charset: 'utf8',
-    entryPoints: [
-      {
-        in: path.join(packageDir, 'src', 'handlers', 'index.ts'),
-        out: 'handlers/index',
-      },
-    ],
+  const build = await rolldown({
+    input: {
+      'handlers/index': path.join(packageDir, 'src', 'handlers', 'index.ts'),
+    },
     external: [
       // Rely on AWS SDK V3 built in to the Lambda runtime.
-      '@aws-sdk/*',
+      /^@aws-sdk\//,
     ],
-    format: 'esm',
-    logLevel: 'debug',
-    outExtension: { '.js': '.mjs' },
-    outdir: assetDir,
     platform: 'node',
+    logLevel: 'debug',
+  });
+
+  await build.write({
+    dir: assetDir,
+    format: 'esm',
+    entryFileNames: '[name].mjs',
     sourcemap: true,
-    target: 'node24',
   });
 };
