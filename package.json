@@ -19,7 +19,7 @@
     "@changesets/get-github-info": "0.8.0",
     "@types/node": "^24.0.0",
     "dotenv": "16.6.1",
-    "rolldown": "1.0.0-rc.12",
+    "rolldown": "1.0.0-rc.13",
     "skuba": "15.3.0"
   },
   "packageManager": "pnpm@10.32.1",
