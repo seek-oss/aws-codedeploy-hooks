@@ -6,10 +6,11 @@ import {
   aws_lambda_event_sources,
   aws_sqs,
 } from 'aws-cdk-lib';
+import { expect, it, vi } from 'vitest';
 
 import { LambdaDeployment } from './lambdaDeployment.js';
 
-jest.mock('../version', () => ({
+vi.mock('../version', () => ({
   commit: 'abcdefg',
   version: '0.0.0',
 }));

@@ -1,4 +1,4 @@
-import 'aws-sdk-client-mock-jest';
+import 'aws-sdk-client-mock-vitest/extend';
 
 import {
   DeleteFunctionCommand,
@@ -7,6 +7,7 @@ import {
   ListVersionsByFunctionCommand,
 } from '@aws-sdk/client-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
+import { afterAll, afterEach, beforeAll, describe, expect, it } from 'vitest';
 
 import { prune } from './prune.js';
 
@@ -20,7 +21,9 @@ afterAll(() => {
   delete process.env.VERSIONS_TO_KEEP;
 });
 
-afterEach(() => lambda.reset());
+afterEach(() => {
+  lambda.reset();
+});
 
 describe('prune', () => {
   it('deletes versions from one function', async () => {

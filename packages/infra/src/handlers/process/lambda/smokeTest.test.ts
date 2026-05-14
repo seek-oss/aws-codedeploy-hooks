@@ -1,8 +1,9 @@
-import 'aws-sdk-client-mock-jest';
+import 'aws-sdk-client-mock-vitest/extend';
 
 import { InvokeCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { Uint8ArrayBlobAdapter } from '@smithy/util-stream';
 import { mockClient } from 'aws-sdk-client-mock';
+import { afterEach, describe, expect, it } from 'vitest';
 
 import { storage } from '../../framework/context.js';
 
@@ -10,7 +11,9 @@ import { smokeTest } from './smokeTest.js';
 
 const lambda = mockClient(LambdaClient);
 
-afterEach(() => lambda.reset());
+afterEach(() => {
+  lambda.reset();
+});
 
 describe('smokeTest', () => {
   const oneFn = [{ name: 'mock-name', version: 'mock-version' }];
@@ -201,7 +204,7 @@ describe('smokeTest', () => {
     lambda.on(InvokeCommand).resolves({ StatusCode: 204 });
 
     await expect(smokeTest(oneFn)).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Lambda function responded with unexpected status code: 204"`,
+      `[Error: Lambda function responded with unexpected status code: 204]`,
     );
   });
 });

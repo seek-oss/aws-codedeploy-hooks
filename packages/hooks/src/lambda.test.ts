@@ -1,4 +1,5 @@
 import type { Context, SQSEvent } from 'aws-lambda';
+import { describe, expect, it } from 'vitest';
 
 import { isLambdaHook } from './lambda.js';
 

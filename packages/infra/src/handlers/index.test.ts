@@ -1,6 +1,6 @@
-jest.mock('./process/process');
+vi.mock('./process/process.js');
 
-import 'aws-sdk-client-mock-jest';
+import 'aws-sdk-client-mock-vitest/extend';
 
 import {
   CodeDeployClient,
@@ -9,6 +9,7 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { GetFunctionCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { stdoutMock } from './framework/logging.js';
 import { getDeploymentInfo, process } from './process/process.js';
@@ -18,8 +19,8 @@ import { handler } from './index.js';
 const codeDeploy = mockClient(CodeDeployClient);
 const lambda = mockClient(LambdaClient);
 
-const getDeploymentInfoMock = jest.mocked(getDeploymentInfo);
-const processMock = jest.mocked(process);
+const getDeploymentInfoMock = vi.mocked(getDeploymentInfo);
+const processMock = vi.mocked(process);
 
 beforeEach(() => {
   getDeploymentInfoMock.mockResolvedValue({
@@ -69,8 +70,8 @@ describe('handler', () => {
     expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
-      1,
       PutLifecycleEventHookExecutionStatusCommand,
+      1,
       {
         deploymentId: event.DeploymentId,
         lifecycleEventHookExecutionId: event.LifecycleEventHookExecutionId,
@@ -140,8 +141,8 @@ describe('handler', () => {
     expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
-      1,
       PutLifecycleEventHookExecutionStatusCommand,
+      1,
       {
         deploymentId: event.DeploymentId,
         lifecycleEventHookExecutionId: event.LifecycleEventHookExecutionId,
@@ -233,14 +234,14 @@ describe('handler', () => {
     await expect(
       handler(event, context),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Failed to report lifecycle event status"`,
+      `[Error: Failed to report lifecycle event status]`,
     );
 
     expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
-      1,
       PutLifecycleEventHookExecutionStatusCommand,
+      1,
       {
         deploymentId: event.DeploymentId,
         lifecycleEventHookExecutionId: event.LifecycleEventHookExecutionId,
@@ -303,14 +304,14 @@ describe('handler', () => {
     await expect(
       handler(event, context),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Failed to report lifecycle event status"`,
+      `[Error: Failed to report lifecycle event status]`,
     );
 
     expect(processMock).toHaveBeenCalledTimes(1);
 
     expect(codeDeploy).toHaveReceivedNthCommandWith(
-      1,
       PutLifecycleEventHookExecutionStatusCommand,
+      1,
       {
         deploymentId: event.DeploymentId,
         lifecycleEventHookExecutionId: event.LifecycleEventHookExecutionId,

@@ -1,6 +1,8 @@
 import { setTimeout } from 'timers/promises';
 import { inspect } from 'util';
 
+import { describe, expect, it, vi } from 'vitest';
+
 import {
   getAbortSignal,
   getContext,
@@ -36,7 +38,7 @@ describe('withTimeout', () => {
   it('returns task result on happy path', async () => {
     const result = 'mock-result';
 
-    const task = jest.fn().mockResolvedValue(result);
+    const task = vi.fn().mockResolvedValue(result);
 
     await expect(withTimeout(task, 100)).resolves.toBe(result);
 
@@ -46,7 +48,7 @@ describe('withTimeout', () => {
   it('returns task result on happy path with a dormant parent signal', async () => {
     const result = 'mock-result';
 
-    const task = jest.fn().mockResolvedValue(result);
+    const task = vi.fn().mockResolvedValue(result);
 
     await expect(
       storage.run(
@@ -59,17 +61,14 @@ describe('withTimeout', () => {
   });
 
   it('enforces a timeout', async () => {
-    const task = jest
+    const task = vi
       .fn()
       .mockImplementation(() =>
         setTimeout(200, undefined, { signal: getAbortSignal() }),
       );
 
     await expect(withTimeout(task, 100)).rejects
-      .toThrowErrorMatchingInlineSnapshot(`
-      "The operation was aborted
-      Cause: The operation was aborted due to timeout"
-    `);
+      .toThrowErrorMatchingInlineSnapshot(`[AbortError: The operation was aborted]`);
 
     await expect(
       task.mock.results[0]!.value.catch((err: unknown) =>
@@ -89,7 +88,7 @@ describe('withTimeout', () => {
   it(
     'propagates a parent signal abortion',
     async () => {
-      const task = jest
+      const task = vi
         .fn()
         .mockImplementation(() =>
           setTimeout(200, undefined, { signal: getAbortSignal() }),
@@ -103,10 +102,7 @@ describe('withTimeout', () => {
           // This won't time out
           withTimeout(task, TEST_TIMEOUT_MS + 1_000),
         ),
-      ).rejects.toThrowErrorMatchingInlineSnapshot(`
-        "The operation was aborted
-        Cause: The operation was aborted due to timeout"
-      `);
+      ).rejects.toThrowErrorMatchingInlineSnapshot(`[AbortError: The operation was aborted]`);
     },
     TEST_TIMEOUT_MS,
   );
