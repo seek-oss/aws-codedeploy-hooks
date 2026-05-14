@@ -10,7 +10,7 @@ import { expect, it, vi } from 'vitest';
 
 import { LambdaDeployment } from './lambdaDeployment.js';
 
-vi.mock('../version', () => ({
+vi.mock('../version.js', () => ({
   commit: 'abcdefg',
   version: '0.0.0',
 }));
