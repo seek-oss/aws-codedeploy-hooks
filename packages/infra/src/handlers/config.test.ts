@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 describe('config', () => {
@@ -8,7 +7,6 @@ describe('config', () => {
   it.each(['local', 'production', 'test'])(
     'initialises in %s environment',
     async (environment) => {
-      dotenv.config();
       process.env.ENVIRONMENT = environment;
 
       await expect(import('./config.js')).resolves.toMatchObject({
@@ -18,7 +16,6 @@ describe('config', () => {
   );
 
   it('defaults to production environment', async () => {
-    dotenv.config();
     delete process.env.ENVIRONMENT;
 
     await expect(import('./config.js')).resolves.toMatchObject({

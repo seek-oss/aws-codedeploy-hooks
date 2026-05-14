@@ -11,6 +11,9 @@ export default defineConfig(
     test: {
       env: {
         ENVIRONMENT: 'test',
+        AWS_LAMBDA_FUNCTION_NAME: 'aws-codedeploy-hook-LifecycleEvent',
+        AWS_LAMBDA_FUNCTION_VERSION: 'local',
+        AWS_REGION: 'ap-southeast-4',
       },
       coverage: {
         provider: 'istanbul',
@@ -23,7 +26,6 @@ export default defineConfig(
         },
       },
       exclude: ['**/test.ts'],
-      setupFiles: ['vitest.setup.ts'],
     },
   }),
 );
