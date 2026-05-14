@@ -19,7 +19,7 @@
     "@changesets/cli": "2.30.0",
     "@changesets/get-github-info": "0.8.0",
     "@types/node": "^24.0.0",
-    "rolldown": "1.0.1",
+    "rolldown": "1.0.0",
     "skuba": "16.0.5"
   },
   "packageManager": "pnpm@10.32.1",
