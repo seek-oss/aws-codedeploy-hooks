@@ -1,4 +1,4 @@
-jest.mock('./lambda/lambda');
+vi.mock('./lambda/lambda.js');
 
 import {
   CodeDeployClient,
@@ -6,6 +6,7 @@ import {
   GetDeploymentCommand,
 } from '@aws-sdk/client-codedeploy';
 import { mockClient } from 'aws-sdk-client-mock';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { lambda } from './lambda/lambda.js';
 import { parseDeploymentInfo, processEvent } from './process.js';
@@ -29,7 +30,7 @@ const deploymentInfo: DeploymentInfo = {
 describe('processEvent', () => {
   const codeDeploy = mockClient(CodeDeployClient);
 
-  const lambdaMock = jest.mocked(lambda);
+  const lambdaMock = vi.mocked(lambda);
 
   afterEach(() => {
     codeDeploy.reset();
@@ -76,7 +77,7 @@ describe('processEvent', () => {
     await expect(
       processEvent(event),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"The following deployment properties are missing: applicationName, computePlatform, deploymentGroupName, deploymentStyle, revision"`,
+      `[Error: The following deployment properties are missing: applicationName, computePlatform, deploymentGroupName, deploymentStyle, revision]`,
     );
 
     expect(lambdaMock).not.toHaveBeenCalled();
@@ -102,7 +103,7 @@ describe('parseDeploymentInfo', () => {
         computePlatform: 'Lambda',
       }),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"The following deployment properties are missing: applicationName, deploymentGroupName, deploymentStyle, revision"`,
+      `[Error: The following deployment properties are missing: applicationName, deploymentGroupName, deploymentStyle, revision]`,
     ));
 
   it('throws an error if the deployment option is not supported', () =>
@@ -115,7 +116,7 @@ describe('parseDeploymentInfo', () => {
         },
       }),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"The following deployment option is not supported: WITHOUT_TRAFFIC_CONTROL"`,
+      `[Error: The following deployment option is not supported: WITHOUT_TRAFFIC_CONTROL]`,
     ));
 
   it('throws an error if the deployment type is not supported', () =>
@@ -128,7 +129,7 @@ describe('parseDeploymentInfo', () => {
         },
       }),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"The following deployment type is not supported: IN_PLACE"`,
+      `[Error: The following deployment type is not supported: IN_PLACE]`,
     ));
 
   it('throws an error if the compute platform is not supported', () =>
@@ -138,6 +139,6 @@ describe('parseDeploymentInfo', () => {
         computePlatform: 'Server',
       }),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"The following compute platform is not supported: Server"`,
+      `[Error: The following compute platform is not supported: Server]`,
     ));
 });

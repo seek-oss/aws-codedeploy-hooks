@@ -8,7 +8,7 @@ export const createLambdaHookProps = (
   architecture: aws_lambda.Architecture.ARM_64,
 
   code: aws_lambda.Code.fromAsset(
-    path.join(__dirname, '..', 'assets', 'handlers'),
+    path.join(import.meta.dirname, '..', 'assets', 'handlers'),
   ),
 
   environment: {

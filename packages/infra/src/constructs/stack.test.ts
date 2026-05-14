@@ -1,4 +1,5 @@
 import { App, assertions } from 'aws-cdk-lib';
+import { describe, expect, it } from 'vitest';
 
 import { HookStack } from './stack.js';
 

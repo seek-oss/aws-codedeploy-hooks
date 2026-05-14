@@ -1,15 +1,20 @@
 import { createDestination, createLogger } from '@seek/logger';
 import Koa from 'koa';
 import { agent } from 'supertest';
+import { afterEach, expect, it, vi } from 'vitest';
 
 import { koaMiddleware } from './koa.js';
 
-const onError = jest.fn();
+const onError = vi.fn();
 
 const { destination, stdoutMock } = createDestination({ mock: true });
 
-afterEach(jest.clearAllMocks);
-afterEach(stdoutMock.clear);
+afterEach(() => {
+  vi.clearAllMocks();
+});
+afterEach(() => {
+  stdoutMock.clear();
+});
 
 const logger = createLogger(
   { serializers: { err: (err) => String(err) }, timestamp: false },
@@ -160,7 +165,7 @@ it.each`
 );
 
 it('passes no arguments to the smoke test function asynchronously', async () => {
-  const smokeTest = jest.fn();
+  const smokeTest = vi.fn();
 
   await run({
     skipHook: true,
@@ -179,7 +184,7 @@ it('passes no arguments to the smoke test function asynchronously', async () => 
 });
 
 it('passes no arguments to the smoke test function synchronously', async () => {
-  const smokeTest = jest.fn();
+  const smokeTest = vi.fn();
 
   await run({
     skipHook: false,
