@@ -15,7 +15,7 @@ importers:
         specifier: 0.8.0
         version: 0.8.0
       '@types/node':
-        specifier: ^24.0.0
+        specifier: 24.12.2
         version: 24.12.2
       rolldown:
         specifier: 1.0.0
@@ -82,7 +82,7 @@ importers:
         specifier: 4.5.15
         version: 4.5.15
       '@types/node':
-        specifier: ^24.0.0
+        specifier: 24.12.2
         version: 24.12.2
       aws-sdk-client-mock:
         specifier: 4.1.0
