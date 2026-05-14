@@ -1,5 +1,11 @@
 # @seek/aws-codedeploy-hooks
 
+## 4.0.0
+
+### Major Changes
+
+- This package is now authored as an ESM package. It is still published as a dual CJS/ESM package. ([#246](https://github.com/seek-oss/aws-codedeploy-hooks/pull/246))
+
 ## 3.1.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # @seek/aws-codedeploy-infra
 
+## 5.0.0
+
+### Major Changes
+
+- This package is now authored as an ESM package. It is still published as a dual CJS/ESM package. ([#246](https://github.com/seek-oss/aws-codedeploy-hooks/pull/246))
+
+### Minor Changes
+
+- **HookStack:** Bundle handlers with rolldown 1.0.0 ([#246](https://github.com/seek-oss/aws-codedeploy-hooks/pull/246))
+
 ## 4.1.1
 
 ### Patch Changes
