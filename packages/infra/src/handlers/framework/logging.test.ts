@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { storage, updateTargetLambdaMetadata, withTimeout } from './context.js';
 import { logger, stdoutMock } from './logging.js';
 
@@ -8,13 +10,12 @@ describe('logger', () => {
 
   it.each(['local', 'production', 'test'])(
     'initialises in %s environment',
-    (environment) => {
+    async (environment) => {
+      vi.resetModules();
       process.env.ENVIRONMENT = environment;
 
-      return jest.isolateModulesAsync(async () => {
-        await expect(import('./logging.js')).resolves.toMatchObject({
-          logger: expect.any(Object),
-        });
+      await expect(import('./logging.js')).resolves.toMatchObject({
+        logger: expect.any(Object),
       });
     },
   );

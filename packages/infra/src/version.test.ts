@@ -1,3 +1,5 @@
+import { expect, it } from 'vitest';
+
 import { version } from './version.js';
 
 it('is a truthy string', () => {

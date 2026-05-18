@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import { agent } from 'supertest';
+import { describe, expect, it } from 'vitest';
 
 import { isHttpHook } from './http.js';
 

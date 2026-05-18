@@ -1,8 +1,8 @@
-jest.mock('./smokeTest');
-jest.mock('./prune');
-jest.mock('../../framework/context');
+vi.mock('./smokeTest.js');
+vi.mock('./prune.js');
+vi.mock('../../framework/context.js');
 
-import 'aws-sdk-client-mock-jest';
+import 'aws-sdk-client-mock-vitest/extend';
 
 import {
   CodeDeployClient,
@@ -10,6 +10,7 @@ import {
 } from '@aws-sdk/client-codedeploy';
 import { GetFunctionCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { mockClient } from 'aws-sdk-client-mock';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
   getContext,
@@ -24,10 +25,10 @@ import { smokeTest } from './smokeTest.js';
 const codeDeploy = mockClient(CodeDeployClient);
 const lambdaClientMock = mockClient(LambdaClient);
 
-const smokeTestMock = jest.mocked(smokeTest);
-const pruneMock = jest.mocked(prune);
-const updateTargetLambdaMetadataMock = jest.mocked(updateTargetLambdaMetadata);
-const getContextMock = jest.mocked(getContext);
+const smokeTestMock = vi.mocked(smokeTest);
+const pruneMock = vi.mocked(prune);
+const updateTargetLambdaMetadataMock = vi.mocked(updateTargetLambdaMetadata);
+const getContextMock = vi.mocked(getContext);
 
 beforeEach(() => {
   getContextMock.mockReturnValue({ invocation: {} });
@@ -114,7 +115,7 @@ describe('lambda', () => {
     });
 
     await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Application revision not in expected format: SyntaxError: Unexpected token '}', "}" is not valid JSON"`,
+      `[Error: Application revision not in expected format: SyntaxError: Unexpected token '}', "}" is not valid JSON]`,
     );
   });
 
@@ -129,7 +130,7 @@ describe('lambda', () => {
     });
 
     await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Application revision not in expected format: SyntaxError: Unexpected end of JSON input"`,
+      `[Error: Application revision not in expected format: SyntaxError: Unexpected end of JSON input]`,
     );
   });
 
@@ -143,7 +144,7 @@ describe('lambda', () => {
     });
 
     await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(`
-      "Application revision not in expected format: [
+      [Error: Application revision not in expected format: [
         {
           "code": "invalid_value",
           "values": [
@@ -154,7 +155,7 @@ describe('lambda', () => {
           ],
           "message": "Invalid input: expected \\"0.0\\""
         }
-      ]"
+      ]]
     `);
   });
 
@@ -180,7 +181,7 @@ describe('lambda', () => {
     });
 
     await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"You cannot configure the same Lambda function for BeforeAllowTraffic and AfterAllowTraffic"`,
+      `[Error: You cannot configure the same Lambda function for BeforeAllowTraffic and AfterAllowTraffic]`,
     );
   });
 
@@ -228,7 +229,7 @@ describe('lambda', () => {
     });
 
     await expect(lambda(opts)).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Application spec does not specify the current function as a hook"`,
+      `[Error: Application spec does not specify the current function as a hook]`,
     );
   });
 });

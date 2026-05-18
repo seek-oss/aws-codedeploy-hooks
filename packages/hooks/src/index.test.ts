@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import * as rootModule from './index.js';
 
 describe('rootModule', () => {

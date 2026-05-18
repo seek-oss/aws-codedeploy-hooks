@@ -1,6 +1,6 @@
-const skuba = require('eslint-config-skuba');
+import skuba from 'eslint-config-skuba';
 
-module.exports = [
+export default [
   {
     ignores: ['packages/**/lib*/', 'packages/infra/src/assets/'],
   },

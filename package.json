@@ -1,6 +1,7 @@
 {
   "private": true,
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "pnpm run --recursive build",
     "changeset": "changeset",
@@ -15,12 +16,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "2.30.0",
+    "@changesets/cli": "2.31.0",
     "@changesets/get-github-info": "0.8.0",
-    "@types/node": "^24.0.0",
-    "dotenv": "16.6.1",
-    "rolldown": "1.0.0-rc.12",
-    "skuba": "15.3.0"
+    "@types/node": "24.12.2",
+    "rolldown": "1.0.1",
+    "skuba": "16.0.5"
   },
   "packageManager": "pnpm@10.33.2",
   "engines": {
@@ -30,6 +30,6 @@
     "entryPoint": "packages/hooks/src/index.ts",
     "template": "oss-npm-package",
     "type": "package",
-    "version": "15.3.0"
+    "version": "16.0.5"
   }
 }
