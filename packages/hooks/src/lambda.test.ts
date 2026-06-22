@@ -5,9 +5,7 @@ import { isLambdaHook } from './lambda.js';
 
 describe('isLambdaHook', () => {
   it('is compatible with @types/aws-lambda', () =>
-    expect(
-      isLambdaHook({} as unknown as SQSEvent, {} as unknown as Context),
-    ).toBeDefined());
+    expect(isLambdaHook({}, {})).toBeDefined());
 
   it('recognises the Lambda hook', () =>
     expect(
