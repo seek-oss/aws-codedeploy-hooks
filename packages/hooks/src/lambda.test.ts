@@ -4,10 +4,12 @@ import { describe, expect, it } from 'vitest';
 import { isLambdaHook } from './lambda.js';
 
 describe('isLambdaHook', () => {
-  it('is compatible with @types/aws-lambda', () =>
-    expect(
-      isLambdaHook({} as unknown as SQSEvent, {} as unknown as Context),
-    ).toBeDefined());
+  it('is compatible with @types/aws-lambda', () => {
+    const ctx: Context = {} as any;
+    const event: SQSEvent = {} as any;
+
+    expect(isLambdaHook(event, ctx)).toBeDefined();
+  });
 
   it('recognises the Lambda hook', () =>
     expect(
