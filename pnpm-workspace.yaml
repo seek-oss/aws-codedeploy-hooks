@@ -27,6 +27,8 @@ minimumReleaseAgeExclude:
   - skuba # Managed by skuba
   - skuba-dive # Managed by skuba
   - tsconfig-seek # Managed by skuba
+  # Renovate security update: aws-cdk-lib@2.260.0
+  - aws-cdk-lib@2.260.0
 packageManagerStrictVersion: true # Managed by skuba
 publicHoistPattern:
   - '@changesets/cli' # Managed by skuba
