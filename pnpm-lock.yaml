@@ -21,8 +21,8 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       skuba:
-        specifier: 16.2.0
-        version: 16.2.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(vite@8.2.0(@types/node@24.12.2)(esbuild@0.28.1)(tsx@4.23.1)(yaml@2.9.0))
+        specifier: 16.3.0
+        version: 16.3.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(vite@8.2.0(@types/node@24.12.2)(esbuild@0.28.1)(tsx@4.23.1)(yaml@2.9.0))
 
   packages/hooks:
     devDependencies:
@@ -142,66 +142,66 @@ packages:
       tree-sitter-cli:
         optional: true
 
-  '@ast-grep/napi-darwin-arm64@0.43.0':
-    resolution: {integrity: sha512-JBWYRNJsQ/8yfcMDARFxcl1fVZ6+kv3sHB+ClKgSCe9DNoLvGQfqGr9UGRrNOModvXY6cX+c87iAPqPGftUUiw==}
+  '@ast-grep/napi-darwin-arm64@0.45.3':
+    resolution: {integrity: sha512-rMZJ6frSpR/xSbeV4hiA9WR5hHqk3rVYX8lOqEoUCaUnjEuFXvHdGN4WawJ8pVDq/IqM1UnTtsDSYgUdVmO5DA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@ast-grep/napi-darwin-x64@0.43.0':
-    resolution: {integrity: sha512-oqE/bC/uAEctnAbzqobplidExsPym4CQq7JDVD9HpkHpDHzMzPBF69whv/Qu0ZwrkXr48GCMKO5G6p+OB5n+kQ==}
+  '@ast-grep/napi-darwin-x64@0.45.3':
+    resolution: {integrity: sha512-tIclZ5pM+YSgk8NNTBoTkaclbS39cU5lbVfSrFWX4LUnxXfUPG+F+ppxyFjKwJTBELsGHEO4LdX3/Lc+FDwPNA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@ast-grep/napi-linux-arm64-gnu@0.43.0':
-    resolution: {integrity: sha512-yJSRPxwwrvVW94J2rtaatcixSAGWcSaHNbAh6soXD6HXgq6I7uMc+cyMnJstFL789yd6Pu3QIhTlpD9VY0oYhw==}
+  '@ast-grep/napi-linux-arm64-gnu@0.45.3':
+    resolution: {integrity: sha512-Bm8F7/oRHQkDXbjH+gBi9oB5huJ0q12r/AIOMIypf5PWlAVvh206Tsw468phw4Oh6kd4Ad1Z+gflNW1MutgK2g==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@ast-grep/napi-linux-arm64-musl@0.43.0':
-    resolution: {integrity: sha512-mknXLDsf66HvT/JEl18ZQSvR7/qWgWfqh3eHuVRqD2lE6cKBDXRnAzx9ZNZkUnL2Z5ph54Yk8dKVu09k45cegA==}
+  '@ast-grep/napi-linux-arm64-musl@0.45.3':
+    resolution: {integrity: sha512-yr5xcRerV41GeRxmZ8SKbfGeyZRhQePoNNCgTAb4OrWMelWwbMI80aY7/IlF2bo1sN40BSW4hZdGIO/akTd1RQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@ast-grep/napi-linux-x64-gnu@0.43.0':
-    resolution: {integrity: sha512-KM6M5KKFsHG9Y7VKCKnMsWQQ1sYwj/SPdyr91SKp66AeFJ5xMtXb13WVQ3Joe9NEsi84dzzOBIJgMddz+UMvQw==}
+  '@ast-grep/napi-linux-x64-gnu@0.45.3':
+    resolution: {integrity: sha512-lluRK3hxfHMQdFuVID6seAKVx4FH0kEwF6rCh5/I40Sf3EtNR2UCBXAqd6RBA6hqlSckktvBxCfw+h4aescDmg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@ast-grep/napi-linux-x64-musl@0.43.0':
-    resolution: {integrity: sha512-NfjI74m7CEEOsLi7ZkYwcxY10CfKIHPHRrr9aqMulmnrC4FGvxQMk1qpDrTqkjmEd8LdZt3PsPrmBa8AZCErew==}
+  '@ast-grep/napi-linux-x64-musl@0.45.3':
+    resolution: {integrity: sha512-09wJQKq86LqILqQtw0+X09SzhcPwUnMVFKyia7S3XLbLqSeQpAMF55Y+zll53JRQ1dCzFEZJyvTT/7j9vwfE3w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@ast-grep/napi-win32-arm64-msvc@0.43.0':
-    resolution: {integrity: sha512-8qwXz3oogh834bXmNLtgsQYsuQi4ZDu4e1He/q+ENhVfjIr4IZRAUc1CoKZgWn+ZSE+B0NJJIxT8Vre2l0Q1Lg==}
+  '@ast-grep/napi-win32-arm64-msvc@0.45.3':
+    resolution: {integrity: sha512-/HiVgw2cdtzXLDLoG4eBBcauekNXewfagy7qiVbjkVu/KcCH8dJ9lpj8DzeWwuBNtZxuD8jpiwP0M1pz3Bc3uw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@ast-grep/napi-win32-ia32-msvc@0.43.0':
-    resolution: {integrity: sha512-wUI/B9QNPzi0K7LlyO7eWvwhqFChM6+O4r5dfBfnOlkP1s/AZ04FdYaC9KAZiODE4FCWbeHbfO03RYOdWeF6eg==}
+  '@ast-grep/napi-win32-ia32-msvc@0.45.3':
+    resolution: {integrity: sha512-/gwJrJQUw65uNtAFcG2rtSTr117Gqqy3bfjaljCPKsa65dTeRcMMnjKLlZ6V9/g8z+4Xf78kdhp5ECbir4yfSw==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
 
-  '@ast-grep/napi-win32-x64-msvc@0.43.0':
-    resolution: {integrity: sha512-GsGIwYiThKiK9XPGBEguZAs4aIBgv6+DgosBs6ve2a3L390AaLqitoc+bbRz4Eu51URlFKmNP7TtvnAJbMi8QQ==}
+  '@ast-grep/napi-win32-x64-msvc@0.45.3':
+    resolution: {integrity: sha512-CEZAMAsaDoQoVE3MT2c/ry3/ydfyaqlTjxv8DK5PG355SrdAYPgevGC2Me6tz4dhphJin89Y20VsnrS5UrYV5Q==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
 
-  '@ast-grep/napi@0.43.0':
-    resolution: {integrity: sha512-dPugC04xwgk3gJl17jJvTjVjx1IXtWI9EcEQ0szlh0jg1UfvGDdZJo9/S9Pk7gzGBNd2bW8hIL3dG6K4T8PEJA==}
+  '@ast-grep/napi@0.45.3':
+    resolution: {integrity: sha512-bjJsUt0g3UCwbn9bjv7MnoR15rszSm79yPCXn4DWWK0NuYUUqBU/srtNMR4WnpfR7TnfBRdYFoqSNx0pGCNWJg==}
     engines: {node: '>= 10'}
 
   '@ast-grep/setup-lang@0.0.6':
@@ -248,6 +248,9 @@ packages:
   '@aws-sdk/core@3.977.3':
     resolution: {integrity: sha512-6YZTpF5Zzl0KdSrztM0l6ErKdnXrnnodIDYfayHE9SFfZU8Ubxls7H2XnfWT121jgwiG+WP1z5kyfVDsH5V4qA==}
     engines: {node: '>=20.0.0'}
+    deprecated: |-
+      Deprecated due to Document number parsing bug in JSON, see
+        https://github.com/aws/aws-sdk-js-v3/issues/8246. Newer version available.
 
   '@aws-sdk/credential-provider-env@3.972.64':
     resolution: {integrity: sha512-14kkR5aj1c7D+cYCrEcG2W3xw87wMYAEUeB/tMiQ2j0RVKzzdewd4mJw1+Q0JVLr4IFU1JHGDCyj0WqLrtIixg==}
@@ -1305,8 +1308,8 @@ packages:
   '@sinonjs/samsam@8.0.3':
     resolution: {integrity: sha512-hw6HbX+GyVZzmaYNh82Ecj1vdGZrqVIn/keDTg63IgAwiQPO+xCz99uG6Woqgb4tM0mUiFENKZ4cqd7IX94AXQ==}
 
-  '@skuba-lib/api@2.2.0':
-    resolution: {integrity: sha512-GOv5ULRfUwK1sw4AG5VA2LUIuN5DmupYzXizMcP6wR8Y4TMC6wr+gDZZZO6s9qYrEpZc6DbqCwBNdGwgs1ySdw==}
+  '@skuba-lib/api@2.3.0':
+    resolution: {integrity: sha512-XFf6MEd8AUyI3rhvRVyCdh+TlSgRaB+rWNoPKF9azJVpQaeJ5wjEeG68xEX+27Cp/6Ht7PXA2c+xQSgwLJaJgQ==}
     engines: {node: '>=22.14.0'}
 
   '@skuba-lib/changesets-changelog@1.0.1':
@@ -2269,6 +2272,7 @@ packages:
 
   constructs@10.8.0:
     resolution: {integrity: sha512-pJHp2CxvTG0ttp52rZvQfkbspPLZzttWPooIRLBwlZK8rV7ZhkjIkyZWJhIfBDC4YdcwIDmXyUFr1ieJaqjBbg==}
+    deprecated: This version has a bug that breaks downstream jsii consumers
 
   content-disposition@1.0.1:
     resolution: {integrity: sha512-oIXISMynqSqm241k6kcQ5UwttDILMK4BiurCfGEREw6+X9jkkpEe5T9FZaApyLGGOnFuyMWZpdolTXMtvEJ08Q==}
@@ -2594,18 +2598,18 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-config-seek@15.0.5:
-    resolution: {integrity: sha512-RV96LgapTurM9imjk/Ttxxi3r3dOAYYQ4IG2guBRhNSrgT8jyD/OTGvgHpvoZKnCu5zKedTo0G+k3sJmrze1Kg==}
+  eslint-config-seek@15.0.6:
+    resolution: {integrity: sha512-f6qj/YQa00p8bH8G+mzFIun8s7X67E6H+TpQAfDJ69umt7UvoauqNsuFbipNAATJOynvz5nCRxYR873j6nhvsA==}
     engines: {node: '>=22.21.1'}
     peerDependencies:
       eslint: '>=9.22.0'
       typescript: '>=5.5.4'
 
-  eslint-config-skuba@9.2.0:
-    resolution: {integrity: sha512-+RQTgKuVILk1c7hIhwz+M03p39hAsqmlE1Tf3UsL/OV82hksHn1W+tgJL2uRGzeUNivRFW2D+OVL6FhGVKIeUQ==}
+  eslint-config-skuba@9.3.0:
+    resolution: {integrity: sha512-Fth6wcm3sJGgpxFpg1D9HfoKsK76GZGs/5whQ1Npp4stdCEqZ3Cwl2BvHp+8SvXT/I7DH/MrSjQ3V79R1hALaw==}
     engines: {node: '>=22.14.0'}
     peerDependencies:
-      eslint: '>=9.22.0'
+      eslint: ^9.22.0
       typescript: '>=5.5.4'
 
   eslint-import-context@0.1.9:
@@ -2687,11 +2691,11 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
-  eslint-plugin-skuba@3.0.0:
-    resolution: {integrity: sha512-n1FxA5q9fDPnTNRiemZ9ZzvJjec8BJc2JHr025/RgZo4X2ZYooBWgLjNW91Aq/5GxZcQaXB2QjakQeTDcGSmNQ==}
+  eslint-plugin-skuba@3.1.0:
+    resolution: {integrity: sha512-TP29gzXuXjFI0UhUxltFsn7NhaaP1dGEkMk2fMwg2yg12eSLTSBGoZW2nsDotZPbxQNRDCSc/MQlKrJDZygI8A==}
     engines: {node: '>=22.14.0'}
     peerDependencies:
-      eslint: '>=9.22.0'
+      eslint: ^9.22.0
       typescript-eslint: '>=8.59.2'
 
   eslint-plugin-yml@3.6.0:
@@ -2719,6 +2723,7 @@ packages:
   eslint@9.39.5:
     resolution: {integrity: sha512-DgZS62aPLXKlnxILS/AYCoRvHaZeXceIzlXPkkGGzJWSow1aEk0lbTlxUSlyjC8jcaKxAdOnTDz+o1JFSBsyjw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -4207,8 +4212,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.8.5:
-    resolution: {integrity: sha512-zxcTTCedNGJM4R8sj/Cq/F0W/c4iE0afWBcBwMTRtw4WHYP9TWkYjdiH3npPRUYsXQCPR0hTU9yjovOu+E6EQA==}
+  prettier@3.9.8:
+    resolution: {integrity: sha512-WRFq3Wn3WId7LLROfMLdH7xaFr2jR62wU8nLO6rQUOLOxNZUviyJQs1M0iIhLexSFy+L+w0ch66wtoO2jRjG0A==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -4522,8 +4527,8 @@ packages:
     resolution: {integrity: sha512-nH17I/zCEp8hoTKxdBW4KeNPtr8b+CVBRcJc6FSv6DfYiDFVgC6zQp6sRWzUkGs6DIQzcplILjdsRxOZE9ev3w==}
     engines: {node: '>=22.14.0'}
 
-  skuba@16.2.0:
-    resolution: {integrity: sha512-GNIrOo/aJ8xWLaB3kuRDFTOhnLrHEDlmItgzvpS19gQLz/z4DrFn/LD0JAG8zb2eq7926yXYhjY95G42F4C9SQ==}
+  skuba@16.3.0:
+    resolution: {integrity: sha512-2eia8IAGjBzn/pdoOjhpEYwYS96dm5KKE3ppbKZBQ2Us7zBRhEg0abcgkc5tU8BMGaarNIqa1OH9Wgy1/vM8Pw==}
     engines: {node: '>=22.18.0'}
     hasBin: true
 
@@ -5267,44 +5272,44 @@ snapshots:
     dependencies:
       '@ast-grep/setup-lang': 0.0.6
 
-  '@ast-grep/napi-darwin-arm64@0.43.0':
+  '@ast-grep/napi-darwin-arm64@0.45.3':
     optional: true
 
-  '@ast-grep/napi-darwin-x64@0.43.0':
+  '@ast-grep/napi-darwin-x64@0.45.3':
     optional: true
 
-  '@ast-grep/napi-linux-arm64-gnu@0.43.0':
+  '@ast-grep/napi-linux-arm64-gnu@0.45.3':
     optional: true
 
-  '@ast-grep/napi-linux-arm64-musl@0.43.0':
+  '@ast-grep/napi-linux-arm64-musl@0.45.3':
     optional: true
 
-  '@ast-grep/napi-linux-x64-gnu@0.43.0':
+  '@ast-grep/napi-linux-x64-gnu@0.45.3':
     optional: true
 
-  '@ast-grep/napi-linux-x64-musl@0.43.0':
+  '@ast-grep/napi-linux-x64-musl@0.45.3':
     optional: true
 
-  '@ast-grep/napi-win32-arm64-msvc@0.43.0':
+  '@ast-grep/napi-win32-arm64-msvc@0.45.3':
     optional: true
 
-  '@ast-grep/napi-win32-ia32-msvc@0.43.0':
+  '@ast-grep/napi-win32-ia32-msvc@0.45.3':
     optional: true
 
-  '@ast-grep/napi-win32-x64-msvc@0.43.0':
+  '@ast-grep/napi-win32-x64-msvc@0.45.3':
     optional: true
 
-  '@ast-grep/napi@0.43.0':
+  '@ast-grep/napi@0.45.3':
     optionalDependencies:
-      '@ast-grep/napi-darwin-arm64': 0.43.0
-      '@ast-grep/napi-darwin-x64': 0.43.0
-      '@ast-grep/napi-linux-arm64-gnu': 0.43.0
-      '@ast-grep/napi-linux-arm64-musl': 0.43.0
-      '@ast-grep/napi-linux-x64-gnu': 0.43.0
-      '@ast-grep/napi-linux-x64-musl': 0.43.0
-      '@ast-grep/napi-win32-arm64-msvc': 0.43.0
-      '@ast-grep/napi-win32-ia32-msvc': 0.43.0
-      '@ast-grep/napi-win32-x64-msvc': 0.43.0
+      '@ast-grep/napi-darwin-arm64': 0.45.3
+      '@ast-grep/napi-darwin-x64': 0.45.3
+      '@ast-grep/napi-linux-arm64-gnu': 0.45.3
+      '@ast-grep/napi-linux-arm64-musl': 0.45.3
+      '@ast-grep/napi-linux-x64-gnu': 0.45.3
+      '@ast-grep/napi-linux-x64-musl': 0.45.3
+      '@ast-grep/napi-win32-arm64-msvc': 0.45.3
+      '@ast-grep/napi-win32-ia32-msvc': 0.45.3
+      '@ast-grep/napi-win32-x64-msvc': 0.45.3
 
   '@ast-grep/setup-lang@0.0.6': {}
 
@@ -6649,7 +6654,7 @@ snapshots:
       '@sinonjs/commons': 3.0.1
       type-detect: 4.1.0
 
-  '@skuba-lib/api@2.2.0':
+  '@skuba-lib/api@2.3.0':
     dependencies:
       '@octokit/graphql': 9.0.3
       '@octokit/rest': 22.0.1
@@ -8014,7 +8019,7 @@ snapshots:
     dependencies:
       eslint: 9.39.5
 
-  eslint-config-seek@15.0.5(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10):
+  eslint-config-seek@15.0.6(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10):
     dependencies:
       '@vitest/eslint-plugin': 1.6.24(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10)
       eslint: 9.39.5
@@ -8039,11 +8044,11 @@ snapshots:
       - supports-color
       - vitest
 
-  eslint-config-skuba@9.2.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10):
+  eslint-config-skuba@9.3.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10):
     dependencies:
       eslint: 9.39.5
-      eslint-config-seek: 15.0.5(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10)
-      eslint-plugin-skuba: 3.0.0(eslint@9.39.5)(typescript-eslint@8.65.0(eslint@9.39.5)(typescript@6.0.3))(typescript@6.0.3)
+      eslint-config-seek: 15.0.6(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10)
+      eslint-plugin-skuba: 3.1.0(eslint@9.39.5)(typescript-eslint@8.65.0(eslint@9.39.5)(typescript@6.0.3))(typescript@6.0.3)
       eslint-plugin-yml: 3.6.0(eslint@9.39.5)
       typescript: 6.0.3
       typescript-eslint: 8.65.0(eslint@9.39.5)(typescript@6.0.3)
@@ -8144,7 +8149,7 @@ snapshots:
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-skuba@3.0.0(eslint@9.39.5)(typescript-eslint@8.65.0(eslint@9.39.5)(typescript@6.0.3))(typescript@6.0.3):
+  eslint-plugin-skuba@3.1.0(eslint@9.39.5)(typescript-eslint@8.65.0(eslint@9.39.5)(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
       '@typescript-eslint/utils': 8.65.0(eslint@9.39.5)(typescript@6.0.3)
       eslint: 9.39.5
@@ -9606,15 +9611,15 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-packagejson@3.0.2(prettier@3.8.5):
+  prettier-plugin-packagejson@3.0.2(prettier@3.9.8):
     dependencies:
       sort-package-json: 3.7.1
     optionalDependencies:
-      prettier: 3.8.5
+      prettier: 3.9.8
 
   prettier@2.8.8: {}
 
-  prettier@3.8.5: {}
+  prettier@3.9.8: {}
 
   pretty-ms@9.3.0:
     dependencies:
@@ -10031,13 +10036,13 @@ snapshots:
 
   skuba-dive@4.1.0: {}
 
-  skuba@16.2.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(vite@8.2.0(@types/node@24.12.2)(esbuild@0.28.1)(tsx@4.23.1)(yaml@2.9.0)):
+  skuba@16.3.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(vite@8.2.0(@types/node@24.12.2)(esbuild@0.28.1)(tsx@4.23.1)(yaml@2.9.0)):
     dependencies:
       '@arethetypeswrong/core': 0.18.5
       '@ast-grep/lang-bash': 0.0.8
       '@ast-grep/lang-json': 0.0.7
       '@ast-grep/lang-yaml': 0.0.6
-      '@ast-grep/napi': 0.43.0
+      '@ast-grep/napi': 0.45.3
       '@changesets/cli': 2.31.0(@types/node@24.12.2)
       '@esbuild-plugins/tsconfig-paths': 0.1.2(esbuild@0.28.1)(typescript@6.0.3)
       '@inquirer/prompts': 8.5.2(@types/node@24.12.2)
@@ -10045,7 +10050,7 @@ snapshots:
       '@octokit/graphql-schema': 15.26.1
       '@octokit/rest': 22.0.1
       '@octokit/types': 16.0.0
-      '@skuba-lib/api': 2.2.0
+      '@skuba-lib/api': 2.3.0
       '@skuba-lib/changesets-changelog': 1.0.1
       '@types/node': 24.12.2
       '@vitest/coverage-istanbul': 4.1.10(vitest@4.1.10)
@@ -10056,7 +10061,7 @@ snapshots:
       ejs: 6.0.1
       esbuild: 0.28.1
       eslint: 9.39.5
-      eslint-config-skuba: 9.2.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10)
+      eslint-config-skuba: 9.3.0(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/parser@8.65.0(eslint@9.39.5)(typescript@6.0.3))(@typescript-eslint/utils@8.65.0(eslint@9.39.5)(typescript@6.0.3))(eslint@9.39.5)(typescript@6.0.3)(vitest@4.1.10)
       execa: 9.6.1
       fast-glob: 3.3.3
       find-up: 8.0.0
@@ -10077,13 +10082,15 @@ snapshots:
       npm-which: 3.0.1
       picomatch: 4.0.5
       pnpm-plugin-skuba: 3.1.0
-      prettier: 3.8.5
-      prettier-plugin-packagejson: 3.0.2(prettier@3.8.5)
+      prettier: 3.9.8
+      prettier-plugin-packagejson: 3.0.2(prettier@3.9.8)
       publint: 0.3.22
       read-package-up: 12.0.0
       rolldown: 1.2.1
       semantic-release: 25.0.8(typescript@6.0.3)
+      semver: 7.8.5
       simple-git: 3.36.0
+      std-env: 4.2.0
       ts-dedent: 2.3.0
       tsconfig-seek: 2.0.0
       tsdown: 0.22.14(@arethetypeswrong/core@0.18.5)(publint@0.3.22)(tsx@4.23.1)(typescript@6.0.3)
