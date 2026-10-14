@@ -134,9 +134,9 @@ The `skipHook` option skips synchronous validation of the smoke test function du
 This may be used when a build needs to be expedited in a disaster recovery scenario or when a dependency is known to be unhealthy.
 
 ```typescript
-import { Env } from 'skuba-dive';
 import Router from '@koa/router';
 import { createLogger } from '@seek/logger';
+import { Env } from 'skuba-dive';
 
 const config = {
   skipHook: Env.boolean('SKIP_SMOKE', { default: false }),

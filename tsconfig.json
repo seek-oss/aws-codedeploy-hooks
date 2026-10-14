@@ -11,6 +11,7 @@
   "exclude": ["lib*/**/*"],
   "extends": "skuba/config/tsconfig.json",
   "include": [
+    "oxfmt.config.ts",
     "vitest.config.ts",
     "packages/**/*",
     "packages/**/package.json",

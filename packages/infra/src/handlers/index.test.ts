@@ -1,7 +1,6 @@
 vi.mock('./process/process.js');
 
 import 'aws-sdk-client-mock-vitest/extend';
-
 import {
   CodeDeployClient,
   LifecycleEventStatus,

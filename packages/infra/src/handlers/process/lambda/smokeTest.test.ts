@@ -1,5 +1,4 @@
 import 'aws-sdk-client-mock-vitest/extend';
-
 import { InvokeCommand, LambdaClient } from '@aws-sdk/client-lambda';
 import { Uint8ArrayBlobAdapter } from '@smithy/util-stream';
 import { mockClient } from 'aws-sdk-client-mock';

@@ -1,5 +1,4 @@
 import 'aws-sdk-client-mock-vitest/extend';
-
 import {
   DeleteFunctionCommand,
   LambdaClient,
