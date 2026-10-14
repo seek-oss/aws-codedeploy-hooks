@@ -21,8 +21,8 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       skuba:
-        specifier: 16.4.0
-        version: 16.4.0(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(oxlint-tsgolint@7.0.2004)(oxlint@1.87.0(oxlint-tsgolint@7.0.2004))(supports-color@7.2.0)
+        specifier: 16.4.1
+        version: 16.4.1(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(oxlint-tsgolint@7.0.2004)(oxlint@1.87.0(oxlint-tsgolint@7.0.2004))(supports-color@7.2.0)
 
   packages/hooks:
     devDependencies:
@@ -142,66 +142,66 @@ packages:
       tree-sitter-cli:
         optional: true
 
-  '@ast-grep/napi-darwin-arm64@0.45.3':
-    resolution: {integrity: sha512-rMZJ6frSpR/xSbeV4hiA9WR5hHqk3rVYX8lOqEoUCaUnjEuFXvHdGN4WawJ8pVDq/IqM1UnTtsDSYgUdVmO5DA==}
+  '@ast-grep/napi-darwin-arm64@0.50.0':
+    resolution: {integrity: sha512-JZLEB4vKLbQc6FAFmia/pJ6u5EbPvhyxv5yx7VbnX0JKlMOBjYzE6AH3H0qq6sIwovZqiRVsXsAe/I9jqbJiTg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@ast-grep/napi-darwin-x64@0.45.3':
-    resolution: {integrity: sha512-tIclZ5pM+YSgk8NNTBoTkaclbS39cU5lbVfSrFWX4LUnxXfUPG+F+ppxyFjKwJTBELsGHEO4LdX3/Lc+FDwPNA==}
+  '@ast-grep/napi-darwin-x64@0.50.0':
+    resolution: {integrity: sha512-sKuGK1oba5usEnKkOxQnNTUTWPSar6gmBIBBtjZvJhePMzQu8ptFeLH+rf9KSFh/3OaIUYYHqkxVc/xnSkElyg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@ast-grep/napi-linux-arm64-gnu@0.45.3':
-    resolution: {integrity: sha512-Bm8F7/oRHQkDXbjH+gBi9oB5huJ0q12r/AIOMIypf5PWlAVvh206Tsw468phw4Oh6kd4Ad1Z+gflNW1MutgK2g==}
+  '@ast-grep/napi-linux-arm64-gnu@0.50.0':
+    resolution: {integrity: sha512-IEAO877JitLW78SMa3w5oceIHsE9BsKQZmLXx4RebHUfIyzGNj6+c4AVCOehVwyBIdpiTPb4JQkTvAFaSBvPdA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@ast-grep/napi-linux-arm64-musl@0.45.3':
-    resolution: {integrity: sha512-yr5xcRerV41GeRxmZ8SKbfGeyZRhQePoNNCgTAb4OrWMelWwbMI80aY7/IlF2bo1sN40BSW4hZdGIO/akTd1RQ==}
+  '@ast-grep/napi-linux-arm64-musl@0.50.0':
+    resolution: {integrity: sha512-rgeRD25FBhuvt0yG5HVIyaVuJNAM0O1j1Hank+KjcLGcu09U3/JspzhrBWbDqpLHTNC6ZDEHZZ0pUICyhCteQw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@ast-grep/napi-linux-x64-gnu@0.45.3':
-    resolution: {integrity: sha512-lluRK3hxfHMQdFuVID6seAKVx4FH0kEwF6rCh5/I40Sf3EtNR2UCBXAqd6RBA6hqlSckktvBxCfw+h4aescDmg==}
+  '@ast-grep/napi-linux-x64-gnu@0.50.0':
+    resolution: {integrity: sha512-LIDKSVqTexdiJMgkndOxlgjDaWpo0CLiUrxGaCnTbJAOL386Gib7O9iaNC0TsuLGy3oIzjno0FEZMVIifnRUVg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@ast-grep/napi-linux-x64-musl@0.45.3':
-    resolution: {integrity: sha512-09wJQKq86LqILqQtw0+X09SzhcPwUnMVFKyia7S3XLbLqSeQpAMF55Y+zll53JRQ1dCzFEZJyvTT/7j9vwfE3w==}
+  '@ast-grep/napi-linux-x64-musl@0.50.0':
+    resolution: {integrity: sha512-a4iml0lXl1wCrfjg5jyPbqyVF9yA+agvLS6aeNYSgVNsWuTF6udh11UPcJU/UPcHeks6LVzTfQkPfn8fBJJxbQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@ast-grep/napi-win32-arm64-msvc@0.45.3':
-    resolution: {integrity: sha512-/HiVgw2cdtzXLDLoG4eBBcauekNXewfagy7qiVbjkVu/KcCH8dJ9lpj8DzeWwuBNtZxuD8jpiwP0M1pz3Bc3uw==}
+  '@ast-grep/napi-win32-arm64-msvc@0.50.0':
+    resolution: {integrity: sha512-lJU8knsVmLl8o3rv2fo2KD2VR3oC0oySlPzcac3SzeYC0AhJV3uH5iNH/9bcKmhHGB/VZ4RSO3uyYaCbzGg3HA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@ast-grep/napi-win32-ia32-msvc@0.45.3':
-    resolution: {integrity: sha512-/gwJrJQUw65uNtAFcG2rtSTr117Gqqy3bfjaljCPKsa65dTeRcMMnjKLlZ6V9/g8z+4Xf78kdhp5ECbir4yfSw==}
+  '@ast-grep/napi-win32-ia32-msvc@0.50.0':
+    resolution: {integrity: sha512-/KbxgJBODuk4OTekRsorFIs/2mEOyKmJMpzlLk+8h9D3MWSzdTCrfk+HM+N0YcFe51SB1nHW0hhObC1wYw1mdw==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
 
-  '@ast-grep/napi-win32-x64-msvc@0.45.3':
-    resolution: {integrity: sha512-CEZAMAsaDoQoVE3MT2c/ry3/ydfyaqlTjxv8DK5PG355SrdAYPgevGC2Me6tz4dhphJin89Y20VsnrS5UrYV5Q==}
+  '@ast-grep/napi-win32-x64-msvc@0.50.0':
+    resolution: {integrity: sha512-/+XkXmSN/8Sp7MafROe/C5KuV4VSFueCVAQUUk0ZmR56sjMTwX66MCSyxShh5tGOcQ99FnU5fpU8JD0Npg8kNQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
 
-  '@ast-grep/napi@0.45.3':
-    resolution: {integrity: sha512-bjJsUt0g3UCwbn9bjv7MnoR15rszSm79yPCXn4DWWK0NuYUUqBU/srtNMR4WnpfR7TnfBRdYFoqSNx0pGCNWJg==}
+  '@ast-grep/napi@0.50.0':
+    resolution: {integrity: sha512-GXaeLVLuD7r7it44UIEtrvQ6HkUw0GgQg4m9wAXZYS5sgwQpEZFJkVycdJzhpNfsZCsIqOeC68geCJQ3QdirPw==}
     engines: {node: '>= 10'}
 
   '@ast-grep/setup-lang@0.0.6':
@@ -1532,8 +1532,8 @@ packages:
   '@sinonjs/samsam@8.0.3':
     resolution: {integrity: sha512-hw6HbX+GyVZzmaYNh82Ecj1vdGZrqVIn/keDTg63IgAwiQPO+xCz99uG6Woqgb4tM0mUiFENKZ4cqd7IX94AXQ==}
 
-  '@skuba-lib/api@3.0.0':
-    resolution: {integrity: sha512-BomwgqSI3SetTu6fjBGZEv2rPgyP4NWUO1ZuBKjri0WNeS3A8NYgKOvlVIanz/pwh9/GGw1C0jk0gUr9W12Omg==}
+  '@skuba-lib/api@3.0.1':
+    resolution: {integrity: sha512-xs23DbM72SDWEIPrY3ixXdpgzc11SHAp7EBFrcseukPbqp4a4jBOeliM4bFy4VKz4EgJlCwNOh4Sy/Z51/tNsw==}
     engines: {node: '>=22.14.0'}
     peerDependencies:
       rolldown: ^1.1.0
@@ -2698,8 +2698,8 @@ packages:
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
-  ejs@6.0.1:
-    resolution: {integrity: sha512-UaaM14yby8U3k02ihS1Bmj5Kz2d7CCQM1scxpgs4Mhkq8F1wR2gl3+Ts4h5Ne4Mnt7M9m4Dw7jsuMr3+xO4vZA==}
+  ejs@7.0.1:
+    resolution: {integrity: sha512-TrAb1fY4jNY6aQrNjMJsoWQxGUK47A38JxuUvnt75vDcAA9Ln7ur6FHo+irVa5Bwd3w9rdUT3xLSl5MRgHIugg==}
     engines: {node: '>=0.12.18'}
     hasBin: true
 
@@ -2982,6 +2982,10 @@ packages:
   events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
+
+  execa@10.1.0:
+    resolution: {integrity: sha512-5HT/600HqXEtmkb9mK/PkTWw+bQSCzPnWiZ4/87wD3Hi0wFzCapOuNT9p4M08PDd+KLHdHvFhKjOWmNx/npRNQ==}
+    engines: {node: '>=22'}
 
   execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
@@ -4366,8 +4370,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  pretty-ms@9.3.0:
-    resolution: {integrity: sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ==}
+  pretty-ms@9.3.1:
+    resolution: {integrity: sha512-HzMy3Geq23nVALD/M2LliU+F+M+gVNsvkQWWqeBZ8HDiCgzo6YPJ/Omrmtq24EFrIsk0a3EkQGEd7bDOo+IhGA==}
     engines: {node: '>=18'}
 
   process-nextick-args@2.0.1:
@@ -4672,8 +4676,8 @@ packages:
     resolution: {integrity: sha512-nH17I/zCEp8hoTKxdBW4KeNPtr8b+CVBRcJc6FSv6DfYiDFVgC6zQp6sRWzUkGs6DIQzcplILjdsRxOZE9ev3w==}
     engines: {node: '>=22.14.0'}
 
-  skuba@16.4.0:
-    resolution: {integrity: sha512-deO7yf2JH3zZcBlibhHh80HlE2AD+AG021VsshPCT9sv1GlEvEOqWeiGtwtmCUNfbVIsS+N7AtJ3OqPDTBC1tQ==}
+  skuba@16.4.1:
+    resolution: {integrity: sha512-ijVbSQ6k6bkVemyMvqPKXUuM+/LJPc5mySWU4waFoPK6m5tVJzxnO0plV+RUmKBZJQva/n9lOSp9BvAZI4H7iQ==}
     engines: {node: '>=22.18.0'}
     hasBin: true
 
@@ -5241,6 +5245,11 @@ packages:
     resolution: {integrity: sha512-K4jVyjnBdgvc86Y6BkaLZEN933SwYOuBFkdmBu9ZfkcAbdVbpITnDmjvZ/aQjRXQrv5EPkTnD1s39GiiqbngCw==}
     engines: {node: '>= 0.4'}
 
+  which-command@0.1.0:
+    resolution: {integrity: sha512-XZyoF5/5hZtXitIwzrU4NKK+Wtbb9aB9CezUEw2Q0wlYK8NUYQxC1rRXgNueYLtBAJwXIb+/tFVk4dozciNJMA==}
+    engines: {node: '>=22'}
+    hasBin: true
+
   which-typed-array@1.1.22:
     resolution: {integrity: sha512-fvO4ExWMFsqyhG3AiPAObMuY1lxaqgYcxbc49CNdWDDECOJNgQyvsOWVwbZc+qf3rzRtxojBK+CMEv0Ld5CYpw==}
     engines: {node: '>= 0.4'}
@@ -5384,44 +5393,44 @@ snapshots:
     dependencies:
       '@ast-grep/setup-lang': 0.0.6
 
-  '@ast-grep/napi-darwin-arm64@0.45.3':
+  '@ast-grep/napi-darwin-arm64@0.50.0':
     optional: true
 
-  '@ast-grep/napi-darwin-x64@0.45.3':
+  '@ast-grep/napi-darwin-x64@0.50.0':
     optional: true
 
-  '@ast-grep/napi-linux-arm64-gnu@0.45.3':
+  '@ast-grep/napi-linux-arm64-gnu@0.50.0':
     optional: true
 
-  '@ast-grep/napi-linux-arm64-musl@0.45.3':
+  '@ast-grep/napi-linux-arm64-musl@0.50.0':
     optional: true
 
-  '@ast-grep/napi-linux-x64-gnu@0.45.3':
+  '@ast-grep/napi-linux-x64-gnu@0.50.0':
     optional: true
 
-  '@ast-grep/napi-linux-x64-musl@0.45.3':
+  '@ast-grep/napi-linux-x64-musl@0.50.0':
     optional: true
 
-  '@ast-grep/napi-win32-arm64-msvc@0.45.3':
+  '@ast-grep/napi-win32-arm64-msvc@0.50.0':
     optional: true
 
-  '@ast-grep/napi-win32-ia32-msvc@0.45.3':
+  '@ast-grep/napi-win32-ia32-msvc@0.50.0':
     optional: true
 
-  '@ast-grep/napi-win32-x64-msvc@0.45.3':
+  '@ast-grep/napi-win32-x64-msvc@0.50.0':
     optional: true
 
-  '@ast-grep/napi@0.45.3':
+  '@ast-grep/napi@0.50.0':
     optionalDependencies:
-      '@ast-grep/napi-darwin-arm64': 0.45.3
-      '@ast-grep/napi-darwin-x64': 0.45.3
-      '@ast-grep/napi-linux-arm64-gnu': 0.45.3
-      '@ast-grep/napi-linux-arm64-musl': 0.45.3
-      '@ast-grep/napi-linux-x64-gnu': 0.45.3
-      '@ast-grep/napi-linux-x64-musl': 0.45.3
-      '@ast-grep/napi-win32-arm64-msvc': 0.45.3
-      '@ast-grep/napi-win32-ia32-msvc': 0.45.3
-      '@ast-grep/napi-win32-x64-msvc': 0.45.3
+      '@ast-grep/napi-darwin-arm64': 0.50.0
+      '@ast-grep/napi-darwin-x64': 0.50.0
+      '@ast-grep/napi-linux-arm64-gnu': 0.50.0
+      '@ast-grep/napi-linux-arm64-musl': 0.50.0
+      '@ast-grep/napi-linux-x64-gnu': 0.50.0
+      '@ast-grep/napi-linux-x64-musl': 0.50.0
+      '@ast-grep/napi-win32-arm64-msvc': 0.50.0
+      '@ast-grep/napi-win32-ia32-msvc': 0.50.0
+      '@ast-grep/napi-win32-x64-msvc': 0.50.0
 
   '@ast-grep/setup-lang@0.0.6': {}
 
@@ -6874,12 +6883,12 @@ snapshots:
       '@sinonjs/commons': 3.0.1
       type-detect: 4.1.0
 
-  '@skuba-lib/api@3.0.0(rolldown@1.2.13)':
+  '@skuba-lib/api@3.0.1(rolldown@1.2.13)':
     dependencies:
       '@octokit/graphql': 9.0.3
       '@octokit/rest': 22.0.1
       '@octokit/types': 18.0.0
-      execa: 9.6.1
+      execa: 10.1.0
       find-up: 8.0.0
       fs-extra: 11.4.0
       ignore: 7.0.6
@@ -7268,8 +7277,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.65.0(supports-color@7.2.0)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.71.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.71.1
+      '@typescript-eslint/tsconfig-utils': 8.65.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.65.0
       debug: 4.4.3(supports-color@7.2.0)
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -8076,7 +8085,7 @@ snapshots:
 
   ee-first@1.1.1: {}
 
-  ejs@6.0.1: {}
+  ejs@7.0.1: {}
 
   electron-to-chromium@1.5.398: {}
 
@@ -8496,6 +8505,21 @@ snapshots:
 
   events@3.3.0: {}
 
+  execa@10.1.0:
+    dependencies:
+      '@sindresorhus/merge-streams': 4.0.0
+      figures: 6.1.0
+      get-stream: 9.0.1
+      human-signals: 8.0.1
+      is-plain-obj: 4.1.0
+      is-stream: 4.0.1
+      npm-run-path: 6.0.0
+      pretty-ms: 9.3.1
+      signal-exit: 4.1.0
+      strip-final-newline: 4.0.0
+      which-command: 0.1.0
+      yoctocolors: 2.2.0
+
   execa@8.0.1:
     dependencies:
       cross-spawn: 7.0.6
@@ -8518,7 +8542,7 @@ snapshots:
       is-plain-obj: 4.1.0
       is-stream: 4.0.1
       npm-run-path: 6.0.0
-      pretty-ms: 9.3.0
+      pretty-ms: 9.3.1
       signal-exit: 4.1.0
       strip-final-newline: 4.0.0
       yoctocolors: 2.2.0
@@ -9811,7 +9835,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  pretty-ms@9.3.0:
+  pretty-ms@9.3.1:
     dependencies:
       parse-ms: 4.0.0
 
@@ -10220,28 +10244,28 @@ snapshots:
 
   skuba-dive@4.1.0: {}
 
-  skuba@16.4.0(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(oxlint-tsgolint@7.0.2004)(oxlint@1.87.0(oxlint-tsgolint@7.0.2004))(supports-color@7.2.0):
+  skuba@16.4.1(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(oxlint-tsgolint@7.0.2004)(oxlint@1.87.0(oxlint-tsgolint@7.0.2004))(supports-color@7.2.0):
     dependencies:
       '@arethetypeswrong/core': 0.18.5
       '@ast-grep/lang-bash': 0.0.8
       '@ast-grep/lang-json': 0.0.7
       '@ast-grep/lang-yaml': 0.0.6
-      '@ast-grep/napi': 0.45.3
+      '@ast-grep/napi': 0.50.0
       '@changesets/cli': 3.0.3
       '@clack/prompts': 1.8.1
       '@esbuild-plugins/tsconfig-paths': 0.1.2(esbuild@0.28.1)(supports-color@7.2.0)(typescript@6.0.3)
-      '@skuba-lib/api': 3.0.0(rolldown@1.2.13)
+      '@skuba-lib/api': 3.0.1(rolldown@1.2.13)
       '@skuba-lib/changesets-changelog': 2.0.0
       '@types/node': 24.12.2
       '@vitest/coverage-istanbul': 5.0.3(vitest@5.0.3)
       '@vitest/coverage-v8': 5.0.3(vitest@5.0.3)
       '@vitest/ui': 5.0.3(vitest@5.0.3)
       '@vitest/utils': 5.0.3
-      ejs: 6.0.1
+      ejs: 7.0.1
       esbuild: 0.28.1
       eslint: 9.39.5(supports-color@7.2.0)
       eslint-config-skuba: 10.0.0(@typescript-eslint/eslint-plugin@8.71.1(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/parser@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/utils@8.71.1(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@9.39.5(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)(vitest@5.0.3)
-      execa: 9.6.1
+      execa: 10.1.0
       find-up: 8.0.0
       fs-extra: 11.4.0
       function-arguments: 1.0.9
@@ -10862,6 +10886,8 @@ snapshots:
       is-set: 2.0.3
       is-weakmap: 2.0.2
       is-weakset: 2.0.4
+
+  which-command@0.1.0: {}
 
   which-typed-array@1.1.22:
     dependencies:
