@@ -3,7 +3,6 @@ vi.mock('./prune.js');
 vi.mock('../../framework/context.js');
 
 import 'aws-sdk-client-mock-vitest/extend';
-
 import {
   CodeDeployClient,
   GetApplicationRevisionCommand,
