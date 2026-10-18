@@ -20,7 +20,7 @@
     "@changesets/get-github-info": "0.8.0",
     "@types/node": "24.12.2",
     "rolldown": "1.0.1",
-    "skuba": "16.4.1"
+    "skuba": "16.4.2"
   },
   "engines": {
     "node": ">=22.14.0"
