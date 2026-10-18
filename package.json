@@ -16,8 +16,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "2.31.0",
-    "@changesets/get-github-info": "0.8.0",
     "@types/node": "24.12.2",
     "rolldown": "1.0.1",
     "skuba": "16.4.2"
