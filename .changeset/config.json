@@ -1,11 +1,18 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
-  "changelog": ["./changelog.cjs", { "repo": "seek-oss/aws-codedeploy-hooks" }],
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": [
+    "@skuba-lib/changesets-changelog",
+    {
+      "repo": "seek-oss/aws-codedeploy-hooks"
+    }
+  ],
   "commit": false,
-  "fixed": [],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [],
+  "snapshot": {
+    "useCalculatedVersion": true
+  }
 }
