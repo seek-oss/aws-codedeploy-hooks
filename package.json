@@ -16,7 +16,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "24.12.2",
+    "@types/node": "24.19.2",
     "rolldown": "1.0.1",
     "skuba": "16.4.2"
   },
