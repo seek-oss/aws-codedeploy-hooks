@@ -27,8 +27,6 @@ minimumReleaseAgeExclude:
   - skuba # Managed by skuba
   - skuba-dive # Managed by skuba
   - tsconfig-seek # Managed by skuba
-  # Renovate security update: isomorphic-git@1.38.6
-  - isomorphic-git@1.38.6
 publicHoistPattern:
   - '@arethetypeswrong/core' # Managed by skuba
   - '@changesets/cli' # Managed by skuba
